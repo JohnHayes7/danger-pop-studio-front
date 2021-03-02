@@ -9,13 +9,13 @@ function App() {
       <div className="link-boxes">
         <div className="box" id="left">
           <a href={"https://www.instagram.com/danger_pop/?hl=en"}>
-            Tattoo Inquiries Please DM here
+            Tattoo Inquiries Click Here
           </a>
         </div>
         
           <div className="box" id="right">
           <a href={"https://www.etsy.com/shop/DangerPopUpShop?ref=simple-shop-header-name&listing_id=880875255"}>
-              Clothing and Artwork For Sale Here
+              Clothing and Artwork Click Here
           </a>
           </div>
         
