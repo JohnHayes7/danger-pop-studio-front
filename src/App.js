@@ -4,15 +4,21 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Danger Pop</h1>
-      <h3>Coming Soon</h3>
+      <h1 id="headline">Danger Pop Studio</h1>
+      <h3 id="sub-head">Stay Tuned</h3>
       <div className="link-boxes">
         <div className="box" id="left">
-            Tattoo
+          <a href={"https://www.instagram.com/danger_pop/?hl=en"}>
+            Tattoo Inquiries Please DM here
+          </a>
         </div>
-        <div className="box" id="right">
-            Store
-        </div>
+        
+          <div className="box" id="right">
+          <a href={"https://www.etsy.com/shop/DangerPopUpShop?ref=simple-shop-header-name&listing_id=880875255"}>
+              Clothing and Artwork For Sale Here
+          </a>
+          </div>
+        
       </div>
     </div>
   );
