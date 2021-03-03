@@ -4,8 +4,8 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1 id="headline">Danger Pop Studio</h1>
-      <h3 id="sub-head">Stay Tuned</h3>
+      <h1 className="animated headline-2">Coming Soon</h1>
+      <img className='logo' src={"DangerPop_Logo_Black-BackGround.JPG"} alt="Danger Pop Logo" />
       <div className="link-boxes">
         <div className="box" id="left">
           <a href={"https://www.instagram.com/danger_pop/?hl=en"}>
