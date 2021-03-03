@@ -87,7 +87,7 @@ a{
 @media (max-width: 415px){
   #headline-2{
     text-align: center;
-    /* font-size: 20%; */
+    font-size: 20%;
     margin: auto;
     position: relative;
     top: 0px;
