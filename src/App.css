@@ -58,12 +58,13 @@ a{
 @media (max-width: 767px){
   .link-boxes{
     position: relative;
-    left: -75px;
+    left: -65px;
     width: 500px;
     height: 300px;
     margin: auto;
     display: block;
     top: 50px;
+    text-align: center;
   }
 
   #right{
