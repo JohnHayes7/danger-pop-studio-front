@@ -5,14 +5,15 @@ import {
   Route,
   Link
 } from "react-router-dom"
-
+import AdminPortal from './components/AdminPortal'
 
 function App() {
   return (
-    <div className="App">
-      <h1>Site Build #1</h1>
-
-    </div>
+    <Router>
+      <div className="App">
+        <Route path="/admin" component={AdminPortal} />
+      </div>
+    </Router>
   );
 }
 

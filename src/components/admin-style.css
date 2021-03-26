@@ -1,0 +1,33 @@
+.admin-options{
+    border: 1px solid white;
+    height: 700px;
+    width: 80%;
+    position: relative;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.options-rows{
+    position: relative;
+    margin: auto;
+    /* padding: 5px; */
+}
+
+.option{
+    border: 1px solid white;
+    height: 275px;
+    width: 500px;
+    margin: 30px;
+    
+}
+
+.selectable-label{
+    position: relative;
+   
+    
+    top: 125px;
+    font-size: 2em;
+    font-weight: 100;
+}
+
