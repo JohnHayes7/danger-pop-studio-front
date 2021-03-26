@@ -1,11 +1,12 @@
 .admin-options{
     border: 1px solid white;
-    height: 700px;
-    width: 80%;
+    height: 750px;
+    width: 90%;
     position: relative;
     margin: auto;
     display: flex;
     align-items: center;
+    /* padding: %; */
 }
 
 .options-rows{
@@ -22,12 +23,17 @@
     
 }
 
+.option:hover{
+    background-color: white;
+    color: black;
+}
+
 .selectable-label{
     position: relative;
    
     
     top: 125px;
-    font-size: 2em;
+    /* font-size: 2em; */
     font-weight: 100;
 }
 
