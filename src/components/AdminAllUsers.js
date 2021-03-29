@@ -2,8 +2,13 @@ import reactDom from "react-dom";
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../actions/fetchUsers'
+import { useEffect } from "react";
 
 const AdminAllUsers = () =>{
+
+    useEffect(() => {
+        fetchUsers()
+    })
 
     return(
         <div>
