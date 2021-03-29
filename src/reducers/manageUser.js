@@ -27,6 +27,9 @@ export default function manageUser(state ={
         
         case 'ALL_USERS':
             debugger
-            return null
+            return state
+
+        default:
+            return state
     }
 }
