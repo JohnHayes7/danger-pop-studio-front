@@ -24,6 +24,8 @@ export default function manageUser(state ={
                 ...state,
                 loading: true
             }
+
+        
         
         case 'ALL_USERS':
             debugger
