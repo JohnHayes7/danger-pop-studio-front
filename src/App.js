@@ -6,16 +6,18 @@ import {
   Link
 } from "react-router-dom"
 import AdminPortal from './components/AdminPortal'
-import AdminAllUsers from './components/AdminAllUsers'
-import AdminAllAppointments from './components/AdminAllAppointments'
+import AdminUsers from './components/AdminUsers'
+import AdminAppointments from './components/AdminAppointments'
+import AdminProjects from './components/AdminProjects'
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Route exact path="/admin" component={AdminPortal} />
-        <Route exact path="/admin/users" component={AdminAllUsers} />
-        <Route exact path="/admin/appts" component={AdminAllAppointments} />
+        <Route exact path="/admin/users" component={AdminUsers} />
+        <Route exact path="/admin/appts" component={AdminAppointments} />
+        <Route exact path="/admin/projects" component={AdminProjects} />
       </div>
     </Router>
   );
