@@ -1,18 +1,17 @@
 import {React, useEffect, useState} from 'react'
+import './adminprojects.css'
 
 const AdminProjects = () => {
     const [state, setState] = useState([])
     useEffect(() => {
         fetch('http://localhost:3001/projects').then(response => response.json())
         .then(rxData => {
-            // debugger
             setState(rxData)
         })
     }, [])
 
     const parseAllProjects = () =>{
-        // debugger
-        return state.data ? state.data.map( proj => <div  key={proj.id}className="appt-attrs">
+        return state.data ? state.data.map( proj => <div  key={proj.id} className="proj-attrs">
            <div>Title: {proj.attributes.title}</div>
            <div>Request Description: {proj.attributes.tattoo_request.description}</div>
            <div>Client Name: {proj.attributes.user.name}</div>
