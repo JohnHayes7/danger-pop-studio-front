@@ -2,25 +2,34 @@ import {React, useState, useEffect} from 'react'
 import './admintattoorequests.css'
 
 const AdminTattooRequests = () => {
-    const [state, setState] = useState([])
-    const [showReqDetails, setShowReqDetails] = setState(false)
+    const [requests, setRequests] = useState([])
+    const [showReqDetails, setShowReqDetails] = useState(false)
+    const [selectedRequest, setSelectedRequest] = useState([])
    
     useEffect(() => {
         fetch('http://localhost:3001/tattoo_requests').then(response => response.json())
         .then(rxData => {
            
-            setState(rxData)
+            setRequests(rxData)
         })
     }, [], showReqDetails)
 
-    const toggleShowReqDetails = () =>{
-       return setShowReqDetails(!showReqDetails)
+    const select = e => {
+        e.preventDefault()
+        debugger
+    }
+
+    const toggleShowReqDetails = (e) =>{
+        
+       return (
+           setShowReqDetails(!showReqDetails)
+       )
     }
 
 
     const parseAllTattooRequests = () =>{
         
-        return state.data ? state.data.map( tr => <div  key={tr.id}className="tattreq-attrs" onClick={toggleShowReqDetails()} >
+        return requests.data ? requests.data.map( tr => <div  key={tr.id}className="tattreq-attrs" onClick={e => select(e)}>
             <div>Request ID: {tr.id}</div>
             <div> {tr.attributes.user ? "Requestor has an account" : "Requested as a guest"}</div>
             <div>Requestor's Email: {tr.attributes.user ? tr.attributes.user.email : tr.attributes.guest_email}</div>
@@ -34,7 +43,7 @@ const AdminTattooRequests = () => {
     const requestDetails = () =>{
         if(showReqDetails){
             return(
-                <div>
+                <div id="tattreq-details">
                     <h1>Request Details</h1>
                 </div>
             )
