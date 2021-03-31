@@ -5,8 +5,11 @@ const AdminTattooRequest = props => {
     const [showReqDetails, setShowReqDetails] = useState(false)
 
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
-    
+
+    debugger
+   
     return (
+
         <div  key={props.tr.id} data-id={props.tr.id} className="tattreq-attrs" onClick={toggleShowReqDetails} >
             <div>
                 <div>Request ID: {props.tr.id}</div>

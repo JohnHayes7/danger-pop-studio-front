@@ -5,8 +5,6 @@ import AdminTattooRequest from './AdminTattooRequest'
 
 const AdminTattooRequests = () => {
     const [requests, setRequests] = useState([])
-    
-    const [selectedRequest, setSelectedRequest] = useState([])
    
     useEffect(() => {
         fetch('http://localhost:3001/tattoo_requests').then(response => response.json())
