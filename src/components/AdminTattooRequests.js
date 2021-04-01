@@ -9,7 +9,6 @@ const AdminTattooRequests = () => {
     useEffect(() => {
         fetch('http://localhost:3001/tattoo_requests').then(response => response.json())
         .then(rxData => {
-           
             setRequests(rxData)
         })
     }, [] )

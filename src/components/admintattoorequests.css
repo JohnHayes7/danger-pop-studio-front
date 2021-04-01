@@ -14,15 +14,15 @@
 }
 
 #tattreq-details{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     /* margin-left: 10%; */
     position: relative;
     /* left: 250; */
     /* width: 200%; */
     /* top: 250px; */
     height: 250%;
-    background-color: white;
-    color: black;
+    /* background-color: white;
+    color: black; */
     /* float: right; */
 }
 
