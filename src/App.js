@@ -11,7 +11,7 @@ import AdminAppointments from './components/Admin/AdminAppointments'
 import AdminProjects from './components/Admin/AdminProjects'
 import AdminTattooRequests from './components/Admin/AdminTattooRequests'
 import Home from './components/Home/Home'
-
+import TattooRequestForm from './components/TattooRequests/TattooRequestForm'
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
         <Route exact path="/admin/appts" component={AdminAppointments} />
         <Route exact path="/admin/projects" component={AdminProjects} />
         <Route exact path="/admin/tattoo-requests" component={AdminTattooRequests} />
+        <Route exact path="/tattoo-requests" component={TattooRequestForm} />
       </div>
     </Router>
   );
