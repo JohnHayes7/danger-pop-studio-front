@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchUsers } from '../actions/fetchUsers'
+import { fetchUsers } from '../../actions/fetchUsers'
 import { useEffect } from "react";
 import { useDispatch} from 'react-redux'
 import './adminusers.css'
