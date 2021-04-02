@@ -10,13 +10,14 @@ import AdminUsers from './components/Admin/AdminUsers'
 import AdminAppointments from './components/Admin/AdminAppointments'
 import AdminProjects from './components/Admin/AdminProjects'
 import AdminTattooRequests from './components/Admin/AdminTattooRequests'
+import Home from './components/Home/Home'
 
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Route exact path="/" component={Home}/> */}
+        <Route exact path="/" component={Home}/>
         <Route exact path="/admin" component={AdminPortal} />
         <Route exact path="/admin/users" component={AdminUsers} />
         <Route exact path="/admin/appts" component={AdminAppointments} />
