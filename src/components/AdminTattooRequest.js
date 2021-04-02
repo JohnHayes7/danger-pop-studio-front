@@ -6,7 +6,7 @@ const AdminTattooRequest = props => {
 
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
 
-    debugger
+    
    
     return (
 

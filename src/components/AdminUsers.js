@@ -15,7 +15,6 @@ const AdminUsers = () =>{
     },[])
 
     const parseAllUsers = () =>{
-        debugger
         return state.data ? state.data.map( p => <div  key={p.id}className="user-attrs">
             <div>Name: {p.attributes.name}</div>
             <div>User Id: {p.id}</div>
@@ -25,8 +24,7 @@ const AdminUsers = () =>{
             <div>Administrator? {p.attributes.administrator ? "Yes" : "No"}</div>
         </div>) : null
     }
-
-    debugger
+    
     return(
         <div>
             <h1>All Users</h1>
