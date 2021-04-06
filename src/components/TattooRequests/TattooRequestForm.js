@@ -7,15 +7,22 @@ import Field from '../InputFields/Field'
 const TattooRequestForm = () =>{
 
     const [file, setFile] = useState({})
-    const [imageName, setImageName] = useState('')
+    const [email, setEmail] = useState('')
+    const [requestText, setRequestText] = useState('')
+    const [allergies, setAllergies] = useState('')
+    const [isGuest, setIsGuest] = useState(false)
+   
 
     const handleSubmit = (e) =>{
-        
         e.preventDefault();
-        let fileData = new FormData();
-       
-        fileData.append('imagefile', file); 
-        debugger
+        const fileData = {
+            'email': email,
+            'requestText': requestText,
+            'allergies': allergies,
+            'isGuest': isGuest,
+            'imagefile': file
+        }
+        
       axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'multipart/form-data'}}).then(resp => {
           //update state or whatever you want to do with the resp
           console.log("1", resp)
@@ -23,6 +30,7 @@ const TattooRequestForm = () =>{
           //catch the error
           console.log(err)
         })
+        // FETCH??
       }
 
     const fileChange = (e) => {
@@ -34,7 +42,25 @@ const TattooRequestForm = () =>{
           return;
         }
         setFile(e.target.files[0]) 
-        //  this.setState({...this.state, file: event.target.files[0])}
+        
+    }
+
+    const emailInput = (e) =>{
+       setEmail(e.target.value)
+        
+    }
+
+    const confirmEmail = (email) =>{
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email) ?  true : false
+    }
+
+    const requestInput = (e) =>{
+        setRequestText(e.target.value)
+    }
+    
+    const allergiesInput = (e) =>{
+        setAllergies(e.target.value)
     }
 
 
@@ -44,6 +70,10 @@ const TattooRequestForm = () =>{
             <h1>TATTOO REQUEST FORM</h1>
             <div className="tr-req-form">
                 <form onSubmit={e => handleSubmit(e)}>
+                    
+                    <Field id="email" label="Email" email={email} changeHandler={e => emailInput(e)} />
+                    <Field id="request-text" label="Request" requestText={requestText} changeHandler={(e) => requestInput(e)}/>
+                    <Field id="allergies" label="Allergies" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/>
                     <label className="label">Upload image</label>
                     <div className="control">
                         <input className="input" type="file" name="file" onChange={e => fileChange(e)}/>
