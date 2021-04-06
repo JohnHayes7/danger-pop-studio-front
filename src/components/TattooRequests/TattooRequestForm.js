@@ -22,7 +22,6 @@ const TattooRequestForm = () =>{
             'isGuest': isGuest,
             'imagefile': file
         }
-        
       axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'multipart/form-data'}}).then(resp => {
           //update state or whatever you want to do with the resp
           console.log("1", resp)
