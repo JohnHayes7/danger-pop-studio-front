@@ -12,6 +12,7 @@ import AdminProjects from './components/Admin/AdminProjects'
 import AdminTattooRequests from './components/Admin/AdminTattooRequests'
 import Home from './components/Home/Home'
 import TattooRequestForm from './components/TattooRequests/TattooRequestForm'
+// require('dotenv').config()
 
 function App() {
   return (

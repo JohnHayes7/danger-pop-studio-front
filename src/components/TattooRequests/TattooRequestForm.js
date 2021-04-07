@@ -35,8 +35,9 @@ const TattooRequestForm = () =>{
 
     
    
-    debugger
+   
     const handleSubmit = (e) =>{
+        debugger
         e.preventDefault();
         const params = {
             ACL: 'public-read',
@@ -109,7 +110,9 @@ const TattooRequestForm = () =>{
     }
 
 
+    debugger
     return(
+        
         <div>
             <Navbar />
             <h1>TATTOO REQUEST FORM</h1>
