@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
-import S3FileUpload from 'react-s3'
+// import S3FileUpload from 'react-s3'
+import AWS from 'aws-sdk'
 import Navbar from '../Nav/Navbar'
 import axios from 'axios'
 import Field from '../InputFields/Field'
@@ -12,34 +13,60 @@ const TattooRequestForm = () =>{
     const [requestText, setRequestText] = useState('')
     const [allergies, setAllergies] = useState('')
     const [isGuest, setIsGuest] = useState(false)
+    const [progress , setProgress] = useState(0)
+    const S3_BUCKET = process.env.REACT_APP_S3_BUCKET_NAME;
+    const REGION = process.env.REACT_APP_AWS_REGION
 
-    const config = {
-        bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
-        region: process.env.REACT_APP_AWS_REGION,
+
+    AWS.config.update({
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
-    }
+    })
+    const myBucket = new AWS.S3({
+        params: {Bucket: S3_BUCKET},
+        region: REGION,
+    })
+    // const config = {
+    //     bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
+    //     region: process.env.REACT_APP_AWS_REGION,
+    //     accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    //     secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
+    // }
 
     
    
-
+    debugger
     const handleSubmit = (e) =>{
         e.preventDefault();
-        S3FileUpload.uploadFile(file, config).then((data) => {
-            console.log(data)
-        })
-        .catch((err) =>{
-            alert(err)
-        })
+        const params = {
+            ACL: 'public-read',
+            Body: file,
+            Bucket: S3_BUCKET,
+            Key: file.name
+        };
+
+        myBucket.putObject(params)
+            .on('httpUploadProgress', (evt) => {
+                setProgress(Math.round((evt.loaded / evt.total) * 100))
+            })
+            .send((err) => {
+                if (err) console.log(err)
+            })
+        // S3FileUpload.uploadFile(file, config).then((data) => {
+        //     console.log(data)
+        // })
+        // .catch((err) =>{
+        //     alert(err)
+        // })
         
-    //     const fileData = {
-    //         tattoo_request: {
-    //             'guest_email': email,
-    //             'description': requestText,
-    //             'allergies': allergies,
-    //             'image': file
-    //         } 
-    //     }
+        // const fileData = {
+        //     tattoo_request: {
+        //         'guest_email': email,
+        //         'description': requestText,
+        //         'allergies': allergies,
+        //         'image': file
+        //     } 
+        // }
     //     debugger
     //   axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'multipart/form-data'}}).then(resp => {
     //       //update state or whatever you want to do with the resp
@@ -86,6 +113,7 @@ const TattooRequestForm = () =>{
         <div>
             <Navbar />
             <h1>TATTOO REQUEST FORM</h1>
+            <div>Native SDK File Upload Progress is {progress}%</div>
             <div className="tr-req-form">
                 <form onSubmit={e => handleSubmit(e)}>
                     
