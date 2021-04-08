@@ -1,4 +1,5 @@
 import React from 'react'
+import './field.css'
 
 const  Field = props => {
     const inputType = () =>{
@@ -11,12 +12,38 @@ const  Field = props => {
         }
     }
 
+    const inputField = () =>{
+        return(
+            <div className='label-and-input' >
+                <div className="label-item">
+                    <label>{props.label}</label>
+                </div>
+                <div className='input-box'>
+                    <input className='input-field' placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                </div>
+            </div>
+           
+        )
+    }
+
+    const textField = () => {
+        return(
+            <div className='label-and-input' >
+                <div className="label-item">
+                    <label>{props.label}</label>
+                </div>
+                <div className='input-box'>
+                    <textarea className='description-field' placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                </div>
+            </div>
+        )
+    }
+
     
     return(
-        
-        <div>
-            <label>{props.label}</label>
-            <input type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler}/>
+
+        <div className="fields">
+            {props.id === 'request-text' ? textField() : inputField()}
         </div>
     )
 }

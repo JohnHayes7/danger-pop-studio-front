@@ -1,10 +1,9 @@
 import {React, useState} from 'react'
 import S3FileUpload from 'react-s3'
-// import AWS from 'aws-sdk'
 import Navbar from '../Nav/Navbar'
 import axios from 'axios'
 import Field from '../InputFields/Field'
-
+import './request-form.css'
 
 const TattooRequestForm = () =>{
 
@@ -15,18 +14,7 @@ const TattooRequestForm = () =>{
     const [isGuest, setIsGuest] = useState(false)
     const [progress , setProgress] = useState(0)
     const [showSubmit, setShowSubmit] = useState(false)
-    // const S3_BUCKET = process.env.REACT_APP_S3_BUCKET_NAME;
-    // const REGION = process.env.REACT_APP_AWS_REGION
-
-
-    // AWS.config.update({
-    //     accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-    //     secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
-    // })
-    // const myBucket = new AWS.S3({
-    //     params: {Bucket: S3_BUCKET},
-    //     region: REGION,
-    // })
+    
     const config = {
         bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
         region: process.env.REACT_APP_AWS_REGION,
@@ -49,9 +37,7 @@ const TattooRequestForm = () =>{
    
    
     const handleSubmit = (e) =>{
-        
         e.preventDefault();
-
         if(confirmEmail()){
             S3FileUpload.uploadFile(file, config).then((data) => {
                 const fileData = {
@@ -109,19 +95,21 @@ const TattooRequestForm = () =>{
         
         <div>
             <Navbar />
-            <h1>TATTOO REQUEST FORM</h1>
+            
             <div className="tr-req-form">
+            <h1>DANGER POP TATTOO REQUEST FORM</h1>
                 <form onSubmit={e => handleSubmit(e)}>
                     
-                    <Field id="email" label="Email" email={email} changeHandler={e => emailInput(e)} />
-                    <Field id="request-text" label="Request" requestText={requestText} changeHandler={(e) => requestInput(e)}/>
-                    <Field id="allergies" label="Allergies" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/>
-                    <label className="label">Upload image</label>
+                    <Field id="email" label="Email" placeHolder="Email Address" email={email} changeHandler={e => emailInput(e)}  /><br></br>
+                    <Field id="request-text" label="Request" placeHolder="Please Enter A Description of Your Desired Tattoo " requestText={requestText} changeHandler={(e) => requestInput(e)}/><br></br>
+                    <Field id="allergies" label="Allergies" placeHolder="Please list any allergies of which you are aware" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/><br></br>
                     <div className="control">
+                        <label className="label">Upload image</label>
                         <input className="input" type="file" name="file" onChange={e => fileChange(e)}/>
-                    </div>
+                    </div><br></br>
+                    <br></br>
                     <div>
-                        {showSubmit ? <button>Submit</button> : null}
+                        {showSubmit ? <button className='form-submit-button'>Submit</button> : null}
                     </div>
                 </form>
                 {/* <form>
