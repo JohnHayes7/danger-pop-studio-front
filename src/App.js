@@ -12,6 +12,7 @@ import AdminProjects from './components/Admin/AdminProjects'
 import AdminTattooRequests from './components/Admin/AdminTattooRequests'
 import Home from './components/Home/Home'
 import TattooRequestForm from './components/TattooRequests/TattooRequestForm'
+import TattooRequestSuccess from './components/TattooRequests/TattooRequestSuccessful';
 // require('dotenv').config()
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/admin/projects" component={AdminProjects} />
         <Route exact path="/admin/tattoo-requests" component={AdminTattooRequests} />
         <Route exact path="/tattoo-requests" component={TattooRequestForm} />
+        <Route exact path="/tattoo-requests/success" component={TattooRequestSuccess}/>
       </div>
     </Router>
   );

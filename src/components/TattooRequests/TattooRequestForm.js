@@ -3,6 +3,8 @@ import S3FileUpload from 'react-s3'
 import Navbar from '../Nav/Navbar'
 import axios from 'axios'
 import Field from '../InputFields/Field'
+import { useHistory } from 'react-router-dom'
+// import browserHistory  from 'react-router';
 import './request-form.css'
 
 const TattooRequestForm = () =>{
@@ -14,6 +16,8 @@ const TattooRequestForm = () =>{
     const [isGuest, setIsGuest] = useState(false)
     const [progress , setProgress] = useState(0)
     const [showSubmit, setShowSubmit] = useState(false)
+    const [image, setImage] = useState({})
+    const history = useHistory()
     
     const config = {
         bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
@@ -24,9 +28,17 @@ const TattooRequestForm = () =>{
 
     const sendDataToDb = (fileData) =>{
         axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-          //update state or whatever you want to do with the resp
-          console.log("1", resp)
-          resp.data.map(d => alert(d))
+          
+          if(resp.data.map){
+                resp.data.map(d => alert(d))
+          }else{
+            //   SEND AUTO EMAIL TO MAX AND REQUESTOR
+            //   SEND USER TO SUCCESS NOTIFICATION
+            history.push('/tattoo-requests/success')
+
+            console.log("1", resp)
+          }
+          
         }).catch( err => {  
           //catch the error
           console.log(err)
@@ -64,13 +76,17 @@ const TattooRequestForm = () =>{
         
         const { value } = e.target; 
         let ifImage = (/\.(gif|jpg|jpeg|png)$/i).test(value)
+        
         if(!ifImage){
             setShowSubmit(false)
           return;
         }
+        setImage(URL.createObjectURL(e.target.files[0]))
         setFile(e.target.files[0]) 
         setShowSubmit(true)
+       
     }
+
 
     const emailInput = (e) =>{
        setEmail(e.target.value) 
@@ -105,7 +121,9 @@ const TattooRequestForm = () =>{
                     <Field id="allergies" label="Allergies" placeHolder="Please list any allergies of which you are aware" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/><br></br>
                     <div className="control">
                         <label className="label">Upload image</label>
+                        {/* {image ? <img src={image} height="100px" width="50px" /> : null} */}
                         <input className="input" type="file" name="file" onChange={e => fileChange(e)}/>
+                        
                     </div><br></br>
                     <br></br>
                     <div>
