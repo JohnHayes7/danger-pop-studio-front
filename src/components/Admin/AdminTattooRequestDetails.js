@@ -9,8 +9,8 @@ const AdminTattooRequestDetails = (props) => {
     const parseNotes = () => props.tr.attributes.notes.map( n => <li key={n.id}>{n.content}</li>)
 
     const fullScreen = () =>{
-        setImageWidth("75vw")
-        setImageHeight("90vh")
+        setImageWidth("35vw")
+        setImageHeight("80vh")
     }
 
     const fitToDetail = () =>{
@@ -22,6 +22,7 @@ const AdminTattooRequestDetails = (props) => {
     
     return(
         <div id="tattreq-details" style={{display: props.showReqDetails ? 'block' : 'none'}}>
+            <div>Allergies: {props.tr.attributes.allergies}</div>
             <div>Body Location Image: <br></br>
                 <img onClick={toggleFullScreen}className="body-location-image" src={props.tr.attributes.body_location_image_path} style={{height: imageHeight, width: imageWidth}}alt='location image of requested tattoo'/>
             </div>

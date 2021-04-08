@@ -14,6 +14,7 @@ const TattooRequestForm = () =>{
     const [allergies, setAllergies] = useState('')
     const [isGuest, setIsGuest] = useState(false)
     const [progress , setProgress] = useState(0)
+    const [showSubmit, setShowSubmit] = useState(false)
     // const S3_BUCKET = process.env.REACT_APP_S3_BUCKET_NAME;
     // const REGION = process.env.REACT_APP_AWS_REGION
 
@@ -37,6 +38,7 @@ const TattooRequestForm = () =>{
         axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
           //update state or whatever you want to do with the resp
           console.log("1", resp)
+          resp.data.map(d => alert(d))
         }).catch( err => {  
           //catch the error
           console.log(err)
@@ -49,60 +51,46 @@ const TattooRequestForm = () =>{
     const handleSubmit = (e) =>{
         
         e.preventDefault();
-        // const params = {
-        //     ACL: 'public-read',
-        //     Body: file,
-        //     Bucket: S3_BUCKET,
-        //     Key: file.name
-        // };
 
-        // myBucket.putObject(params)
-        //     .on('httpUploadProgress', (evt) => {
-        //         setProgress(Math.round((evt.loaded / evt.total) * 100))
-        //     })
-        //     .send((err) => {
-        //         if (err) console.log(err)
-        //     })
-        S3FileUpload.uploadFile(file, config).then((data) => {
-            const fileData = {
-                tattoo_request: {
-                    'guest_email': email,
-                    'description': requestText,
-                    'allergies': allergies,
-                    'body_location_image_path': data.location
-                } 
-            }
-            sendDataToDb(fileData)
-            
-        })
-        .catch((err) =>{
-            alert(err)
-        })
+        if(confirmEmail()){
+            S3FileUpload.uploadFile(file, config).then((data) => {
+                const fileData = {
+                    tattoo_request: {
+                        'guest_email': email,
+                        'description': requestText,
+                        'allergies': allergies,
+                        'body_location_image_path': data.location
+                    } 
+                }
+                sendDataToDb(fileData)
+            })
+            .catch((err) =>{
+                alert(err)
+            })
+        }else{
+            alert('Please enter a Valid Email Address')
+        }
         
-        
-    //     debugger
-      
-        
-      }
+    }
+
 
     const fileChange = (e) => {
         
         const { value } = e.target; 
         let ifImage = (/\.(gif|jpg|jpeg|png)$/i).test(value)
         if(!ifImage){
-            
+            setShowSubmit(false)
           return;
         }
         setFile(e.target.files[0]) 
-        
+        setShowSubmit(true)
     }
 
     const emailInput = (e) =>{
-       setEmail(e.target.value)
-        
+       setEmail(e.target.value) 
     }
 
-    const confirmEmail = (email) =>{
+    const confirmEmail = () =>{
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email) ?  true : false
     }
@@ -122,7 +110,6 @@ const TattooRequestForm = () =>{
         <div>
             <Navbar />
             <h1>TATTOO REQUEST FORM</h1>
-            {/* <div>Native SDK File Upload Progress is {progress}%</div> */}
             <div className="tr-req-form">
                 <form onSubmit={e => handleSubmit(e)}>
                     
@@ -134,7 +121,7 @@ const TattooRequestForm = () =>{
                         <input className="input" type="file" name="file" onChange={e => fileChange(e)}/>
                     </div>
                     <div>
-                        <button>Submit</button>
+                        {showSubmit ? <button>Submit</button> : null}
                     </div>
                 </form>
                 {/* <form>
