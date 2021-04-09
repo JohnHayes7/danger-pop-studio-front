@@ -26,5 +26,19 @@
     /* float: right; */
 }
 
+ button#approve{
+    background-color:  rgb(69, 218, 49) ;
+    color: white;
+ }
+
+ button#decline{
+    background-color:  rgb(218,55,49) ;
+    color: white;
+ }
+
+
+
+
+
 
 

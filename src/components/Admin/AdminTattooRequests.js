@@ -14,7 +14,7 @@ const AdminTattooRequests = () => {
     }, [] )
 
 
-    const parseAllTattooRequests = () => requests.data ? requests.data.map( tr => <AdminTattooRequest tr={tr}/>) : null
+    const parseAllTattooRequests = () => requests.data ? requests.data.map( tr => <AdminTattooRequest key={tr.id} tr={tr}/>) : null
         
         
     return(

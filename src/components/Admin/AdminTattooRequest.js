@@ -14,8 +14,22 @@ const AdminTattooRequest = props => {
         let year = dateAry[0]
         let formatted = month + "/" + day + "/" + year
 
-        // debugger
         return formatted
+    }
+
+    const approvalHander = () => {
+        const req = props.tr
+        req.attributes.accepted = true
+        fetch('http://localhost:3001/projects',{
+            method: "post",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(req)
+        }).then(resp => resp.json())
+        .then(rxData => {
+            console.log(rxData)
+        })
     }
     
   
@@ -32,11 +46,11 @@ const AdminTattooRequest = props => {
                 <div>Description: {props.tr.attributes.description}</div>
                 <br></br>
             </div>
-                <AdminTattooRequestDetails tr={props.tr} showReqDetails={showReqDetails}/>
+                <AdminTattooRequestDetails key={props.tr.id} tr={props.tr} showReqDetails={showReqDetails}/>
             <br></br>
             <div><strong>{props.tr.attributes.approved ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
             <br></br>
-            <button>Approve?</button>
+            <button id="approve" onClick={approvalHander}>Approve?</button> <button id='decline'>Decline?</button>
         </div>
     )
 }
