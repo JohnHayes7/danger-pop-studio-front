@@ -8,7 +8,8 @@ import { useHistory } from 'react-router-dom'
 import './request-form.css'
 
 const TattooRequestForm = () =>{
-
+    // TO DO: GENERATE RANDOM IDs IN RAILS
+    // TO DO: ADD REQUEST DATE
     const [file, setFile] = useState({})
     const [email, setEmail] = useState('')
     const [requestText, setRequestText] = useState('')
@@ -58,6 +59,7 @@ const TattooRequestForm = () =>{
                         'description': requestText,
                         'allergies': allergies,
                         'body_location_image_path': data.location
+                        
                     } 
                 }
                 sendDataToDb(fileData)
