@@ -1,8 +1,10 @@
 import {React, useEffect, useState} from 'react'
+import { useHistory } from 'react-router-dom'
 import './adminprojects.css'
 
 const AdminProjects = () => {
     const [state, setState] = useState([])
+    const history = useHistory()
     
     useEffect(() => {
         fetch('http://localhost:3001/projects').then(response => response.json())
@@ -26,11 +28,16 @@ const AdminProjects = () => {
         }
     }
 
+    const clickHandler = (e) =>{
+        let id = e.currentTarget.id
+        history.push(`/admin/projects/${id}`)
+    }
+
 
 
     const parseAllProjects = () =>{
         debugger
-        return state.data ? state.data.map( proj => <div  key={proj.id} className="proj-attrs"> 
+        return state.data ? state.data.map( proj => <div  key={proj.id} id={proj.id} className="proj-attrs" onClick={e => clickHandler(e)}> 
             
            <div>Title: {proj.attributes.title}</div>
            <div>Request Description: {proj.attributes.tattoo_request.description}</div>
