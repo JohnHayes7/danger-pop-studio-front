@@ -1,0 +1,19 @@
+.project-data-display{
+    border: 1px solid white;
+    align-content: center;
+    height: 800px;
+    width: 90%;
+    margin: auto;
+}
+
+.project-modules{
+    display: flex;
+}
+
+.proj-mod{
+    /* position: relative; */
+    border: 1px solid white;
+    width: 100%;
+    margin-left: 20%;
+    height: 300px;  
+}
