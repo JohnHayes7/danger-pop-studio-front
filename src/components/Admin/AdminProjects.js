@@ -30,7 +30,7 @@ const AdminProjects = () => {
 
     const clickHandler = (e) =>{
         let id = e.currentTarget.id
-        history.push(`/admin/projects/${id}`)
+        history.push(`/projects/${id}`)
     }
 
 

@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react'
 
-const AdminProject = (props) => {
-    const [state, setState] = useState({})
+const Project = (props) => {
+    const [state, setState] = useState([])
     // const [pageId, setPageId] = useState("")
 
     const pageId = props.location.pathname.split('/').splice(-1)
@@ -10,10 +10,11 @@ const AdminProject = (props) => {
         // setPageId()
         fetch(`http://localhost:3001/projects/${pageId}`).then(response => response.json())
         .then(rxData => {
+            // console.log(rxData)
             setState(rxData)
             console.log(state)
         })
-    }, {})
+    }, [])
 
     return(
         <div>
@@ -22,4 +23,4 @@ const AdminProject = (props) => {
     )
 }
 
-export default AdminProject
+export default Project
