@@ -1,9 +1,9 @@
 .project-data-display{
     border: 1px solid white;
-    align-content: center;
+    /* align-content: center;
     height: 800px;
     width: 90%;
-    margin: auto;
+    margin: auto; */
 }
 
 .project-modules{
@@ -13,7 +13,34 @@
 .proj-mod{
     /* position: relative; */
     border: 1px solid white;
-    width: 35%;
+    width: 500px;
     margin-left: 10%;
     height: 300px;  
+}
+
+.proj-info{
+    font-size: .7em;
+    font-weight: 100;
+}
+
+#project-title{
+    font-size: 2em;
+    font-weight: 300;
+}
+
+#project-description{
+    font-size: 1.5em;
+    font-weight: 200;
+
+}
+
+.project-image-preview{
+    height: 50px;
+    width: 50px;
+
+}
+
+.project-image-full{
+    height: 100px;
+    width: 100px;
 }

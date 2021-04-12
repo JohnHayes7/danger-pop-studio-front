@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import Navbar from '../Nav/Navbar'
+import ProjectModule from './ProjectModule'
 import './projectcss.css'
 
 const Project = (props) => {
@@ -21,41 +22,41 @@ const Project = (props) => {
     
 
     const projectModules = () =>{
-        debugger
         return(
             <div >
-                <h1>{project.attributes ? projectModule()  : null }</h1>
+                <h1>{project.attributes ? projMod()  : null }</h1>
             </div>
         )
-     
     }
 
-    const projectAppointments = () => {
-        if(project.attributes.appointments.length > 0){
-            return project.attributes.appointments.map(appt => <div>{appt.date}</div>)
-        }else{
-            return "There are currently no upcoming appointments for this project"
-        }
-       
-    }
-
-    const projectModule = () => {
+    const projMod = () => {
         debugger
         return(
             <div className="project-modules" >
-                <div>
-                    <div className='proj-mod'><div>Appointments:</div><br></br>{projectAppointments()}</div>
-                    <div className='proj-mod'>{project.attributes.user.email}</div>
-                </div>
-                <div>
-                    <div className='proj-mod'>{project.attributes.user.email}</div>
-               </div>
-                
+                < ProjectModule label="Appointments" project={project}/>
+                < ProjectModule label="User Details" project={project} />
+                < ProjectModule label="Tattoo Request" project={project} />
             </div>
-            
-            
         )
     }
+
+    const projectTitleDescriptionId = () =>{
+        if(project.attributes){
+            debugger
+            return(
+                <div>
+                    <div id="project-title">Title:{project.attributes.title || " Please Add A Title"}</div>
+                    <div id='project-description'>Description: {project.attributes.tattoo_request.description}</div>
+                    <div id="project-id">Project ID# {project.id}</div>
+                </div>
+            )
+        }
+        
+    }
+
+    
+
+ 
 
    
 
@@ -64,6 +65,7 @@ const Project = (props) => {
             <Navbar />
             <div className='project-data-display'>
                 <h1>Danger Pop Project Page</h1>
+                    {projectTitleDescriptionId()}
                 <div >
                     {projectModules()}
                 </div>
