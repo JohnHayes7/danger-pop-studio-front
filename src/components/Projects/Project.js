@@ -30,15 +30,25 @@ const Project = (props) => {
      
     }
 
+    const projectAppointments = () => {
+        if(project.attributes.appointments.length > 0){
+            return project.attributes.appointments.map(appt => <div>{appt.date}</div>)
+        }else{
+            return "There are currently no upcoming appointments for this project"
+        }
+       
+    }
+
     const projectModule = () => {
+        debugger
         return(
             <div className="project-modules" >
                 <div>
-                    <div className='proj-mod'>{project.attributes.user.name}</div>
-                    <div className='proj-mod'>{project.attributes.user.name}</div>
+                    <div className='proj-mod'><div>Appointments:</div><br></br>{projectAppointments()}</div>
+                    <div className='proj-mod'>{project.attributes.user.email}</div>
                 </div>
                 <div>
-                    <div className='proj-mod'>{project.attributes.user.name}</div>
+                    <div className='proj-mod'>{project.attributes.user.email}</div>
                </div>
                 
             </div>

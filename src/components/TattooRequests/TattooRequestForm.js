@@ -22,12 +22,13 @@ const TattooRequestForm = () =>{
     
     const config = {
         bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
+        dirName: process.env.REACT_APP_S3_UPLOADS_FOLDER,
         region: process.env.REACT_APP_AWS_REGION,
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
-    const sendDataToDb = (fileData) =>{
+    const postDataToDb = (fileData) =>{
         axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
           
           if(resp.data.map){
@@ -62,7 +63,7 @@ const TattooRequestForm = () =>{
                         
                     } 
                 }
-                sendDataToDb(fileData)
+                postDataToDb(fileData)
             })
             .catch((err) =>{
                 alert(err)

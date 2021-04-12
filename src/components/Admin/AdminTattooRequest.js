@@ -19,6 +19,7 @@ const AdminTattooRequest = props => {
 
     const approvalHander = () => {
         const req = props.tr
+        debugger
         req.attributes.accepted = true
         fetch('http://localhost:3001/projects',{
             method: "post",
@@ -30,6 +31,15 @@ const AdminTattooRequest = props => {
         .then(rxData => {
             console.log(rxData)
         })
+    }
+
+    const displayDecisionButtons = () => {
+        if(!props.tr.attributes.accepted)
+        return(
+            <div>
+                <button id="approve" onClick={approvalHander}>Approve?</button> <button id='decline'>Decline?</button>
+            </div>  
+        )
     }
     
   
@@ -48,9 +58,11 @@ const AdminTattooRequest = props => {
             </div>
                 <AdminTattooRequestDetails key={props.tr.id} tr={props.tr} showReqDetails={showReqDetails}/>
             <br></br>
-            <div><strong>{props.tr.attributes.approved ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
+            <div><strong>{props.tr.attributes.accepted ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
             <br></br>
-            <button id="approve" onClick={approvalHander}>Approve?</button> <button id='decline'>Decline?</button>
+            {/* MUST ADD LOGIC FOR APPROVED VS UNAPPROVED REQUESTS */}
+            {displayDecisionButtons()}
+            
         </div>
     )
 }

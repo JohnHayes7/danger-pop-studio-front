@@ -36,7 +36,7 @@ const AdminProjects = () => {
 
 
     const parseAllProjects = () =>{
-        debugger
+        // debugger
         return state.data ? state.data.map( proj => <div  key={proj.id} id={proj.id} className="proj-attrs" onClick={e => clickHandler(e)}> 
             
            <div>Title: {proj.attributes.title}</div>

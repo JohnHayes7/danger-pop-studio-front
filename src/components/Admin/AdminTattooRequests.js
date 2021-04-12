@@ -5,13 +5,18 @@ import AdminTattooRequest from './AdminTattooRequest'
 
 const AdminTattooRequests = () => {
     const [requests, setRequests] = useState([])
+    // const [approvedRequests, setApproved]
    
     useEffect(() => {
         fetch('http://localhost:3001/tattoo_requests').then(response => response.json())
         .then(rxData => {
+            debugger
             setRequests(rxData)
+
         })
     }, [] )
+
+
 
 
     const parseAllTattooRequests = () => requests.data ? requests.data.map( tr => <AdminTattooRequest key={tr.id} tr={tr}/>) : null
