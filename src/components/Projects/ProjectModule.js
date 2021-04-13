@@ -49,17 +49,33 @@ const ProjectModule = (props) =>{
     }
 
     const projectTattooRequest = () =>{
-        debugger
+        // debugger
         if(moduleType()==="Tattoo Request"){
             return(
                 <div>
                     <div>Request ID: {props.project.attributes.tattoo_request.id}</div>
+                    <div> Location on Body:</div>
                     <div>
-                        Location on Body:
+                       
                         <img className={imageDisplayClass()} onClick={togglePreviewImage} src={props.project.attributes.tattoo_request.body_location_image_path} alt="body image location" />
                     </div>
                 </div>
             )
+        }
+    }
+
+    const projectNotes = () => {
+        if(moduleType()==="Notes"){
+            if(props.project.attributes.project_notes > 0){
+                return (
+                    <li>
+                       {props.project.attributes.project_notes.map(n => <li>n.content</li> )} 
+                    </li>
+                    
+                )
+            }else{
+                return <div>There are no notes for this Project</div>
+            }
         }
     }
 
@@ -72,6 +88,7 @@ const ProjectModule = (props) =>{
                 <div className='proj-info'>{projectAppointments()}</div>
                 <div className='proj-info'>{projectUserDetails()}</div>
                 <div className='proj-info'>{projectTattooRequest()}</div>
+                <div className='proj-info'>{projectNotes()}</div>
             </div> 
         </div>
     )

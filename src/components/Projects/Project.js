@@ -33,9 +33,18 @@ const Project = (props) => {
         debugger
         return(
             <div className="project-modules" >
-                < ProjectModule label="Appointments" project={project}/>
-                < ProjectModule label="User Details" project={project} />
-                < ProjectModule label="Tattoo Request" project={project} />
+                <div>
+                    < ProjectModule label="Appointments" project={project}/>
+                    < ProjectModule label="Notes" project={project} />
+                </div>
+                <div>
+                    < ProjectModule label="User Details" project={project} />
+                    < ProjectModule label="Project Images" project={project} />
+                </div>
+                <div>
+                    < ProjectModule label="Tattoo Request" project={project} /> 
+                    < ProjectModule label="Project Info" project={project} />
+                </div>
             </div>
         )
     }
