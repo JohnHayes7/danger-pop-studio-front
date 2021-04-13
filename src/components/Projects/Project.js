@@ -22,15 +22,16 @@ const Project = (props) => {
     
 
     const projectModules = () =>{
+        // TO DO ADD LOGIC TO DETERMINE IF USER IS A CLIENT OR ADMIN.  DISPLAY CERTAIN PROJ MODS DEPENDING ON ADMIN ACCESS
         return(
             <div >
-                <h1>{project.attributes ? projMod()  : null }</h1>
+                <h1>{project.attributes ? adminProjMods()  : null }</h1>
             </div>
         )
     }
 
-    const projMod = () => {
-        debugger
+    const adminProjMods = () => {
+        
         return(
             <div className="project-modules" >
                 <div className="col-1">
@@ -52,7 +53,7 @@ const Project = (props) => {
 
     const projectTitleDescriptionId = () =>{
         if(project.attributes){
-            debugger
+            
             return(
                 <div>
                     <div id="project-title">Title:{project.attributes.title || " Please Add A Title"}</div>

@@ -3,7 +3,7 @@ import {React, useState} from 'react'
 const AdminProjectNotes = (props) =>{
 
     const parseNotes = () =>{
-        debugger
+       
         if(props.project.attributes.project_notes > 0){
             return (
                 <div>
