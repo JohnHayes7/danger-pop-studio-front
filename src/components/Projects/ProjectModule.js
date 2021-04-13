@@ -1,4 +1,5 @@
 import { React, useState} from 'react'
+import AdminProjectNotes from '../Admin/AdminProjectNotes'
 
 const ProjectModule = (props) =>{
 
@@ -66,16 +67,7 @@ const ProjectModule = (props) =>{
 
     const projectNotes = () => {
         if(moduleType()==="Notes"){
-            if(props.project.attributes.project_notes > 0){
-                return (
-                    <li>
-                       {props.project.attributes.project_notes.map(n => <li>n.content</li> )} 
-                    </li>
-                    
-                )
-            }else{
-                return <div>There are no notes for this Project</div>
-            }
+            return <AdminProjectNotes project={props.project} />
         }
     }
 
