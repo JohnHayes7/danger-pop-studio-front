@@ -33,15 +33,16 @@ const Project = (props) => {
         debugger
         return(
             <div className="project-modules" >
-                <div>
+                <div className="col-1">
                     < ProjectModule label="Appointments" project={project}/>
                     < ProjectModule label="Notes" project={project} />
+                    < ProjectModule label="Artist Info" project={project} />
                 </div>
-                <div>
+                <div className="col-2">
                     < ProjectModule label="User Details" project={project} />
                     < ProjectModule label="Project Images" project={project} />
                 </div>
-                <div>
+                <div className="col-3">
                     < ProjectModule label="Tattoo Request" project={project} /> 
                     < ProjectModule label="Project Info" project={project} />
                 </div>

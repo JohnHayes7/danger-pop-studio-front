@@ -79,6 +79,39 @@ const ProjectModule = (props) =>{
         }
     }
 
+    const projectImages = () =>{
+        if(moduleType()==="Project Images"){
+            return(
+                <div>
+                    <div>Progress Pics:</div>
+                    <div>Final Pic:</div>
+                </div>
+            ) 
+        }
+    }
+
+    const projectInfo = () => {
+        debugger
+        if(moduleType()==="Project Info"){
+            return(
+                <div>
+                    <div>Deposit Received?</div>
+                    <div>Project Complete?</div>
+                </div>
+            )
+        }
+    }
+
+    const projectArtistInfo = () =>{
+        if(moduleType()==='Artist Info'){
+            if(props.project.attributes.artist){
+                return <div>Max is the artist</div>
+            }else{
+                return <div>You Need to Assign an Artist to this project</div>
+            }
+        }
+    }
+
 
     
     return(
@@ -89,6 +122,11 @@ const ProjectModule = (props) =>{
                 <div className='proj-info'>{projectUserDetails()}</div>
                 <div className='proj-info'>{projectTattooRequest()}</div>
                 <div className='proj-info'>{projectNotes()}</div>
+                <div className='proj-info'>{projectImages()}</div>
+                <div className='proj-info'>{projectInfo()}</div>
+                <div className='proj-info'>{projectArtistInfo()}</div>
+                
+
             </div> 
         </div>
     )
