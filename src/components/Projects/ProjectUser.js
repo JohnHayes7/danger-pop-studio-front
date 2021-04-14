@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ProjectUser = (props) =>{
-    debugger
+    
     return(
         <div>
             <div>Name: {props.project.attributes.user.name || "User needs to update profile"}</div>

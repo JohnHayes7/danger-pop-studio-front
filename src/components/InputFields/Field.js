@@ -1,14 +1,22 @@
-import React from 'react'
+import {React, useState} from 'react'
 import './field.css'
 
 const  Field = props => {
+
+    let textFieldClass = ''
+
+
     const inputType = () =>{
         if(props.id === 'email'){
             return props.email
         }else if(props.id === 'request-text'){
+            textFieldClass = 'description-field'
             return props.requestText
         }else if(props.id === 'allergies'){
             return props.allergies
+        }else if(props.id === 'note-text'){
+            textFieldClass = 'note-field'
+            return props.noteContent
         }
     }
 
@@ -33,7 +41,7 @@ const  Field = props => {
                     <label>{props.label}</label>
                 </div>
                 <div className='input-box'>
-                    <textarea className='description-field' placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    <textarea className={textFieldClass} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
                 </div>
             </div>
         )
