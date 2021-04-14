@@ -21,8 +21,20 @@ const ProjectModule = (props) =>{
     }
 
     const moduleType = () =>{
-        // CAN COMPONENTS BE DYNAMICALLY NAMED?
         return props.label
+    }
+
+    const modulePicker = () =>{
+        switch(props.label){
+            case "Appointments":  return <div className='proj-info'>{projectAppointments()}</div>;
+            case "User Details":  return <div className='proj-info'>{projectUserDetails()}</div>;
+            case "Tattoo Request": return <div className='proj-info'>{projectTattooRequest()}</div>;
+            case "Notes": return <div className='proj-info'>{projectNotes()}</div>;
+            case "Project Images": return <div className='proj-info'>{projectImages()}</div>;
+            case "Project Info": return <div className='proj-info'>{projectInfo()}</div>;
+            case "Artist Info": return <div className='proj-info'>{projectArtistInfo()}</div>
+        }
+        
     }
 
     const projectAppointments = () => {
@@ -74,15 +86,7 @@ const ProjectModule = (props) =>{
         <div>
             <div className='proj-mod'>
                 <div>{moduleType()}:</div><br></br>
-                <div className='proj-info'>{projectAppointments()}</div>
-                <div className='proj-info'>{projectUserDetails()}</div>
-                <div className='proj-info'>{projectTattooRequest()}</div>
-                <div className='proj-info'>{projectNotes()}</div>
-                <div className='proj-info'>{projectImages()}</div>
-                <div className='proj-info'>{projectInfo()}</div>
-                <div className='proj-info'>{projectArtistInfo()}</div>
-                
-
+                {modulePicker()}
             </div> 
         </div>
     )

@@ -6,9 +6,10 @@ const AdminProjectTattooRequest = (props) =>{
             <div>Request ID: {props.project.attributes.tattoo_request.id}</div>
             <div> Location on Body:</div>
             <div>
-               
-                <img className={props.imageDisplayClass()} onClick={props.togglePreviewImage} src={props.project.attributes.tattoo_request.body_location_image_path} alt="body image location" />
+               <img className={props.imageDisplayClass()} onClick={props.togglePreviewImage} src={props.project.attributes.tattoo_request.body_location_image_path} alt="body image location" />
             </div>
+            <div> Mockup Image:</div>
+            <div> <button>Upload Mockup Image</button></div>
         </div>
     )
 }

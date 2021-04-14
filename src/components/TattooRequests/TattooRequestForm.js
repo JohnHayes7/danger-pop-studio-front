@@ -11,6 +11,8 @@ const TattooRequestForm = () =>{
     // TO DO: GENERATE RANDOM IDs IN RAILS
     // TO DO: ADD REQUEST DATE
     const [file, setFile] = useState({})
+    const [fullName, setFullName] = useState('')
+    const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [requestText, setRequestText] = useState('')
     const [allergies, setAllergies] = useState('')
@@ -22,7 +24,7 @@ const TattooRequestForm = () =>{
     
     const config = {
         bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
-        dirName: process.env.REACT_APP_S3_UPLOADS_FOLDER,
+        dirName: process.env.REACT_APP_S3_UPLOADS_FOLDER    ,
         region: process.env.REACT_APP_AWS_REGION,
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
@@ -54,9 +56,12 @@ const TattooRequestForm = () =>{
         e.preventDefault();
         if(confirmEmail()){
             S3FileUpload.uploadFile(file, config).then((data) => {
+                debugger
                 const fileData = {
                     tattoo_request: {
                         'guest_email': email,
+                        'guest_full_name' : fullName,
+                        'guest_phone': phone,
                         'description': requestText,
                         'allergies': allergies,
                         'body_location_image_path': data.location
@@ -90,6 +95,14 @@ const TattooRequestForm = () =>{
        
     }
 
+    const fullNameInput = (e) =>{
+        setFullName(e.target.value)
+    }
+
+    const phoneInput = (e) =>{
+        setPhone(e.target.value)
+    }
+
 
     const emailInput = (e) =>{
        setEmail(e.target.value) 
@@ -118,7 +131,8 @@ const TattooRequestForm = () =>{
             <div className="tr-req-form">
             <h1>DANGER POP TATTOO REQUEST FORM</h1>
                 <form onSubmit={e => handleSubmit(e)}>
-                    
+                    <Field id="full-name" label = 'Full Name' fullName={fullName} changeHandler={e => fullNameInput(e)} /> <br></br>
+                    <Field id='phone' label="Phone#" phone={phone}  changeHandler={e=> phoneInput(e)} /><br></br>
                     <Field id="email" label="Email" placeHolder="Email Address" email={email} changeHandler={e => emailInput(e)}  /><br></br>
                     <Field id="request-text" label="Request" placeHolder="Please Enter A Description of Your Desired Tattoo " requestText={requestText} changeHandler={(e) => requestInput(e)}/><br></br>
                     <Field id="allergies" label="Allergies" placeHolder="Please list any allergies of which you are aware" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/><br></br>

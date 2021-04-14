@@ -2,6 +2,10 @@ import {React, useState} from 'react'
 
 const AdminProjectNotes = (props) =>{
 
+    const [showProjNoteForm, setShowProjNoteForm] = useState(false)
+
+    const toggleProjectNotesForm = () => setShowProjNoteForm(!showProjNoteForm)
+
     const parseNotes = () =>{
        
         if(props.project.attributes.project_notes > 0){
@@ -18,7 +22,7 @@ const AdminProjectNotes = (props) =>{
             return (
                 <div>
                     <div>There are no notes for this Project</div>
-                    <div><button>Add a Note</button></div>
+                    <div><button  onClick={toggleProjectNotesForm}>Add a Note</button></div>
                 </div>
             )
         }
