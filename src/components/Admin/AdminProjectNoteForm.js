@@ -11,9 +11,10 @@ const AdminProjectNoteForm = (props) =>{
     const adminProjectNoteSubmitHandler = (e) =>{
         e.preventDefault()
         const noteData = {
+            "project_id": props.project.id,
             "content": noteContent
         }
-        axios({method: 'patch', url: `http://localhost:3001/projects/${props.project.id}`, data: noteData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'post', url: `http://localhost:3001/project_notes`, data: noteData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             console.log(resp)
           }).catch( err => {  
             //catch the error

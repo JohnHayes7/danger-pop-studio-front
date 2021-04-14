@@ -17,7 +17,7 @@ const Project = (props) => {
            
             setProject(rxData.data)
         })
-    }, {})
+    }, [])
 
     
 
