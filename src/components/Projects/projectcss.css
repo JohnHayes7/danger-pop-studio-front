@@ -17,6 +17,8 @@
     margin-left: 45px;
     margin-bottom: 15px;
     height: 300px;  
+    overflow: scroll;
+
 }
 
 .proj-info{

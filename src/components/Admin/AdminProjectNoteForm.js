@@ -1,12 +1,15 @@
-import {React, useState} from 'react'
+import {React, useReducer, useState} from 'react'
 import Field from '../InputFields/Field'
 import axios from 'axios'
 
 const AdminProjectNoteForm = (props) =>{
 
     const [noteContent, setNoteContent] = useState('')
+    // const [reload, setReload] = useState(false)
 
     const noteInput = (e) => setNoteContent(e.target.value)
+
+    const refresh = () => window.location.reload()
 
     const adminProjectNoteSubmitHandler = (e) =>{
         e.preventDefault()
@@ -16,6 +19,7 @@ const AdminProjectNoteForm = (props) =>{
         }
         axios({method: 'post', url: `http://localhost:3001/project_notes`, data: noteData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             console.log(resp)
+            refresh()
           }).catch( err => {  
             //catch the error
             console.log(err)

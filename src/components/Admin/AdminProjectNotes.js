@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import AdminProjectNoteForm from './AdminProjectNoteForm'
+import './adminprojectnoteformcss.css'
 
 const AdminProjectNotes = (props) =>{
 
@@ -29,7 +30,7 @@ const AdminProjectNotes = (props) =>{
 
 
     return(
-        <div>
+        <div id="notes">
             <div>{parseNotes()}</div>
             <div><button  onClick={toggleProjectNotesForm}>Add a Note</button></div>
             {showProjNoteForm ? <AdminProjectNoteForm project={props.project}/> : null}

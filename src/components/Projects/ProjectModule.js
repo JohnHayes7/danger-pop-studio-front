@@ -6,6 +6,7 @@ import AdminProjectTattooRequest from '../Admin/AdminProjectTattooRequest'
 import ProjectImageModule from './ProjectImageModule'
 import AdminProjectInfoModule from '../Admin/AdminProjectInfoModule'
 import AdminProjectArtistInfoModule from '../Admin/AdminProjectArtistInfo'
+import './projectcss.css'
 
 const ProjectModule = (props) =>{
 

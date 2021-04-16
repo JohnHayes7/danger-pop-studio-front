@@ -27,7 +27,7 @@ const  Field = props => {
                     <label>{props.label}</label>
                 </div>
                 <div className='input-box'>
-                    <input className='input-field' placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    <input className='input-field' autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
                 </div>
             </div>
            
@@ -41,7 +41,7 @@ const  Field = props => {
                     <label>{props.label}</label>
                 </div>
                 <div className='input-box'>
-                    <textarea className={textFieldClass} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    <textarea className={textFieldClass} autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
                 </div>
             </div>
         )
