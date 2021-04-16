@@ -2,7 +2,8 @@ import {React, useState} from 'react'
 import AdminProjectNoteForm from './AdminProjectNoteForm'
 import './adminprojectnoteformcss.css'
 import axios from 'axios'
-import {refresh} from './AdminProjectNoteForm'
+import Refresh from '../Utilites/Refresh'
+
 
 const AdminProjectNotes = (props) =>{
 
@@ -18,7 +19,7 @@ const AdminProjectNotes = (props) =>{
     const deleteNoteFromDb = (id) =>{
         axios({method: 'DELETE', url: `http://localhost:3001/project_notes/${id}`,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             console.log(resp)
-            // refresh()
+            Refresh()
           }).catch( err => {  
             //catch the error
             console.log(err)
