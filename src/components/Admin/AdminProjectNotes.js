@@ -2,6 +2,7 @@ import {React, useState} from 'react'
 import AdminProjectNoteForm from './AdminProjectNoteForm'
 import './adminprojectnoteformcss.css'
 import axios from 'axios'
+import {refresh} from './AdminProjectNoteForm'
 
 const AdminProjectNotes = (props) =>{
 
@@ -11,7 +12,6 @@ const AdminProjectNotes = (props) =>{
 
     const deleteNote = (e) =>{
         e.preventDefault()
-        // debugger
         deleteNoteFromDb(e.currentTarget.dataset.id)
     }
 
