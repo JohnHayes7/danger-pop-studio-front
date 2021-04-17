@@ -3,56 +3,60 @@ import './field.css'
 
 const  Field = props => {
 
-    let textFieldClass = ''
-
-
     const inputType = () =>{
-        if(props.id === 'email'){
-            return props.email
-        }else if(props.id === 'request-text'){
-            textFieldClass = 'description-field'
-            return props.requestText
-        }else if(props.id === 'allergies'){
-            return props.allergies
-        }else if(props.id === 'note-text'){
-            textFieldClass = 'note-field'
-            return props.noteContent
+        switch(props.id){
+            case 'email': return props.email;
+            case 'request-text': return props.requestText;
+            case 'allergies': return props.allergies;
+            case 'note-text': return props.noteContent
         }
     }
 
-    const inputField = () =>{
-        return(
-            <div>
-                <div className="label-item">
-                    <label>{props.label}</label>
-                </div>
-                <div className='input-box'>
-                    <input className='input-field' autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
-                </div>
-            </div>
-           
-        )
+    const classType = () => {
+        switch(props.id){
+            case 'full-name': return 'input-field';
+            case 'phone': return 'input-field'
+            case 'email': return 'input-field';
+            case 'request-text': return 'description-field';
+            case 'allergies': return 'input-field';
+            case 'note-text': return 'note-field';
+        }
     }
 
-    const textField = () => {
-        debugger
-        return(
-            <div className='label-and-input' >
-                <div className="label-item">
-                    <label>{props.label}</label>
-                </div>
-                <div className='input-box'>
-                    <textarea className='description-field' autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
-                </div>
-            </div>
-        )
-    }
+  
 
+    const fieldGenerator = () =>{
+        if(classType() === 'input-field'){
+            return(
+                <div>
+                    <div>
+                        <label>{props.label}</label>
+                    </div>
+                    <div className='input-box'>
+                        <input className={classType()} autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    </div>
+                </div>
+               
+            )
+        }else{
+            return(
+                <div>
+                    <div>
+                        <label>{props.label}</label>
+                    </div>
+                    <div className='input-box'>
+                        <textarea className={classType()} autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    </div>
+                </div>
+            )
+        }
+        
+    }
     
     return(
 
         <div className="fields">
-            {props.id === 'request-text' ? textField() : inputField()}
+            {fieldGenerator()}
         </div>
     )
 }
