@@ -9,6 +9,7 @@ const  Field = props => {
             case 'request-text': return props.requestText;
             case 'allergies': return props.allergies;
             case 'note-text': return props.noteContent
+            case 'password': return props.userPassword
         }
     }
 
@@ -17,6 +18,7 @@ const  Field = props => {
             case 'full-name': return 'input-field';
             case 'phone': return 'input-field'
             case 'email': return 'input-field';
+            case 'password': return 'input-field';
             case 'request-text': return 'description-field';
             case 'allergies': return 'input-field';
             case 'note-text': return 'note-field';
@@ -33,7 +35,7 @@ const  Field = props => {
                         <label>{props.label}</label>
                     </div>
                     <div className='input-box'>
-                        <input className={classType()} autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                        <input className={classType()} autoFocus={true}  placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
                     </div>
                 </div>
                
