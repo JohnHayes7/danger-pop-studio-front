@@ -8,9 +8,11 @@ import Refresh from '../Utilites/Refresh'
 const AdminProjectNotes = (props) =>{
 
     const [showProjNoteForm, setShowProjNoteForm] = useState(false)
+    // const [projectNotes, setProjectNotes] = useState(props.project.attributes.project_notes)
+    let noteText = showProjNoteForm ? "Hide Note Form" : "Add Note"
 
     const toggleProjectNotesForm = () => setShowProjNoteForm(!showProjNoteForm)
-
+   
     const deleteNote = (e) =>{
         e.preventDefault()
         deleteNoteFromDb(e.currentTarget.dataset.id)
@@ -50,7 +52,7 @@ const AdminProjectNotes = (props) =>{
     return(
         <div id="notes">
             <div>{parseNotes()}</div>
-            <div><button  onClick={toggleProjectNotesForm}>Add a Note</button></div>
+            <div><button  onClick={toggleProjectNotesForm}>{noteText}</button></div>
             {showProjNoteForm ? <AdminProjectNoteForm project={props.project}/> : null}
         </div>
     )

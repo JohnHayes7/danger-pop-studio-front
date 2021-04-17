@@ -8,5 +8,6 @@
 .edit-note-button{
     float: right;
     background-color: black;
-    color: crimson;
+    color: rgba(218,55,49,1);
+    font-weight: 400;
 }

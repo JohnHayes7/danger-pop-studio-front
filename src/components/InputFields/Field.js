@@ -22,7 +22,7 @@ const  Field = props => {
 
     const inputField = () =>{
         return(
-            <div className='label-and-input' >
+            <div>
                 <div className="label-item">
                     <label>{props.label}</label>
                 </div>
@@ -35,13 +35,14 @@ const  Field = props => {
     }
 
     const textField = () => {
+        debugger
         return(
             <div className='label-and-input' >
                 <div className="label-item">
                     <label>{props.label}</label>
                 </div>
                 <div className='input-box'>
-                    <textarea className={textFieldClass} autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    <textarea className='description-field' autoFocus={true} placeholder={props.placeholder} type={inputType() === 'email' ? 'Email' : 'Text'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
                 </div>
             </div>
         )

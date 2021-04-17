@@ -55,10 +55,10 @@ const Project = (props) => {
         if(project.attributes){
             
             return(
-                <div>
+                <div className="id-title-description">
+                    <div id="project-id">Project ID# {project.id}</div>
                     <div id="project-title">Title:{project.attributes.title || " Please Add A Title"}</div>
                     <div id='project-description'>Description: {project.attributes.tattoo_request.description}</div>
-                    <div id="project-id">Project ID# {project.id}</div>
                 </div>
             )
         }
@@ -75,7 +75,6 @@ const Project = (props) => {
         <div>
             <Navbar />
             <div className='project-data-display'>
-                <h1>Danger Pop Project Page</h1>
                     {projectTitleDescriptionId()}
                 <div >
                     {projectModules()}
