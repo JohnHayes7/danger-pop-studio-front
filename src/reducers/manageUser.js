@@ -25,6 +25,13 @@ export default function manageUser(state ={
                 loading: true
             }
 
+        case 'DISPLAY_USER':
+            debugger
+            return state
+
+        case 'CREATE_FAN':
+            debugger
+            return state
         
         
         case 'ALL_USERS':

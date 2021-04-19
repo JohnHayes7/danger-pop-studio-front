@@ -1,14 +1,23 @@
 import {React, useState} from 'react'
 import './createuserformcss.css'
 import Field from '../InputFields/Field'
+import { connect } from 'react-redux'
+import {createNewUser} from '../../actions/createUser'
 
 
-const CreateUser = () =>{
+const CreateUser = (props) =>{
     const [fullName, setFullName] = useState("")
     const [phone, setPhone] = useState("")
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [confirmUserPassword, setConfirmUserPassword] = useState("")
+
+    const formData = {
+        'name': fullName,
+        "phone": phone,
+        'email': userEmail,
+        'password': userPassword,
+    }
 
     const fullNameInput = (e) =>{
         e.preventDefault()
@@ -19,6 +28,7 @@ const CreateUser = () =>{
         e.preventDefault()
         setPhone(e.target.value)
     }
+    
 
     const userEmailInput = (e) =>{
         e.preventDefault()
@@ -37,8 +47,11 @@ const CreateUser = () =>{
 
     const submitHandler = (e) =>{
         e.preventDefault()
-        return userPassword === confirmUserPassword ? alert(fullName, phone, userEmail) : alert('Passwords do not match')
+        props.createNewUser(formData)
+        
     }
+
+    
 
     
 
@@ -58,4 +71,10 @@ const CreateUser = () =>{
     )
 }
 
-export default CreateUser
+const mapDispatchToProps = dispatch =>({
+    createNewUser: formData => dispatch(createNewUser(formData))
+})
+
+export default connect(0, mapDispatchToProps)(CreateUser)
+
+// export default connect(0, mapDispatchToProps)(CreateUser)
