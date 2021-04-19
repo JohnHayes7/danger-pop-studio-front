@@ -1,8 +1,10 @@
 import {React, useState} from 'react'
 import './createuserformcss.css'
-import Field from '../InputFields/Field'
 import { connect } from 'react-redux'
-import {createNewUser} from '../../actions/createUser'
+import {useHistory} from 'react-router-dom'
+
+import Field from '../InputFields/Field'
+
 
 
 const CreateUser = (props) =>{
@@ -11,13 +13,18 @@ const CreateUser = (props) =>{
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [confirmUserPassword, setConfirmUserPassword] = useState("")
+    // const [submitSuccess, setSubmitSuccess] = useState(false)
 
     const formData = {
-        'name': fullName,
-        "phone": phone,
-        'email': userEmail,
-        'password': userPassword,
+        'user':{
+            'name': fullName,
+            "phone_number": phone,
+            'email': userEmail,
+            'password': userPassword,
+        } 
     }
+
+    let history = useHistory()
 
     const fullNameInput = (e) =>{
         e.preventDefault()
@@ -47,8 +54,19 @@ const CreateUser = (props) =>{
 
     const submitHandler = (e) =>{
         e.preventDefault()
-        props.createNewUser(formData)
-        
+        fetch(`http://localhost:3001/users`, {
+            method: 'POST',
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.json())
+        .then(rxData => {
+            if(rxData.data){
+                props.displayUser(rxData.data)
+                history.push(`/users/${rxData.data.id}`)
+            }
+        })   
     }
 
     
@@ -72,7 +90,7 @@ const CreateUser = (props) =>{
 }
 
 const mapDispatchToProps = dispatch =>({
-    createNewUser: formData => dispatch(createNewUser(formData))
+    displayUser: formData => dispatch({type: "DISPLAY_USER", user:formData})
 })
 
 export default connect(0, mapDispatchToProps)(CreateUser)
