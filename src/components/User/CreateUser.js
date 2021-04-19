@@ -1,0 +1,61 @@
+import {React, useState} from 'react'
+import './createuserformcss.css'
+import Field from '../InputFields/Field'
+
+
+const CreateUser = () =>{
+    const [fullName, setFullName] = useState("")
+    const [phone, setPhone] = useState("")
+    const [userEmail, setUserEmail] = useState("")
+    const [userPassword, setUserPassword] = useState("")
+    const [confirmUserPassword, setConfirmUserPassword] = useState("")
+
+    const fullNameInput = (e) =>{
+        e.preventDefault()
+        setFullName(e.target.value)
+    }
+
+    const phoneInput = (e) =>{
+        e.preventDefault()
+        setPhone(e.target.value)
+    }
+
+    const userEmailInput = (e) =>{
+        e.preventDefault()
+        setUserEmail(e.target.value)
+    }
+
+    const userPasswordInput = (e) =>{
+        e.preventDefault()
+        setUserPassword(e.target.value)
+    }
+
+    const userConfirmPasswordInput = (e) =>{
+        e.preventDefault()
+        setConfirmUserPassword(e.target.value)
+    }
+
+    const submitHandler = (e) =>{
+        e.preventDefault()
+        return userPassword === confirmUserPassword ? alert(fullName, phone, userEmail) : alert('Passwords do not match')
+    }
+
+    
+
+
+    return(
+        <div className="create-new-user-form-parent">
+            <h3>Create A DANGER POP Account</h3>
+            <form onSubmit={e => submitHandler(e)}>
+                <Field id="full-name" placeholder={'Enter Full Name'} fullName={fullName} changeHandler={e => fullNameInput(e)} /> <br></br>
+                <Field id='phone' placeholder ={'Enter Phone #'} phone={phone}  changeHandler={e=> phoneInput(e)} /><br></br>
+                <Field id='email' placeholder={'Enter Email'} userEmail={userEmail} changeHandler={e=> userEmailInput(e)} /><br></br>
+                <Field id='password' placeholder={'Enter Password'} userPassword={userPassword} changeHandler={e=> userPasswordInput(e)} /><br></br>
+                <Field id='password' placeholder={'Confirm Password'} confirmUserPassword={confirmUserPassword} changeHandler={e=> userConfirmPasswordInput(e)} />
+                <button>Submit</button>
+            </form>
+        </div>
+    )
+}
+
+export default CreateUser

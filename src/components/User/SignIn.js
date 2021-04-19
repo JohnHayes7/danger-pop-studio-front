@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import Field from '../InputFields/Field'
+import { Link } from 'react-router-dom'
 import './signincss.css'
 
 const SignIn = () =>{
@@ -16,15 +17,26 @@ const SignIn = () =>{
         setUserPassword(e.target.value)
     }
 
+    const submitHandler = (e) =>{
+        e.preventDefault()
+        alert('You need to build this')
+    }
+
+    
+
     return(
         <div>
             <h1>Sign In Page</h1>
             <div className="sign-in-div">
-                <form>
+                <form className='sign-in-form' onSubmit={e => submitHandler(e)}>
                     <Field id='email' placeholder={'Enter Email'} userEmail={userEmail} changeHandler={e=> userEmailInput(e)} /><br></br>
                     <Field id='password' placeholder={'Enter Password'} userPassword={userPassword} changeHandler={e=> userPasswordInput(e)} />
-                    {/* <Field id="full-name" label = 'Full Name' fullName={fullName} changeHandler={e => fullNameInput(e)} />  */}
+                    <button>Sign In</button>
                 </form>
+            <div>
+                <div>Forgot Password</div>
+                <div><Link to='/users/create'>Create An Account</Link></div>
+            </div>
             </div>
             
         </div>
