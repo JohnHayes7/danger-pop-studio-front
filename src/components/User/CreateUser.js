@@ -61,11 +61,17 @@ const CreateUser = (props) =>{
             },
             body: JSON.stringify(formData)
         }).then(response => response.json())
+        // console.log("response", response)
         .then(rxData => {
-            if(rxData.data){
-                props.displayUser(rxData.data)
-                history.push(`/users/${rxData.data.id}`)
+            debugger
+            // console.log(rxData)
+            if(rxData){
+                debugger
+                localStorage.setItem('tk', rxData.token)
+                props.displayUser(rxData)
+                history.push(`/users/${rxData.id}`)
             }
+
         })   
     }
 
