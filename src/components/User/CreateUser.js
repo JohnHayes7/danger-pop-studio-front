@@ -68,6 +68,7 @@ const CreateUser = (props) =>{
             if(rxData){
                 debugger
                 localStorage.setItem('tk', rxData.token)
+                localStorage.setItem('cu', rxData.id)
                 props.displayUser(rxData)
                 history.push(`/users/${rxData.id}`)
             }
