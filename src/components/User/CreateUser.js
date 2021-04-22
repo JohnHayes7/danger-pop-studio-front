@@ -54,6 +54,7 @@ const CreateUser = (props) =>{
 
     const submitHandler = (e) =>{
         e.preventDefault()
+        // NEED TO MOVE TO REDUX ACTION
         fetch(`http://localhost:3001/users`, {
             method: 'POST',
             headers:{
@@ -69,6 +70,7 @@ const CreateUser = (props) =>{
                 debugger
                 localStorage.setItem('tk', rxData.token)
                 localStorage.setItem('cu', rxData.id)
+                // NEED TO USE REDUX BELOW
                 props.displayUser(rxData)
                 history.push(`/users/${rxData.id}`)
             }

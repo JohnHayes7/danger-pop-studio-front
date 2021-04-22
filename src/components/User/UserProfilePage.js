@@ -15,7 +15,8 @@ const UserProfilePage = (props) =>{
     }, [])
 
     const getUser = () =>{
-        if(currentUserId === pageId()){
+        // IF CURRENT USER ID IS STORED IN REDUX DO I NEED LOCAL STORAGE SAVE
+        if(currentUserId === pageId){
            
                 fetch('http://localhost:3001'+props.location.pathname, {
                 method: "Get",
