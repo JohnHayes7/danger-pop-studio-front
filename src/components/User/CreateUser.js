@@ -66,15 +66,14 @@ const CreateUser = (props) =>{
         .then(rxData => {
             debugger
             // console.log(rxData)
-            if(rxData){
-                debugger
-                localStorage.setItem('tk', rxData.token)
-                localStorage.setItem('cu', rxData.id)
-                // NEED TO USE REDUX BELOW
-                props.currentUser(rxData)
-                history.push(`/users/${rxData.id}`)
-            }
-
+            // if(rxData){
+            //     debugger
+            //     localStorage.setItem('tk', rxData.token)
+            //     localStorage.setItem('cu', rxData.id)
+            //     // NEED TO USE REDUX BELOW
+            //     props.currentUser(rxData)
+            //     history.push(`/users/${rxData.id}`)
+            // }
         })   
     }
 

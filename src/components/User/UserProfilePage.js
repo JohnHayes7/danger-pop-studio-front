@@ -1,56 +1,54 @@
 import {React, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
+import axios from 'axios'
 
 const UserProfilePage = (props) =>{
 
-    const [displayedUser, setDisplayedUser] = useState ({})
+    const [currentUser, setCurrentUser] = useState ({})
+    const [loggedIn, setLoggedIn] = useState(false) 
     const history = useHistory()
     const currentUserId = localStorage.cu
     const token = localStorage.tk
     const pageId = props.location.pathname.split('/')[2]
         
-    debugger
+    
+
+
     useEffect(() =>{
-        if(currentUserId === pageId){
-            fetch('http://localhost:3001'+props.location.pathname, {
-                method: "Get",
-                headers:{
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then(response => response.json())
-                .then(rxData => {
-                    // debugger
-                    setDisplayedUser(rxData)
-                    
-                })
-        }else{
-            alert("You must be logged in to view this page")
-            localStorage.clear()
-            history.push('/sign-in')
-        }
+        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        .then(response => {
+            if(response.data.logged_in){
+                setCurrentUser(response.data.user.data)
+                let x = currentUser
+                debugger
+               
+            }else{
+                alert('You must be logged in to view your account')
+                history.push('/sign-in')
+            }
+            
+        })
+        .catch(error => alert('api errors', error))
+       
     }, [])
 
     
-    
-
-        debugger
     return(
         
         <div>
-            <h1>{displayedUser.name}</h1>
+            <h1>{currentUser.attributes.name}</h1>
             User Profile Page
             
         </div>
     )
 }
 
-const mapStateToProps = state =>{
-    return{
-        currentUser: state
-    }
-}
+// const mapStateToProps = state =>{
+//     return{
+//         currentUser: state
+//     }
+// }
 
-export default connect(mapStateToProps)(UserProfilePage)
+// export default connect(mapStateToProps)(UserProfilePage)
+export default UserProfilePage

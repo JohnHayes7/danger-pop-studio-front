@@ -1,12 +1,17 @@
 import {React, useState} from 'react'
 import Field from '../InputFields/Field'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import './signincss.css'
 
 const SignIn = () =>{
 
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
+    const [currentUser, setCurrentUser] = useState({})
+
+    const history = useHistory()
 
     const userEmailInput = (e) =>{
         e.preventDefault()
@@ -19,7 +24,16 @@ const SignIn = () =>{
 
     const submitHandler = (e) =>{
         e.preventDefault()
-        alert('You need to build this')
+        const user = {
+            email: userEmail,
+            password: userPassword
+        }
+        axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+        .then(response =>{
+            debugger
+            history.push(`/users/${response.data.user.data.id}`)
+        })
+        
     }
 
     
