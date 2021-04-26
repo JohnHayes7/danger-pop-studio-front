@@ -17,7 +17,7 @@ import Project from './components/Projects/Project';
 import SignIn from './components/User/SignIn';
 import CreateUser from './components/User/CreateUser';
 import UserProfilePage from './components/User/UserProfilePage';
-import LoginUser from './components/User/LoginUser';
+// import LoginUser from './components/User/LoginUser';
 // require('dotenv').config()
 
 function App() {
@@ -34,9 +34,10 @@ function App() {
         <Route exact path="/tattoo-requests" component={TattooRequestForm} />
         <Route exact path="/tattoo-requests/success" component={TattooRequestSuccess}/>
         <Route exact path="/sign-in" component={SignIn} />
-        <Route exact path="/users/create" component={CreateUser} />
-        <Route path ="/users/:id" component={UserProfilePage} />
-        <Route exact path="/login" component={LoginUser} />
+        <Route exact path ="/users/:id" component={UserProfilePage} />
+        <Route exact path="/create-profile" component={CreateUser} />
+       
+        {/* <Route exact path="/login" component={LoginUser} /> */}
         
       </div>
     </Router>

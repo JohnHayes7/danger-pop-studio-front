@@ -35,7 +35,7 @@ const SignIn = () =>{
                 </form>
             <div>
                 <div>Forgot Password</div>
-                <div><Link to='/users/create'>Create An Account</Link></div>
+                <div><Link to='/create-profile'>Create An Account</Link></div>
             </div>
             </div>
             

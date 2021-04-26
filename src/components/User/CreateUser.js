@@ -71,7 +71,7 @@ const CreateUser = (props) =>{
                 localStorage.setItem('tk', rxData.token)
                 localStorage.setItem('cu', rxData.id)
                 // NEED TO USE REDUX BELOW
-                props.displayUser(rxData)
+                props.currentUser(rxData)
                 history.push(`/users/${rxData.id}`)
             }
 
@@ -99,7 +99,7 @@ const CreateUser = (props) =>{
 }
 
 const mapDispatchToProps = dispatch =>({
-    displayUser: formData => dispatch({type: "DISPLAY_USER", user:formData})
+    currentUser: formData => dispatch({type: "CURRENT_USER", user:formData})
 })
 
 export default connect(0, mapDispatchToProps)(CreateUser)

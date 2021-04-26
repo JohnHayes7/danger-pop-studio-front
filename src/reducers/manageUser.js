@@ -1,10 +1,9 @@
 export default function manageUser(state ={
     loading: false,
-    all:[],
     id: 0,
     name: "",
     email: "",
-    phonenumber:"",
+    phone_number:"",
     address:"",
     admin: false,
     tattooapproved: false,
@@ -25,9 +24,15 @@ export default function manageUser(state ={
                 loading: true
             }
 
-        case 'DISPLAY_USER':
-            debugger
-            return state
+        case 'CURRENT_USER':
+            const currentUser = {
+                id: action.user.id,
+                name: action.user.name,
+                email: action.user.email,
+                phone_number: action.user.phone_number
+                // ADD PHONE
+            }
+            return Object.assign({}, state, currentUser)
 
         case 'CREATE_FAN':
             debugger
