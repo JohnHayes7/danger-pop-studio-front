@@ -1,5 +1,4 @@
 export default function manageUser(state ={
-    loading: false,
     id: 0,
     name: "",
     email: "",

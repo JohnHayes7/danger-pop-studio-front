@@ -8,6 +8,7 @@ import SignOut from '../Utilites/Signout'
 const AdminPortal = () =>{
 
     const [authorized, setAuthorized] = useState(false)
+    const [currentUser, setCurrentUser] = useState({})
     const history = useHistory()
 
     useEffect(() =>{
@@ -15,6 +16,7 @@ const AdminPortal = () =>{
         .then(response => {
             if(response.data.user.data.attributes.administrator){
                 setAuthorized(response.data.user.data.attributes.administrator)
+                setCurrentUser(response.data.user.data.attributes)
             }else{
                 notAuthorized()
             }
@@ -25,8 +27,11 @@ const AdminPortal = () =>{
     const parseAdminCategories = () =>{
         return(
             <div>
-                <h1>Administrator Portal</h1>
-                <button onClick={signOutHandler}>Sign Out</button>
+                <div className="admin-welcome">
+                    <h1>Administrator Portal</h1>
+                    <span className="admin-greeting">Welcome Back {currentUser.name}</span><br></br>
+                    <button onClick={signOutHandler}>Sign Out</button>
+                </div>
                 <div className="admin-options">
                     <div className="options-rows">
                         <Link to={'/admin/users'}>

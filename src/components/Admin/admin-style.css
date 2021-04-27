@@ -37,3 +37,15 @@
     font-weight: 100;
 }
 
+.admin-welcome{
+    position: relative;
+    float: left;
+    text-align: left;
+    left: 5%;
+    
+}
+
+.admin-greeting{
+    font-size: 2em;
+}
+
