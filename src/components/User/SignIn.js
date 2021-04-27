@@ -29,6 +29,7 @@ const SignIn = () =>{
         }
         axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
         .then(response =>{
+            // Will need to add logic and route depending on admin/artist/user access
             history.push(`/users/${response.data.user.data.id}`)
         })
         

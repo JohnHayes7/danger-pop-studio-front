@@ -15,7 +15,7 @@ const UserProfilePage = (props) =>{
     useEffect(() =>{
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
-            debugger
+            
             if(response.data.user.data){
                 setUser(response.data.user.data.attributes)
                 isAuthorized()
@@ -33,16 +33,16 @@ const UserProfilePage = (props) =>{
 
     const isAuthorized = () =>{
         const user_id = { id: pageId }
-        debugger
+        
         axios.post('http://localhost:3001/authorized', {user_id}, {withCredentials: true})
         .then(response =>{
-            debugger
+            
             setAuthorized(response.data.authorized)
         })
     }
 
     const signOutHandler = () =>{
-        debugger
+        
         SignOut()
         history.push('/')
     }
