@@ -6,24 +6,33 @@ import axios from 'axios'
 const UserProfilePage = (props) =>{
 
     const [user, setUser] = useState({})
-    // const [loggedIn, setLoggedIn] = useState(false) 
     const history = useHistory()
-    // const currentUserId = localStorage.cu
-    // const token = localStorage.tk
     const pageId = props.location.pathname.split('/')[2]
         
-    
-
-
     useEffect(() =>{
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
-            
-            setUser(response.data.user.data.attributes)
+                
+                return response.data.user.data ? setUser(response.data.user.data.attributes) : loginAndRedirect()
         })
         .catch(error => alert('api errors', error))
-       
     }, [])
+
+    const loginAndRedirect = () =>{
+        alert('You Must be logged in to see this page')
+        history.push('/sign-in')
+    }
+
+    const isAuthorized = () =>{
+        const user_id = { id: user.id }
+        let authorized = false
+        axios.post('http://localhost:3001/authorized', {user_id}, {withCredentials: true})
+        .then(response =>{
+            authorized = response.data.authorized
+        })
+        return authorized
+    }
+
 
     const displayUserData = () =>{
         return(
@@ -31,14 +40,13 @@ const UserProfilePage = (props) =>{
                 <h1>{user.name}</h1>
             </div>
         )
+       
     }
 
-    
+
     return(
-        
         <div>
-           {displayUserData()}
-            
+           {displayUserData()}            
         </div>
     )
 }
