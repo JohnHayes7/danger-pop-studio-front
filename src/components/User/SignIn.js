@@ -9,7 +9,6 @@ const SignIn = () =>{
 
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
-    const [currentUser, setCurrentUser] = useState({})
 
     const history = useHistory()
 
@@ -30,7 +29,6 @@ const SignIn = () =>{
         }
         axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
         .then(response =>{
-            debugger
             history.push(`/users/${response.data.user.data.id}`)
         })
         

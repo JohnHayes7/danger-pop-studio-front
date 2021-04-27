@@ -5,11 +5,11 @@ import axios from 'axios'
 
 const UserProfilePage = (props) =>{
 
-    const [currentUser, setCurrentUser] = useState ({})
-    const [loggedIn, setLoggedIn] = useState(false) 
+    const [user, setUser] = useState({})
+    // const [loggedIn, setLoggedIn] = useState(false) 
     const history = useHistory()
-    const currentUserId = localStorage.cu
-    const token = localStorage.tk
+    // const currentUserId = localStorage.cu
+    // const token = localStorage.tk
     const pageId = props.location.pathname.split('/')[2]
         
     
@@ -18,27 +18,26 @@ const UserProfilePage = (props) =>{
     useEffect(() =>{
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
-            if(response.data.logged_in){
-                setCurrentUser(response.data.user.data)
-                let x = currentUser
-                debugger
-               
-            }else{
-                alert('You must be logged in to view your account')
-                history.push('/sign-in')
-            }
             
+            setUser(response.data.user.data.attributes)
         })
         .catch(error => alert('api errors', error))
        
     }, [])
 
+    const displayUserData = () =>{
+        return(
+            <div>
+                <h1>{user.name}</h1>
+            </div>
+        )
+    }
+
     
     return(
         
         <div>
-            <h1>{currentUser.attributes.name}</h1>
-            User Profile Page
+           {displayUserData()}
             
         </div>
     )
