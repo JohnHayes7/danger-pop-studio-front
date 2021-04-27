@@ -65,15 +65,10 @@ const CreateUser = (props) =>{
         // console.log("response", response)
         .then(rxData => {
             debugger
-            // console.log(rxData)
-            // if(rxData){
-            //     debugger
-            //     localStorage.setItem('tk', rxData.token)
-            //     localStorage.setItem('cu', rxData.id)
-            //     // NEED TO USE REDUX BELOW
-            //     props.currentUser(rxData)
-            //     history.push(`/users/${rxData.id}`)
-            // }
+            if(rxData.data){
+                // NEED TO USE REDUX BELOW
+                history.push(`/users/${rxData.data.id}`)
+            }
         })   
     }
 
