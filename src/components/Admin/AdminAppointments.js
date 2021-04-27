@@ -11,6 +11,8 @@ const AdminAppointments = () =>{
         })
     }, [])
 
+    
+
     const parseAllAppts = () =>{
       
         return state.data ? state.data.map( appt => <div  key={appt.id}className="appt-attrs">
