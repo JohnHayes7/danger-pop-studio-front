@@ -36,6 +36,14 @@ const SignIn = () =>{
         
     }
 
+    const googleSubmitHandler = (e) =>{
+        const user = {email: userEmail, password: userPassword}
+        axios.post('https://www.googleapis.com/auth/google_oauth2', {user}, {withCredentials: true})
+        .then(response => {
+            debugger
+        })
+    }
+
     
 
     return(
@@ -47,6 +55,7 @@ const SignIn = () =>{
                     <Field id='password' placeholder={'Enter Password'} userPassword={userPassword} changeHandler={e=> userPasswordInput(e)} />
                     <button>Sign In</button>
                 </form>
+                <button onClick={e => googleSubmitHandler(e)}>Sign In With Google</button>
             <div>
                 <div>Forgot Password</div>
                 <div><Link to='/create-profile'>Create An Account</Link></div>

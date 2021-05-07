@@ -14,14 +14,20 @@ const AdminPortal = () =>{
     useEffect(() =>{
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
-            if(response.data.user.data.attributes.administrator){
-                setAuthorized(response.data.user.data.attributes.administrator)
-                setCurrentUser(response.data.user.data.attributes)
+            debugger
+            if (response.data.logged_in){
+                if(response.data.user.data.attributes.administrator){
+                    setAuthorized(response.data.user.data.attributes.administrator)
+                    setCurrentUser(response.data.user.data.attributes)
+                }else{
+                    notAuthorized()
+                }
             }else{
                 notAuthorized()
             }
+           
         })
-        // .catch(error => redirectToLogin())
+        .catch(error => alert('Error Will Robinson'))
     }, [])
 
     const parseAdminCategories = () =>{

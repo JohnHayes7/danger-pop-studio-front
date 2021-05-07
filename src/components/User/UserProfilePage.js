@@ -13,6 +13,7 @@ const UserProfilePage = (props) =>{
     const pageId = props.location.pathname.split('/')[2]
         
     useEffect(() =>{
+        // NEEDS A REFACTOR TO UTILITES
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
             
