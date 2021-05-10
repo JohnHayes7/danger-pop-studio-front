@@ -8,8 +8,10 @@ const  Field = props => {
             case 'email': return props.email;
             case 'request-text': return props.requestText;
             case 'allergies': return props.allergies;
-            case 'note-text': return props.noteContent
-            case 'password': return props.userPassword
+            case 'note-text': return props.noteContent;
+            case 'password': return props.userPassword;
+            case 'title': return props.title
+            
         }
     }
 
@@ -22,6 +24,7 @@ const  Field = props => {
             case 'request-text': return 'description-field';
             case 'allergies': return 'input-field';
             case 'note-text': return 'note-field';
+            case 'title': return 'input-field'
         }
     }
 

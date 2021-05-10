@@ -34,7 +34,6 @@ export default function manageUser(state ={
             return Object.assign({}, state, currentUser)
 
         case 'CREATE_FAN':
-            debugger
             return state
         
         

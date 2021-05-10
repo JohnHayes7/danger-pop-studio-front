@@ -30,7 +30,7 @@ const AdminProjectNotes = (props) =>{
 
    
     const parseNotes = () =>{
-       debugger
+       
         if(props.project.attributes.project_notes.length > 0){
             return (
                 <div>

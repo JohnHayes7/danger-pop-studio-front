@@ -56,7 +56,6 @@ const TattooRequestForm = () =>{
         e.preventDefault();
         if(confirmEmail()){
             S3FileUpload.uploadFile(file, config).then((data) => {
-                debugger
                 const fileData = {
                     tattoo_request: {
                         'guest_email': email,

@@ -14,7 +14,6 @@ const AdminPortal = () =>{
     useEffect(() =>{
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
-            debugger
             if (response.data.logged_in){
                 if(response.data.user.data.attributes.administrator){
                     setAuthorized(response.data.user.data.attributes.administrator)
@@ -27,7 +26,7 @@ const AdminPortal = () =>{
             }
            
         })
-        .catch(error => alert('Error Will Robinson'))
+        // .catch(error => alert('Error Will Robinson'))
     }, [])
 
     const parseAdminCategories = () =>{

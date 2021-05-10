@@ -1,15 +1,19 @@
 import {React, useState, useEffect} from 'react'
 import './adminappointments.css'
-
+import { ReactEmbeddedGoogleCalendar } from 'react-embedded-google-calendar';
 
 const AdminAppointments = () =>{
     const [state, setState] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:3001/appointments').then(response => response.json())
-        .then(rxData => {
-            setState(rxData)
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:3001/appointments').then(response => response.json())
+    //     .then(rxData => {
+    //         setState(rxData)
+    //     })
+    // }, [])
+
+    // useEffect(() => {
+    //     fetch('https://www.googleapis.com/calendar/v3/calendars/')
+    // })
 
     
 
@@ -29,6 +33,8 @@ const AdminAppointments = () =>{
     return(
         <div>
             <h1>Administrator Appointment Portal</h1>
+            <iframe src='https://calendar.google.com/calendar/embed?src=warwickcreativeservices%40gmail.com&ctz=America%2FNew_York'  width="1000" height="800" frameborder="0" scrolling="no"></iframe>
+            {/* <img src="https://calendar.google.com/calendar/embed?src=warwickcreativeservices%40gmail.com&ctz=America%2FNew_York" width="1000" height="800" /> */}
             <div>{parseAllAppts()}</div>
         </div>
     )

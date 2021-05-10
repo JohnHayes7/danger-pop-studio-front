@@ -64,7 +64,7 @@ const CreateUser = (props) =>{
         }).then(response => response.json())
         // console.log("response", response)
         .then(rxData => {
-            debugger
+            
             if(rxData.data){
                 // NEED TO USE REDUX BELOW
                 history.push(`/users/${rxData.data.id}`)

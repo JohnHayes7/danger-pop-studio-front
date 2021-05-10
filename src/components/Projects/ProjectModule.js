@@ -51,7 +51,7 @@ const ProjectModule = (props) =>{
     }
 
     const projectTattooRequest = () =>{
-        // debugger
+        
         if(moduleType()==="Tattoo Request"){
             return <AdminProjectTattooRequest label={props.label} project={props.project} togglePreviewImage={togglePreviewImage} imageDisplayClass={imageDisplayClass} />
         }

@@ -19,7 +19,7 @@ const AdminTattooRequest = props => {
 
     const approvalHander = () => {
         const req = props.tr
-        debugger
+        
         req.attributes.accepted = true
         fetch('http://localhost:3001/projects',{
             method: "post",
