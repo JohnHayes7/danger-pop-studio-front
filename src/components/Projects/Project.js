@@ -55,10 +55,6 @@ const Project = (props) => {
 
     const editProjectTitleForm = () => {
         return (
-            // <form onSubmit={e => adminProjectNoteSubmitHandler(e)}>
-            //     <Field id="note-text"  noteContent={noteContent} changeHandler={e => noteInput(e)} placeholder="Add Note Here"/>
-            //     <button>Save</button>
-            // </form>
             <form>
                 <Field id="title" newProjectTitle={newProjectTitle} changeHandler={e => titleInput(e)} placeholder={project.attributes.title} />
                 <button onClick={e => updateTitle(e)}>Save</button>

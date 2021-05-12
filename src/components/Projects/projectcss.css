@@ -51,3 +51,8 @@
 .id-title-description{
     text-align: left;
 }
+
+.id-image{
+    height: 200px;
+    width: 250px;
+}

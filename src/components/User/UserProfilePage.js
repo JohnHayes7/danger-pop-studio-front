@@ -37,8 +37,12 @@ const UserProfilePage = (props) =>{
         
         axios.post('http://localhost:3001/authorized', {user_id}, {withCredentials: true})
         .then(response =>{
-            
+            debugger
             setAuthorized(response.data.authorized)
+            // if(!authorized){
+            //     SignOut()
+            //     history.push("/sign-in")
+            // }
         })
     }
 
