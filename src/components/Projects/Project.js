@@ -92,7 +92,6 @@ const Project = (props) => {
 
     const projectTitleDescriptionId = () =>{
         if(project.attributes){
-            
             return(
                 <div className="id-title-description">
                     <div id="project-id">Project ID# {project.id}</div>
