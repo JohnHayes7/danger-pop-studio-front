@@ -17,6 +17,13 @@ const ProjectImageModule = (props) =>{
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
+    const finalConfig = {
+        bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
+        dirName: process.env.REACT_APP_S3_PROJECT_FINAL_UPLOADS,
+        region: process.env.REACT_APP_AWS_REGION,
+        accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
+    }
 
     const fileChange = (e) => {
         
@@ -27,9 +34,8 @@ const ProjectImageModule = (props) =>{
             // setShowSubmit(false)
           return;
         }
-        // setImage(URL.createObjectURL(e.target.files[0]))
         setSelectedImage(e.target.files[0]) 
-        setShowProgressUpload(true)
+        e.currentTarget.id === 'final-images' ? setShowFinalUpload(true) : setShowProgressUpload(true)
     }
 
     const uploadProgessImage = (e) =>{
@@ -44,7 +50,7 @@ const ProjectImageModule = (props) =>{
 
     const uploadFinalImage = (e) => {
         e.preventDefault()
-        S3FileUpload.uploadFile(selectedImage, progressConfig).then((data) => {
+        S3FileUpload.uploadFile(selectedImage, finalConfig).then((data) => {
             patchFinalImageLocationToDb(data.location)
         })
         .catch((err) =>{
@@ -69,7 +75,6 @@ const ProjectImageModule = (props) =>{
             'progressimagelocation': location
         }
         axios({method: 'put', url: `http://localhost:3001/projects/${props.project.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-            debugger
             Refresh()
           }).catch( err => {  
             console.log(err)
@@ -77,11 +82,12 @@ const ProjectImageModule = (props) =>{
     }
 
     const displayProgressPics = () =>{
-        return props.project.attributes.progress_images.map( i => <img className="progress-preview" src={i} alt="project-progress-image" />)
+        return props.project.attributes.progress_images.map( i => <img className="image-preview" src={i} alt="project-progress-image" />)
     }
 
     const displayFinalImages = () => {
-        return props.project.attributes.final_images.map(i => <img className="final-preview" src={i} alt="final-project-image" />)
+        // debugger
+        return props.project.attributes.final_images.map(i => <img className="image-preview" src={i} alt="final-project-image" />)
     }
     
     return(
@@ -89,14 +95,14 @@ const ProjectImageModule = (props) =>{
             <div>
                 Progress Pics: 
                 <div>{displayProgressPics()}</div>
-                <input className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
+                <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
                 {showProgressUpload ? <button onClick={e => uploadProgessImage(e)  }>Add Image</button> : null}
             </div>
             <br></br>
             <div>Final Pic:
-                <div>{displayFinalImages}</div>
-                <input className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
-                {showFinalUpload ? <button>Add Image of Completed Project</button> : null}
+                <div>{displayFinalImages()}</div>
+                <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
+                {showFinalUpload ? <button  onClick={e => uploadFinalImage(e)}>Add Image of Completed Project</button> : null}
             </div>
         </div>
     ) 
