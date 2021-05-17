@@ -99,7 +99,7 @@ const ProjectImageModule = (props) =>{
                 {showProgressUpload ? <button onClick={e => uploadProgessImage(e)  }>Add Image</button> : null}
             </div>
             <br></br>
-            <div>Final Pic:
+            <div>Final Pics:
                 <div>{displayFinalImages()}</div>
                 <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
                 {showFinalUpload ? <button  onClick={e => uploadFinalImage(e)}>Add Image of Completed Project</button> : null}
