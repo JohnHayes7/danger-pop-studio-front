@@ -10,6 +10,11 @@
     width: 550px;
     font-size: 1.5em;
 }
+.date-field{
+    height: 40px;
+    width: 150px;
+    font-size: 1.2em;
+}
 
 .note-field{
     height: 100px;

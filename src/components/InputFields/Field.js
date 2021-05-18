@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import ProjectAppointments from '../Projects/ProjectAppointments';
 import './field.css'
 
 const  Field = props => {
@@ -11,6 +12,9 @@ const  Field = props => {
             case 'note-text': return props.noteContent;
             case 'password': return props.userPassword;
             case 'title': return props.title
+            case 'month': return props.month
+            case 'day': return props.day
+            case 'year': return props.year
             
         }
     }
@@ -25,6 +29,9 @@ const  Field = props => {
             case 'allergies': return 'input-field';
             case 'note-text': return 'note-field';
             case 'title': return 'input-field'
+            case 'day': return 'date-field'
+            case 'month': return 'date-field'
+            case 'year': return 'date-field'
         }
     }
 
