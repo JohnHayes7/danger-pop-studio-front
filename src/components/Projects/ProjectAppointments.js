@@ -38,7 +38,8 @@ const ProjectAppointments = (props) =>{
     
     const parseAppointments = () => {
         if(props.project.attributes.appointments.length > 0){
-            return props.project.attributes.appointments.map(appt => <div>{appt.date}</div>)
+            debugger
+            return props.project.attributes.appointments.map(appt => <div>{appt.date} - {appt.time}{appt.daypart} - {appt.length_time}</div>)
         }else{
             return "There are currently no upcoming appointments for this project" 
         }
@@ -133,11 +134,9 @@ const ProjectAppointments = (props) =>{
     }
 
     const submitForm = (e) =>{
-        
-        debugger
         gapi.load('client:auth2', () =>{
             console.log('loaded client')
-
+            
             gapi.client.init({
                 apiKey: API_KEY,
                 clientId: CLIENT_ID,
@@ -182,10 +181,43 @@ const ProjectAppointments = (props) =>{
                 })
 
                 request.execute(event => {
-                    debugger
-                    window.open(event.htmlLink)
+                    event.status === 'confirmed' ? addApptToDb() : alert('There is a problem with your appt')
+                    // window.open(event.htmlLink)
                 })
             })
+        })
+    }
+
+    const addApptToDb = () => {
+        // debugger
+
+        const data = {
+            'day': day,
+            'month': month,
+            'year': year,
+            'time': time,
+            'daypart': daypart,
+            'duration': duration,
+            'project_id': parseInt(props.project.id),
+            'user_id': props.project.attributes.user.id
+        }
+
+        debugger
+        axios({method: 'post', url: 'http://localhost:3001/appointments', data: data,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+          debugger
+        //   if(resp.data.map){
+        //         resp.data.map(d => alert(d))
+        //   }else{
+        //     //   SEND AUTO EMAIL TO MAX AND REQUESTOR
+        //     //   SEND USER TO SUCCESS NOTIFICATION
+        //     history.push('/tattoo-requests/success')
+
+        //     console.log("1", resp)
+        //   }
+          
+        }).catch( err => {  
+          //catch the error
+          console.log(err)
         })
     }
 
