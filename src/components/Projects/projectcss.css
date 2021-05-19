@@ -61,3 +61,16 @@
     height: 50px;
     width: 50px;
 }
+
+.date-time{
+    display: flex;
+}
+
+.daypart-duration{
+    width: 75px;
+    margin-left: 10px;
+}
+
+.date-form{
+    margin-left:  100px;
+}

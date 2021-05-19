@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import axios from 'axios'
 import Field from '../InputFields/Field'
 
+
 const ProjectAppointments = (props) =>{
 
     let gapi = window.gapi
@@ -16,6 +17,9 @@ const ProjectAppointments = (props) =>{
     const [month, setMonth] = useState('')
     const [day, setDay] = useState('')
     const [year, setYear] = useState('')
+    const [time, setTime] = useState('')
+    const [duration, setDuration] = useState('')
+    const [daypart, setDaypart] = useState("PM")
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
@@ -55,14 +59,50 @@ const ProjectAppointments = (props) =>{
         return e.target.value.length <=4 ? setYear(e.target.value) : null
     }
 
+    const timeInput = (e) =>{
+        e.preventDefault()
+        setTime(e.target.value)
+    }
+
+    const durationSelector = (e) =>{
+        setDuration(e.target.value)
+    }
+
+    const daypartSelector = (e) =>{
+        setDaypart(e.target.value)
+    }       
+
+
     const newApptForm = () => {
         if(showApptForm){
             return(
                 <div>
                     <form className='date-form'>
-                        <Field id="month" placeholder="MM" month={month} changeHandler={e => monthInput(e)}/>
-                        <Field id="day" placeholder="DD" day={day} changeHandler={e => dayInput(e)}/>
-                        <Field id="year" placeholder="YYYY" year={year} changeHandler={e => yearInput(e)}/>
+                        <div className="date-time">
+                            <Field id="month" placeholder="MM" month={month} changeHandler={e => monthInput(e)}/>
+                            <Field id="day" placeholder="DD" day={day} changeHandler={e => dayInput(e)}/>
+                            <Field id="year" placeholder="YYYY" year={year} changeHandler={e => yearInput(e)}/>
+                        </div>
+                        <div className="date-time">
+                            <Field id="time" placeholder="hh:mm" time={time} changeHandler={e => timeInput(e)}/>
+                            <select className="daypart-duration" onChange={e=> daypartSelector(e)}>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                            <select className="daypart-duration" onChange={e => durationSelector(e)}>
+                                <option value="30">30 Mins</option>
+                                <option value="1 Hour">1 Hour</option>
+                                <option value="2 Hours">2 Hours</option>
+                                <option value="3 Hours">3 Hours</option>
+                                <option value="4 Hours">4 Hours</option>
+                                <option value="5 Hours">5 Hours</option>
+                                <option value="6 Hours">6 Hours</option>
+                                <option value="7 Hours">7 Hours</option>
+                                <option value="8 Hours">8 Hours</option>
+                            </select>
+                        </div>
+                        
+                        <br></br>
                         <submit onClick={e => submitForm(e)}>Save</submit>
                     </form>
                 </div>
@@ -71,7 +111,30 @@ const ProjectAppointments = (props) =>{
         
     }
 
+    const startTime = () => {
+        let hour = parseInt(time.split(":")[0])
+        if(daypart === "PM"){
+            hour +=12
+        }
+
+        return `${year}-${month}-${day}T${hour.toString()}:${time.split(':')[1]}:00`
+    }
+
+    const endTime = (t, d) =>{
+        let hour = parseInt(t.split(':')[0])
+        if(daypart === "PM"){
+           hour += 12
+        }
+        let apptLengthInt = parseInt(d.split(" ")[0])
+        let end = hour + apptLengthInt
+        // let ending = `${year}-${month}-${day}T${end.toString()}:${t.split(':')[1]}:00`
+        return `${year}-${month}-${day}T${end.toString()}:${t.split(':')[1]}:00`
+        
+    }
+
     const submitForm = (e) =>{
+        
+        debugger
         gapi.load('client:auth2', () =>{
             console.log('loaded client')
 
@@ -86,23 +149,23 @@ const ProjectAppointments = (props) =>{
             gapi.auth2.getAuthInstance().signIn()
             .then(() => {
                 let event = {
-                    'summary': 'Google I/O 2015',
-                    'location': '800 Howard St., San Francisco, CA 94103',
-                    'description': 'A chance to hear more about Google\'s developer products.',
+                    'summary': `${props.project.attributes.title}`,
+                    'location': 'The Shop, Yardley, PA 55555',
+                    'description': `${props.project.attributes.tattoo_request.description}`,
                     'start': {
-                      'dateTime': '2021-05-19T09:00:00-07:00',
-                      'timeZone': 'America/Los_Angeles'
+                      'dateTime': `${startTime()}`,
+                      'timeZone': 'America/New_York'
                     },
                     'end': {
-                      'dateTime': '2021-05-19T17:00:00-07:00',
-                      'timeZone': 'America/Los_Angeles'
+                      'dateTime': `${endTime(time, duration)}`,
+                      'timeZone': 'America/New_York'
                     },
-                    'recurrence': [
-                      'RRULE:FREQ=DAILY;COUNT=2'
-                    ],
+                    // 'recurrence': [
+                    //   'RRULE:FREQ=DAILY;COUNT=2'
+                    // ],
                     'attendees': [
                       {'email': 'lpage@example.com'},
-                      {'email': 'sbrin@example.com'}
+                      {'email': `${props.project.attributes.user.email}`}
                     ],
                     'reminders': {
                       'useDefault': false,
@@ -131,16 +194,11 @@ const ProjectAppointments = (props) =>{
         setShowButton(!showButton)
     }
 
-
-
-    // const admin = (administrator) => administrator ? true : false
-
     const displayUpload = () =>{
         if(admin && showButton){
             return <div><button onClick={toggleForm}>Add New Appointment</button></div>
         }       
     }
-
 
     return(
         <div>
