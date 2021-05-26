@@ -26,3 +26,13 @@
     margin-left: 10px;
     margin-bottom: 5px;
 }
+
+.id-preview{
+    width: 75%;
+    height: 500px;
+}
+
+.image-preview{
+    width: 80%;
+    height: 200px;
+}
