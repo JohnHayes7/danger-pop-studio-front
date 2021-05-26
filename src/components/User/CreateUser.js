@@ -67,7 +67,7 @@ const CreateUser = (props) =>{
             
             if(rxData.data){
                 // NEED TO USE REDUX BELOW
-                history.push(`/users/${rxData.data.id}`)
+                history.push(`/sign-in`)
             }
         })   
     }

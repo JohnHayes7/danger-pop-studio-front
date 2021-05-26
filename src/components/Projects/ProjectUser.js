@@ -7,9 +7,7 @@ const ProjectUser = (props) =>{
 
     const [idImage, setIdImage] = useState({})
     const [showUpload, setShowUpload] = useState(false)
-    const [month, setMonth] = useState('')
-    const [day, setDay] = useState('')
-    const [year, setYear] = useState('')
+    
     
 
     const config = {

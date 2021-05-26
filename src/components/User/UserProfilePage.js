@@ -28,6 +28,7 @@ const UserProfilePage = (props) =>{
     }, [])
 
     const redirectToLogin = () =>{
+       
         alert('You Must be logged in to see this page')
         history.push('/sign-in')
     }
@@ -37,7 +38,7 @@ const UserProfilePage = (props) =>{
         
         axios.post('http://localhost:3001/authorized', {user_id}, {withCredentials: true})
         .then(response =>{
-            debugger
+            
             setAuthorized(response.data.authorized)
             // if(!authorized){
             //     SignOut()
@@ -61,7 +62,7 @@ const UserProfilePage = (props) =>{
         )
     }
 
-
+    
     return(
         <div>
            {authorized ? displayUserData() : <h1>Loading...</h1>}            

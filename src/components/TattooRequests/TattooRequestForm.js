@@ -36,8 +36,7 @@ const TattooRequestForm = () =>{
           if(resp.data.map){
                 resp.data.map(d => alert(d))
           }else{
-            //   SEND AUTO EMAIL TO MAX AND REQUESTOR
-            //   SEND USER TO SUCCESS NOTIFICATION
+            //   SEND AUTO EMAIL TO MAX
             history.push('/tattoo-requests/success')
 
             console.log("1", resp)
@@ -53,9 +52,11 @@ const TattooRequestForm = () =>{
    
    
     const handleSubmit = (e) =>{
+        debugger
         e.preventDefault();
         if(confirmEmail()){
             S3FileUpload.uploadFile(file, config).then((data) => {
+                debugger
                 const fileData = {
                     tattoo_request: {
                         'guest_email': email,
