@@ -1,9 +1,12 @@
 import {React, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import SignOut from '../Utilites/Signout'
+import UserProjects from './UserProjects'
+import UserTattooRequests from './UserTattooRequests'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import SignIn from './SignIn'
+import './userprofile.css'
 
 const UserProfilePage = (props) =>{
 
@@ -40,10 +43,6 @@ const UserProfilePage = (props) =>{
         .then(response =>{
             
             setAuthorized(response.data.authorized)
-            // if(!authorized){
-            //     SignOut()
-            //     history.push("/sign-in")
-            // }
         })
     }
 
@@ -56,8 +55,15 @@ const UserProfilePage = (props) =>{
     const displayUserData = () =>{
         return(
             <div>
-                <h1>{user.name}</h1>
-                <button onClick={signOutHandler}>Logout</button>
+                <div className="user-title">
+                    <h1>{user.name}</h1>
+                    <button onClick={signOutHandler}>Logout</button>
+                </div>
+                
+                <div className='user-layout'>
+                    <UserProjects user={user} label = "projects" />
+                    <UserTattooRequests user={user} label="tr" />
+                </div>   
             </div>
         )
     }

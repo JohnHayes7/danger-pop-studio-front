@@ -1,0 +1,22 @@
+.user-layout{
+    display: flex;
+}
+
+.user-title{
+    margin-left: 10px;
+    text-align: left;
+}
+
+
+.user-mod{
+    /* position: relative; */
+    border: 1px solid white;
+    width: 50%;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    height: 600px;  
+    overflow: scroll;
+    text-align: left;
+
+}
+
