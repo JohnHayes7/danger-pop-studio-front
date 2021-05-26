@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom'
 import SignOut from '../Utilites/Signout'
 import UserProjects from './UserProjects'
 import UserTattooRequests from './UserTattooRequests'
+import UserData from './UserData'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import SignIn from './SignIn'
@@ -61,8 +62,10 @@ const UserProfilePage = (props) =>{
                 </div>
                 
                 <div className='user-layout'>
-                    <UserProjects user={user} label = "projects" />
+                    <UserData user={user} label="data" />
                     <UserTattooRequests user={user} label="tr" />
+                    <UserProjects user={user} label = "projects" />
+                    
                 </div>   
             </div>
         )
