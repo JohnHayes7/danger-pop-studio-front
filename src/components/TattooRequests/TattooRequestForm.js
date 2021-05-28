@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import S3FileUpload from 'react-s3'
 import Navbar from '../Nav/Navbar'
 import axios from 'axios'
@@ -16,7 +16,7 @@ const TattooRequestForm = () =>{
     const [email, setEmail] = useState('')
     const [requestText, setRequestText] = useState('')
     const [allergies, setAllergies] = useState('')
-    const [isGuest, setIsGuest] = useState(false)
+    const [isGuest, setIsGuest] = useState(true)
     const [progress , setProgress] = useState(0)
     const [showSubmit, setShowSubmit] = useState(false)
     const [image, setImage] = useState({})
@@ -29,6 +29,26 @@ const TattooRequestForm = () =>{
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
+
+    useEffect(() =>{
+        // NEEDS A REFACTOR TO UTILITES
+        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        .then(response => {
+            console.log(response)
+            if(response.data.logged_in){
+                const user = response.data.user.data.attributes
+                setIsGuest(false)
+                setFullName(user.name)
+                setEmail(user.email)
+                setPhone(user.phone_number)
+                debugger
+            }
+                
+        //     
+        })
+        // .catch(error => redirectToLogin())
+    }, [])
+
 
     const postDataToDb = (fileData) =>{
         axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {

@@ -5,6 +5,7 @@ import UserProjects from './UserProjects'
 import UserTattooRequests from './UserTattooRequests'
 import UserData from './UserData'
 import UserAppointments from './UserAppointments'
+import Navbar from '../Nav/Navbar'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import SignIn from './SignIn'
@@ -78,6 +79,7 @@ const UserProfilePage = (props) =>{
     
     return(
         <div>
+            <Navbar />
            {authorized ? displayUserData() : <h1>Loading...</h1>}            
         </div>
     )

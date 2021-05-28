@@ -6,6 +6,8 @@ const  Field = props => {
 
     const inputType = () =>{
         switch(props.id){
+            case 'full-name': return props.fullName;
+            case 'phone': return props.phone
             case 'email': return props.email;
             case 'request-text': return props.requestText;
             case 'allergies': return props.allergies;

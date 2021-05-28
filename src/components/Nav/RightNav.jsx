@@ -31,6 +31,7 @@ const Ul = styled.ul`
 
 
 const RightNav = ({ open }) => {
+  
   return (
     <Ul open={open}>
       <li>
