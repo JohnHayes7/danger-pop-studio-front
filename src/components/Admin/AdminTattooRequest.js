@@ -1,9 +1,10 @@
 import {React, useState} from 'react'
 import AdminTattooRequestDetails from './AdminTattooRequestDetails'
+import Refresh from '../Utilites/Refresh'
 
 const AdminTattooRequest = props => {
     const [showReqDetails, setShowReqDetails] = useState(false)
-
+    const [showApproved, setShowApproved] = useState(true)
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
 
     const formattedDate = () => {
@@ -29,7 +30,11 @@ const AdminTattooRequest = props => {
             body: JSON.stringify(req)
         }).then(resp => resp.json())
         .then(rxData => {
-            console.log(rxData)
+            if(rxData.data.type === "projects"){
+                Refresh()
+            }else{
+                alert('BACKEND ERROR NOTIFY SYSTEM ADMINISTRATOR')
+            }
         })
     }
 

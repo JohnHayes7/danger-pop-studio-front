@@ -1,43 +1,4 @@
-.tattreq-attrs{
-    border: 1px solid white;
-    width: 450px;
-    padding: 15px;
-    text-align: left;
-    margin-bottom: 1%;
-}
-
-
-
-.tattoo-request-panel{
-    display: flex;
-    width: 100%;
-}
-
-#tattreq-details{
-    /* border: 1px solid white; */
-    /* margin-left: 10%; */
-    position: relative;
-    /* left: 250; */
-    /* width: 200%; */
-    /* top: 250px; */
-    height: 250%;
-    /* background-color: white;
-    color: black; */
-    /* float: right; */
-}
-
- button#approve{
-    background-color:  rgb(69, 218, 49) ;
-    color: white;
- }
-
- button#decline{
-    background-color:  rgb(218,55,49) ;
-    color: white;
- }
-
- /* TOGGLE BUTTON */
- .wrg-toggle {
+.wrg-toggle {
     touch-action: pan-x;
     display: inline-block;
     position: relative;
@@ -66,8 +27,8 @@
   
   .wrg-toggle-check, .wrg-toggle-uncheck {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     top: 0;
     bottom: 0;
     margin-top: auto;
@@ -116,28 +77,3 @@
     box-sizing: border-box;
     transition: all .25s ease;
   }
-
-  .wrg-toggle--checked .wrg-toggle-check{
-    opacity: 1;
-  }
-  .wrg-toggle--checked .wrg-toggle-uncheck {
-    opacity: 0;
-  }
-  .wrg-toggle--checked .wrg-toggle-circle {
-    left: 27px;
-  }
-
-  #toggle-box{
-      position: relative;
-      text-align: left;
-      margin-left: 10px;
-  }
-
- /* END TOGGLE BUTTON */
-
-
-
-
-
-
-
