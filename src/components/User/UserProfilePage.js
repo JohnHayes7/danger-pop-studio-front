@@ -4,6 +4,7 @@ import SignOut from '../Utilites/Signout'
 import UserProjects from './UserProjects'
 import UserTattooRequests from './UserTattooRequests'
 import UserData from './UserData'
+import UserAppointments from './UserAppointments'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import SignIn from './SignIn'
@@ -64,9 +65,12 @@ const UserProfilePage = (props) =>{
                 <div className='user-layout'>
                     <UserData user={user} label="data" />
                     <UserTattooRequests user={user} label="tr" />
+                </div> 
+                <div className='user-layout'>
                     <UserProjects user={user} label = "projects" />
-                    
-                </div>   
+                    <UserAppointments user={user} label="Appointments" />
+                </div>
+                
             </div>
         )
     }
