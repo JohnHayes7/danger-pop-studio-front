@@ -17,6 +17,7 @@ import Project from './components/Projects/Project';
 import SignIn from './components/User/SignIn';
 import CreateUser from './components/User/CreateUser';
 import UserProfilePage from './components/User/UserProfilePage';
+import AdminCalendar from './components/Calendar/AdminCalendar'
 // import LoginUser from './components/User/LoginUser';
 // require('dotenv').config()
 
@@ -27,7 +28,8 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route exact path="/admin" component={AdminPortal} />
         <Route exact path="/admin/users" component={AdminUsers} />
-        <Route exact path="/admin/appts" component={AdminAppointments} />
+        {/* <Route exact path="/admin/appts" component={AdminAppointments} /> */}
+        <Route exact path ="/admin/calendar" component={AdminCalendar} />
         <Route exact path="/admin/projects" component={AdminProjects} />
         <Route path="/projects/:id" component={Project} />
         <Route exact path="/admin/tattoo-requests" component={AdminTattooRequests} />

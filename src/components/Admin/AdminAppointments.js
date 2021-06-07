@@ -3,6 +3,7 @@ import './adminappointments.css'
 import { ReactEmbeddedGoogleCalendar } from 'react-embedded-google-calendar';
 
 const AdminAppointments = () =>{
+    // DECOMMISSIONED 6.7.21 BY JH
     const [state, setState] = useState([])
     // useEffect(() => {
     //     fetch('http://localhost:3001/appointments').then(response => response.json())
