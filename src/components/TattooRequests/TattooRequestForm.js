@@ -84,7 +84,8 @@ const TattooRequestForm = () =>{
                         'guest_phone': phone,
                         'description': requestText,
                         'allergies': allergies,
-                        'body_location_image_path': data.location
+                        'body_location_image_path': data.location,
+                        'is_guest': isGuest
                         
                     } 
                 }

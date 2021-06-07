@@ -179,8 +179,9 @@ const ProjectAppointments = (props) =>{
                     'calendarId': 'primary',
                     'resource': event
                 })
-
+                
                 request.execute(event => {
+                    debugger
                     event.status === 'confirmed' ? addApptToDb() : alert('There is a problem with your appt')
                     // window.open(event.htmlLink)
                 })

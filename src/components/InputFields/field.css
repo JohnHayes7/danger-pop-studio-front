@@ -10,6 +10,13 @@
     width: 550px;
     font-size: 1.5em;
 }
+
+.password{
+    height: 50px;
+    width: 550px;
+    font-size: 1.5em;
+
+}
 .date-field{
     height: 40px;
     width: 70px;

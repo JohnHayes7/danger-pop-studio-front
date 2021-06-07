@@ -27,7 +27,7 @@ const  Field = props => {
             case 'full-name': return 'input-field';
             case 'phone': return 'input-field'
             case 'email': return 'input-field';
-            case 'password': return 'input-field';
+            case 'password': return 'password';
             case 'request-text': return 'description-field';
             case 'allergies': return 'input-field';
             case 'note-text': return 'note-field';
@@ -54,7 +54,19 @@ const  Field = props => {
                 </div>
                
             )
-        }else{
+        }else if(classType() === 'password'){
+            return(
+                <div>
+                    <div>
+                        <label>{props.label}</label>
+                    </div>
+                    <div className='input-box'>
+                        <input className={classType()} autoFocus={true}  placeholder={props.placeholder} type={'password'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    </div>
+                </div>
+            )
+        }
+        else{
             return(
                 <div>
                     <div>
