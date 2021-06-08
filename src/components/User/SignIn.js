@@ -29,6 +29,7 @@ const SignIn = () =>{
         }
         axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
         .then(response =>{
+            debugger
             let rxdUser = response.data.user.data.attributes
             rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
             

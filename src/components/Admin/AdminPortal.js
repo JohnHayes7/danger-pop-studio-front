@@ -4,6 +4,7 @@ import axios from 'axios'
 import './admin-style.css'
 import { Link } from 'react-router-dom'
 import SignOut from '../Utilites/Signout'
+import CurrentUser from '../Utilites/CurrentUser'
 
 const AdminPortal = () =>{
 
@@ -13,19 +14,19 @@ const AdminPortal = () =>{
 
     useEffect(() =>{
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
-        .then(response => {
-            if (response.data.logged_in){
-                if(response.data.user.data.attributes.administrator){
-                    setAuthorized(response.data.user.data.attributes.administrator)
-                    setCurrentUser(response.data.user.data.attributes)
+            .then(response => {
+                if (response.data.logged_in){
+                    if(response.data.user.data.attributes.administrator){
+                        setAuthorized(response.data.user.data.attributes.administrator)
+                        setCurrentUser(response.data.user.data.attributes)
+                    }else{
+                        notAuthorized()
+                    }
                 }else{
                     notAuthorized()
                 }
-            }else{
-                notAuthorized()
-            }
-           
-        })
+            })
+        // 
         // .catch(error => alert('Error Will Robinson'))
     }, [])
 
