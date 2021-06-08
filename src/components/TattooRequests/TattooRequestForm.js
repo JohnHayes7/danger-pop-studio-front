@@ -34,7 +34,10 @@ const TattooRequestForm = () =>{
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-
+        axios.get('http://localhost:3001/request_windows/1',{withCredentials:true})
+        .then(response => {
+            setRequestWindowOpen(response.data.openState)
+        })
 
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
@@ -150,8 +153,21 @@ const TattooRequestForm = () =>{
         return(
                 <div className='tr-admin-options'>
                     <h1>Admin Options:</h1>
+                    {openClosedOptions()}
                 </div>
         )
+    }
+
+    const openClosedOptions = () =>{
+        if(requestWindowOpen){
+            return <div className="tr-open-close" onClick={requestOpenCloseToggle}>Click to Close Tattoo Request Window</div>
+
+        }
+    }
+
+    const requestOpenCloseToggle = () =>{
+        setRequestWindowOpen(!requestWindowOpen)
+        // axios
     }
 
     const requestForm = () =>{
