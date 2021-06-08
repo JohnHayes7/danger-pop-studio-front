@@ -18,9 +18,18 @@
     left:  0px;
 }
 
-/* button{
+.tr-form-options{
+    position: relative;
+    /* display: flex; */
+}
+
+.tr-admin-options{
+    border: 1px solid white;
+    position: relative;
+    background-color: red;
+    /* font-weight: 500; */
     
-} */
+}
 
 .form-submit-button {
 

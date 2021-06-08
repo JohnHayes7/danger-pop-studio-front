@@ -14,12 +14,14 @@ const TattooRequestForm = () =>{
     const [fullName, setFullName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
+    const [admin, setAdmin] = useState(false)
     const [requestText, setRequestText] = useState('')
     const [allergies, setAllergies] = useState('')
     const [isGuest, setIsGuest] = useState(true)
     const [progress , setProgress] = useState(0)
     const [showSubmit, setShowSubmit] = useState(false)
     const [image, setImage] = useState({})
+    const [requestWindowOpen, setRequestWindowOpen] = useState(true)
     const history = useHistory()
     
     const config = {
@@ -32,6 +34,8 @@ const TattooRequestForm = () =>{
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
+
+
         axios.get('http://localhost:3001/logged_in', {withCredentials: true})
         .then(response => {
             console.log(response)
@@ -41,7 +45,7 @@ const TattooRequestForm = () =>{
                 setFullName(user.name)
                 setEmail(user.email)
                 setPhone(user.phone_number)
-                debugger
+                setAdmin(user.administrator)
             }
                 
         //     
@@ -142,38 +146,50 @@ const TattooRequestForm = () =>{
         setAllergies(e.target.value)
     }
 
+    const adminOptions = () =>{
+        return(
+                <div className='tr-admin-options'>
+                    <h1>Admin Options:</h1>
+                </div>
+        )
+    }
+
+    const requestForm = () =>{
+        return(
+            <div className="tr-req-form">
+                    <h1>DANGER POP TATTOO REQUEST FORM</h1>
+                        <form onSubmit={e => handleSubmit(e)}>
+                            <Field id="full-name" label = 'Full Name' fullName={fullName} changeHandler={e => fullNameInput(e)} /> <br></br>
+                            <Field id='phone' label="Phone#" phone={phone}  changeHandler={e=> phoneInput(e)} /><br></br>
+                            <Field id="email" label="Email" placeHolder="Email Address" email={email} changeHandler={e => emailInput(e)}  /><br></br>
+                            <Field id="request-text" label="Request" placeHolder="Please Enter A Description of Your Desired Tattoo " requestText={requestText} changeHandler={(e) => requestInput(e)}/><br></br>
+                            <Field id="allergies" label="Allergies" placeHolder="Please list any allergies of which you are aware" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/><br></br>
+                            <div className="control">
+                                <label className="label">Upload image</label>
+                                {/* {image ? <img src={image} height="100px" width="50px" /> : null} */}
+                                <input className="input" type="file" name="file" onChange={e => fileChange(e)}/>
+                                
+                            </div><br></br>
+                            <br></br>
+                            <div>
+                                {showSubmit ? <button className='form-submit-button'>Submit</button> : null}
+                            </div>
+                        </form>
+                </div>
+        )
+    }
+
 
    
     return(
         
         <div>
             <Navbar />
-            
-            <div className="tr-req-form">
-            <h1>DANGER POP TATTOO REQUEST FORM</h1>
-                <form onSubmit={e => handleSubmit(e)}>
-                    <Field id="full-name" label = 'Full Name' fullName={fullName} changeHandler={e => fullNameInput(e)} /> <br></br>
-                    <Field id='phone' label="Phone#" phone={phone}  changeHandler={e=> phoneInput(e)} /><br></br>
-                    <Field id="email" label="Email" placeHolder="Email Address" email={email} changeHandler={e => emailInput(e)}  /><br></br>
-                    <Field id="request-text" label="Request" placeHolder="Please Enter A Description of Your Desired Tattoo " requestText={requestText} changeHandler={(e) => requestInput(e)}/><br></br>
-                    <Field id="allergies" label="Allergies" placeHolder="Please list any allergies of which you are aware" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/><br></br>
-                    <div className="control">
-                        <label className="label">Upload image</label>
-                        {/* {image ? <img src={image} height="100px" width="50px" /> : null} */}
-                        <input className="input" type="file" name="file" onChange={e => fileChange(e)}/>
-                        
-                    </div><br></br>
-                    <br></br>
-                    <div>
-                        {showSubmit ? <button className='form-submit-button'>Submit</button> : null}
-                    </div>
-                </form>
-                {/* <form>
-                    <Field label="Username" />
-                    <Field label="Password" />
-                </form> */}
-                
+            <div className='tr-form-options'>
+                {admin ? adminOptions() : null}
+                {requestWindowOpen ? requestForm() : null}
             </div>
+                
         </div>
     )
 }
