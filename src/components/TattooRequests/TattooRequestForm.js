@@ -160,14 +160,23 @@ const TattooRequestForm = () =>{
 
     const openClosedOptions = () =>{
         if(requestWindowOpen){
-            return <div className="tr-open-close" onClick={requestOpenCloseToggle}>Click to Close Tattoo Request Window</div>
-
+            return <div className="tr-open-close" onClick={requestOpenCloseToggle}>Click to Close The Tattoo Request Window</div>
+        }else{
+            return <div className="tr-open-close" onClick={requestOpenCloseToggle}>Click to Open The Tattoo Request Window</div>
         }
     }
 
     const requestOpenCloseToggle = () =>{
         setRequestWindowOpen(!requestWindowOpen)
-        // axios
+        // const windowState = {"open": !requestWindowOpen}
+        debugger
+        axios({method: 'patch', url: `http://localhost:3001/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
+            debugger
+            // console.log(resp)
+            // Refresh()
+          }).catch( err => {  
+            console.log(err)
+          })
     }
 
     const requestForm = () =>{
@@ -195,6 +204,14 @@ const TattooRequestForm = () =>{
         )
     }
 
+    const requestsClosed = () =>{
+        return (
+            <div>
+                <div><p>We're sorry but the Request Window is currently closed</p><p>It will be reopening soon</p><p>Please follow our Social accounts for more info</p></div>
+            </div>
+        )
+    }
+
 
    
     return(
@@ -203,7 +220,7 @@ const TattooRequestForm = () =>{
             <Navbar />
             <div className='tr-form-options'>
                 {admin ? adminOptions() : null}
-                {requestWindowOpen ? requestForm() : null}
+                {requestWindowOpen ? requestForm() : requestsClosed()}
             </div>
                 
         </div>
