@@ -6,12 +6,14 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import './admincalendarcss.css'
 import Nav from '../Nav/Navbar'
+import FullScreen from '../Fullscreen/Fullscreen'
 
 const localizer = momentLocalizer(moment)
 
 const AdminCalendar = props => {
 
   const [projects, setProjects] = useState([])
+  const [showFullScreen, setShowFullScreen] = useState(false)
 
   useEffect(() =>{
     // NEEDS A REFACTOR TO UTILITES
@@ -36,9 +38,15 @@ const AdminCalendar = props => {
   const parseIncompleteProjects = () =>{
     let incompleteProjects = projects.filter(p => p.attributes.project_complete_status === null)
     return(
-      <div className="flex">{incompleteProjects.map(p => <div key={p.id} className='project'>Project ID:{p.id}<div>Client Name: {p.attributes.user.name}</div><div>Description:{p.attributes.tattoo_request.description}</div></div>)}</div>
+      <div className="flex">{incompleteProjects.map(p => <div key={p.id} onClick={e=>clickHandler(e)} className='project'>Project ID:{p.id}<div>Client Name: {p.attributes.user.name}</div><div>Description:{p.attributes.tattoo_request.description}</div></div>)}</div>
     )
   }
+
+  const clickHandler = (e) =>{
+    setShowFullScreen(true)
+  }
+
+  
 
 
   const myEventsList = [
@@ -115,6 +123,7 @@ const AdminCalendar = props => {
         <div className="to-be-scheduled">
           {parseIncompleteProjects()}
         </div><br></br>
+        {showFullScreen ? <FullScreen /> : null}
         <Calendar
           localizer={localizer}
           events={myEventsList}
