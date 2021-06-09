@@ -17,9 +17,11 @@
     height: 70px;
     width: 300px;
     float: left;
-    /* padding: 2px; */
-    margin: 5px;
+    padding: 2px;
+    margin-left: 20px;
+    margin-bottom: 5px;
     text-align: left;
+    overflow: scroll;
     /* position: relative; */
 }
 

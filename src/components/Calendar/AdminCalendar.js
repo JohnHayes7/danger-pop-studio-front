@@ -36,7 +36,7 @@ const AdminCalendar = props => {
   const parseIncompleteProjects = () =>{
     let incompleteProjects = projects.filter(p => p.attributes.project_complete_status === null)
     return(
-      <div className="flex">{incompleteProjects.map(p => <div key={p.id} className='project'>Project ID:{p.id}</div>)}</div>
+      <div className="flex">{incompleteProjects.map(p => <div key={p.id} className='project'>Project ID:{p.id}<div>Client Name: {p.attributes.user.name}</div><div>Description:{p.attributes.tattoo_request.description}</div></div>)}</div>
     )
   }
 
