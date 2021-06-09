@@ -1,10 +1,45 @@
-import React from 'react'
+import {React, useEffect, useState} from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
+import axios from 'axios'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
+import './admincalendarcss.css'
+import Nav from '../Nav/Navbar'
 
 const localizer = momentLocalizer(moment)
 
 const AdminCalendar = props => {
+
+  const [projects, setProjects] = useState([])
+
+  useEffect(() =>{
+    // NEEDS A REFACTOR TO UTILITES
+    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    .then(response => {
+      if(response.data.user.data.attributes.administrator){
+        getProjects()
+      }else{
+        alert('You are not authorized to view this page')
+      }  
+    })
+    // .catch(error => redirectToLogin())
+  }, [])
+
+  const getProjects = () => {
+    axios.get('http://localhost:3001/projects', {withCredentials: true})
+    .then(response =>{
+        setProjects(response.data.data)
+    })
+  }
+
+  const parseIncompleteProjects = () =>{
+    let incompleteProjects = projects.filter(p => p.attributes.project_complete_status === null)
+    return(
+      <div className="flex">{incompleteProjects.map(p => <div key={p.id} className='project'>Project ID:{p.id}</div>)}</div>
+    )
+  }
+
 
   const myEventsList = [
     {
@@ -59,8 +94,8 @@ const AdminCalendar = props => {
     {
       id: 14,
       title: 'Board meeting',
-      start: new Date(2018, 0, 29, 23, 40, 0),
-      end: new Date(2018, 0, 30, 13, 0, 0),
+      start: new Date(2021, 5, 29, 23, 40, 0),
+      end: new Date(2021, 5, 30, 13, 0, 0),
       resourceId: 4,
     },
   ]
@@ -71,14 +106,21 @@ const AdminCalendar = props => {
     { resourceId: 3, resourceTitle: 'Meeting room 1' },
     { resourceId: 4, resourceTitle: 'Meeting room 2' },
   ]
+
+  debugger
   return(
     <div>
+        <Nav />
+        <div className='title-description'>Projects to Be Scheduled:</div>
+        <div className="to-be-scheduled">
+          {parseIncompleteProjects()}
+        </div><br></br>
         <Calendar
           localizer={localizer}
           events={myEventsList}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 500 }}
+          style={{ height: 700 }}
         />
       </div>
     )

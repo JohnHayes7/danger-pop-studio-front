@@ -1,0 +1,25 @@
+.to-be-scheduled{
+    border: 1px solid white;
+    /* text-align: left; */
+    height: 300px;
+    display: flex;
+    overflow: scroll;
+    
+}
+
+.title-description{
+    text-align: left;
+    font-size: 2em;
+}
+
+.project{
+    border: 1px solid white;
+    height: 70px;
+    width: 300px;
+    float: left;
+    /* padding: 2px; */
+    margin: 5px;
+    text-align: left;
+    /* position: relative; */
+}
+
