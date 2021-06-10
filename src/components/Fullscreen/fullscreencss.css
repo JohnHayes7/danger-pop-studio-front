@@ -1,0 +1,7 @@
+.full-screen{
+    border: 1px solid white;
+    z-index: 1;
+    height: 500px;
+    width: 900px;
+    background-color: violet;
+}

@@ -7,6 +7,7 @@ import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import './admincalendarcss.css'
 import Nav from '../Nav/Navbar'
 import FullScreen from '../Fullscreen/Fullscreen'
+import '../Fullscreen/fullscreencss.css'
 
 const localizer = momentLocalizer(moment)
 
@@ -14,6 +15,7 @@ const AdminCalendar = props => {
 
   const [projects, setProjects] = useState([])
   const [showFullScreen, setShowFullScreen] = useState(false)
+  const [clickedId, setClickedId] = useState("")
 
   useEffect(() =>{
     // NEEDS A REFACTOR TO UTILITES
@@ -43,8 +45,11 @@ const AdminCalendar = props => {
   }
 
   const clickHandler = (e) =>{
+    setClickedId(e.currentTarget.key)
     setShowFullScreen(true)
   }
+
+  
 
   
 
@@ -123,7 +128,7 @@ const AdminCalendar = props => {
         <div className="to-be-scheduled">
           {parseIncompleteProjects()}
         </div><br></br>
-        {showFullScreen ? <FullScreen /> : null}
+        {showFullScreen ? <FullScreen type="project" clickedId={clickedId} /> : null}
         <Calendar
           localizer={localizer}
           events={myEventsList}
