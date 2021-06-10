@@ -1,7 +1,11 @@
 .full-screen{
     border: 1px solid white;
-    z-index: 1;
-    height: 500px;
-    width: 900px;
-    background-color: violet;
+    z-index: 5;
+    position: absolute;
+    left: 10.5%;
+    top: 250px;
+    height: 700px;
+    width: 1300px;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: black;
 }

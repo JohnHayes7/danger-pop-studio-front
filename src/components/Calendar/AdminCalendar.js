@@ -15,7 +15,8 @@ const AdminCalendar = props => {
 
   const [projects, setProjects] = useState([])
   const [showFullScreen, setShowFullScreen] = useState(false)
-  const [clickedId, setClickedId] = useState("")
+  const [selectedProject, setSelectedProject] = useState({})
+  // const [clickedId, setClickedId] = useState("")
 
   useEffect(() =>{
     // NEEDS A REFACTOR TO UTILITES
@@ -40,13 +41,23 @@ const AdminCalendar = props => {
   const parseIncompleteProjects = () =>{
     let incompleteProjects = projects.filter(p => p.attributes.project_complete_status === null)
     return(
-      <div className="flex">{incompleteProjects.map(p => <div key={p.id} onClick={e=>clickHandler(e)} className='project'>Project ID:{p.id}<div>Client Name: {p.attributes.user.name}</div><div>Description:{p.attributes.tattoo_request.description}</div></div>)}</div>
+      <div className="flex">{incompleteProjects.map(p => <div key={p.id} id={p.id} dataid={p.id} onClick={e=>clickHandler(e)} className='project'>Project ID:{p.id}<div>Client Name: {p.attributes.user.name}</div><div>Description:{p.attributes.tattoo_request.description}</div></div>)}</div>
     )
   }
 
+  const findSelectedProject = (id) =>{
+    let proj = projects.find(p => p.id === id)
+    setSelectedProject(proj)
+  }
+
   const clickHandler = (e) =>{
-    setClickedId(e.currentTarget.key)
+    // debugger
+    findSelectedProject(e.currentTarget.id)
     setShowFullScreen(true)
+  }
+
+  const toggleFullScreen = () =>{
+    setShowFullScreen(!showFullScreen)
   }
 
   
@@ -120,7 +131,7 @@ const AdminCalendar = props => {
     { resourceId: 4, resourceTitle: 'Meeting room 2' },
   ]
 
-  debugger
+ 
   return(
     <div>
         <Nav />
@@ -128,7 +139,7 @@ const AdminCalendar = props => {
         <div className="to-be-scheduled">
           {parseIncompleteProjects()}
         </div><br></br>
-        {showFullScreen ? <FullScreen type="project" clickedId={clickedId} /> : null}
+        {showFullScreen ? <FullScreen type="project" project={selectedProject} toggle={toggleFullScreen} /> : null}
         <Calendar
           localizer={localizer}
           events={myEventsList}
