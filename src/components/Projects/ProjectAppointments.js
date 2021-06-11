@@ -83,8 +83,6 @@ const ProjectAppointments = (props) =>{
                             <Field id="month" placeholder="MM" month={month} changeHandler={e => monthInput(e)}/>
                             <Field id="day" placeholder="DD" day={day} changeHandler={e => dayInput(e)}/>
                             <Field id="year" placeholder="YYYY" year={year} changeHandler={e => yearInput(e)}/>
-                        </div>
-                        <div className="date-time">
                             <Field id="time" placeholder="hh:mm" time={time} changeHandler={e => timeInput(e)}/>
                             <select className="daypart-duration" onChange={e=> daypartSelector(e)}>
                                 <option value="AM">AM</option>
@@ -101,10 +99,8 @@ const ProjectAppointments = (props) =>{
                                 <option value="7 Hours">7 Hours</option>
                                 <option value="8 Hours">8 Hours</option>
                             </select>
+                            <submit id='save-button' onClick={e => submitForm(e)}>Save</submit>
                         </div>
-                        
-                        <br></br>
-                        <submit onClick={e => submitForm(e)}>Save</submit>
                     </form>
                 </div>
             )

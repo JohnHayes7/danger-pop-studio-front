@@ -64,6 +64,15 @@
 
 .date-time{
     display: flex;
+    font-size: 1.3em;
+    padding: 1%;
+    
+}
+
+.date-time select{
+    height: 57px;
+    font-weight: 900;
+    font-size: .7em;
 }
 
 .daypart-duration{
@@ -71,6 +80,18 @@
     margin-left: 10px;
 }
 
-.date-form{
+/* .date-form{
     margin-left:  100px;
+} */
+
+#save-button{
+    border: 1px solid grey;
+    width: 100px;
+    text-align: center;
+    padding-top: 2%;
+    margin-left: 2%;
+    /* padding: auto; */
+}
+#save-button:hover{
+    background-color:rgba(17, 83, 34, 0.664);
 }
