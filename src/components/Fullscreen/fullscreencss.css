@@ -70,3 +70,11 @@
     width: 90%;
     margin-left: 5%;
 }
+
+.exit-x{
+    position: absolute;
+    right: 10px;
+    font-size: 2em;
+    font-weight: 500;
+    color: red;
+}

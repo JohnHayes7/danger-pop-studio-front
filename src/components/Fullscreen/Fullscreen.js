@@ -1,4 +1,5 @@
 import React from 'react'
+import ProjectAppointments from '../Projects/ProjectAppointments'
 
 const Fullscreen = (props) => {
     debugger
@@ -25,7 +26,7 @@ const Fullscreen = (props) => {
     const typeProject = () =>{
         debugger
         return(
-            <div className="full-screen" onClick={props.toggle}>
+            <div className="full-screen" >
                 <div className='fs-top'>
                     <div className='fs-top-title'>   
                         <h1>Project ID: {props.project.id}</h1>
@@ -34,7 +35,9 @@ const Fullscreen = (props) => {
                         <div>Description: {props.project.attributes.tattoo_request.description}</div>
                     </div>
                     <div className='fs-top-appts'>
-                        <h1>Book Appt:</h1>
+                        <span className='exit-x' onClick={props.toggle}>X</span>   
+                        <h1>Book Appt:</h1> 
+                        <div><ProjectAppointments project={props.project}/></div>
                     </div>
                 </div>
                 <div className='fs-bottom'>

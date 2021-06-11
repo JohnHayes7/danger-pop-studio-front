@@ -7,6 +7,7 @@ import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import './admincalendarcss.css'
 import Nav from '../Nav/Navbar'
 import FullScreen from '../Fullscreen/Fullscreen'
+import ProjectAppointments from '../Projects/ProjectAppointments'
 import '../Fullscreen/fullscreencss.css'
 
 const localizer = momentLocalizer(moment)
