@@ -7,9 +7,8 @@ import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import './admincalendarcss.css'
 import Nav from '../Nav/Navbar'
 import FullScreen from '../Fullscreen/Fullscreen'
-import ProjectAppointments from '../Projects/ProjectAppointments'
 import '../Fullscreen/fullscreencss.css'
-
+import RedirectToLogin from '../Utilites/RedirectToLogin'
 const localizer = momentLocalizer(moment)
 
 const AdminCalendar = props => {
@@ -27,9 +26,10 @@ const AdminCalendar = props => {
         getProjects()
       }else{
         alert('You are not authorized to view this page')
+        RedirectToLogin()
       }  
     })
-    // .catch(error => redirectToLogin())
+    .catch(error => RedirectToLogin())
   }, [])
 
   const getProjects = () => {

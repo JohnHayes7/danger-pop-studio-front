@@ -45,9 +45,9 @@ const AdminPortal = () =>{
                                 <div className="selectable-label"> Users</div>
                             </div>
                         </Link>
-                        <Link to={'/admin/appts'}>
+                        <Link to={'/admin/calendar'}>
                             <div className="option">
-                                <div className="selectable-label">Appointments</div>
+                                <div className="selectable-label">Calendar</div>
                             </div>
                         </Link>
                     </div>
