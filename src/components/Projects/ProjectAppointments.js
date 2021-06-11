@@ -1,6 +1,7 @@
 import {React, useState, useEffect} from 'react'
 import axios from 'axios'
 import Field from '../InputFields/Field'
+import Refresh from '../Utilites/Refresh'
 
 
 const ProjectAppointments = (props) =>{
@@ -177,7 +178,7 @@ const ProjectAppointments = (props) =>{
                 })
                 
                 request.execute(event => {
-                    debugger
+                    
                     event.status === 'confirmed' ? addApptToDb() : alert('There is a problem with your appt')
                     // window.open(event.htmlLink)
                 })
@@ -199,19 +200,11 @@ const ProjectAppointments = (props) =>{
             'user_id': props.project.attributes.user.id
         }
 
-        debugger
         axios({method: 'post', url: 'http://localhost:3001/appointments', data: data,   headers: {'Content-Type': 'application/json'}}).then(resp => {
           debugger
-        //   if(resp.data.map){
-        //         resp.data.map(d => alert(d))
-        //   }else{
-        //     //   SEND AUTO EMAIL TO MAX AND REQUESTOR
-        //     //   SEND USER TO SUCCESS NOTIFICATION
-        //     history.push('/tattoo-requests/success')
-
-        //     console.log("1", resp)
-        //   }
-          
+            if(resp.status === 200){
+                Refresh()
+            }
         }).catch( err => {  
           //catch the error
           console.log(err)

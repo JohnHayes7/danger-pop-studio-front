@@ -37,6 +37,7 @@
     position: relative;
     width: 70%;
     padding-left: 1%;
+    overflow: scroll;
 
     /* margin-left: auto; */
     /* margin-right: 2%; */
