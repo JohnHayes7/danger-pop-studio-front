@@ -48,6 +48,12 @@ const AdminCalendar = props => {
 
   const findSelectedProject = (id) =>{
     let proj = projects.find(p => p.id === id)
+    // debugger
+    if(proj === undefined){
+      // debugger
+      nextProject()
+    }
+    // debugger
     setSelectedProject(proj)
   }
 
@@ -59,6 +65,16 @@ const AdminCalendar = props => {
 
   const toggleFullScreen = () =>{
     setShowFullScreen(!showFullScreen)
+  }
+
+  const nextProject = () => {
+    let nextId = parseInt(selectedProject.id) + 1
+    findSelectedProject(nextId.toString())
+  }
+
+  const previousProject = () =>{
+    let prevId = parseInt(selectedProject.id ) - 1
+    findSelectedProject(prevId.toString())
   }
 
   
@@ -140,7 +156,7 @@ const AdminCalendar = props => {
         <div className="to-be-scheduled">
           {parseIncompleteProjects()}
         </div><br></br>
-        {showFullScreen ? <FullScreen type="project" project={selectedProject} toggle={toggleFullScreen} /> : null}
+        {showFullScreen ? <FullScreen type="project" project={selectedProject} toggle={toggleFullScreen}  next={nextProject} previous={previousProject}/> : null}
         <Calendar
           localizer={localizer}
           events={myEventsList}

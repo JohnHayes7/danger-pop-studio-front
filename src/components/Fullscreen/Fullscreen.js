@@ -40,6 +40,10 @@ const Fullscreen = (props) => {
                         <div><ProjectAppointments project={props.project}/></div>
                     </div>
                 </div>
+                <div className='directionals'>
+                    <div id='prev' onClick={props.previous}>PREV</div><br></br>
+                    <div id='next' onClick={props.next}>NEXT</div>
+                </div>
                 <div className='fs-bottom'>
                 <h1>Images:</h1>
                     <div className='fs-bottom-mock-loc-img'>
