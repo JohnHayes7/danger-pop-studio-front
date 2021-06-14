@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'
-
+import { Link, useHistory } from 'react-router-dom'
+import SignOut from '../Utilites/Signout'
+import axios from 'axios'
 
 const Ul = styled.ul`
   list-style: none;
@@ -31,7 +32,7 @@ const Ul = styled.ul`
 
 
 const RightNav = ({ open }) => {
-  
+
   return (
     <Ul open={open}>
       <li>

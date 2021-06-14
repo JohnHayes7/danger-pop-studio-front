@@ -62,6 +62,12 @@ const AdminPortal = () =>{
                                 <div className="selectable-label">Tattoo Requests</div>
                             </div>
                         </Link>
+                        {/* <Link to={'/admin/options'}>
+                            <div className="option">
+                                <div className="selectable-label">Admin Site Options</div>
+                            </div>
+                        </Link>
+                         */}
                     </div>
                 </div>
             </div>

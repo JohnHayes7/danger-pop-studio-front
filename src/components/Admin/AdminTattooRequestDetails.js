@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import FullScreen from '../Fullscreen/Fullscreen'
 
 
 const AdminTattooRequestDetails = (props) => {
