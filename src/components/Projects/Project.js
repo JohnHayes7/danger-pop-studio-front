@@ -4,6 +4,7 @@ import ProjectModule from './ProjectModule'
 import Field from '../InputFields/Field'
 import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
+import {useHistory} from 'react-router-dom'
 
 import './projectcss.css'
 
@@ -11,15 +12,58 @@ const Project = (props) => {
     const [project, setProject] = useState({})
     const [showProjectTitleForm,setShowProjectTitleForm] = useState(false)
     const [newProjectTitle, setNewProjectTitle] = useState('')
+    const [currentUser, setCurrentUser] = useState({})
+    const [loggedIn, setLoggedIn] = useState(false)
+    const history = useHistory()
 
-    const pageId = props.location.pathname.split('/').splice(-1)
+    const pageId = parseInt(props.location.pathname.split('/').splice(-1)[0])
 
     useEffect(() => {
+        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        .then(response => {
+            debugger
+            if (response.data.logged_in ){
+                // let belongsToUser = false
+                // const loggedInUser = response.data.user.data
+                setLoggedIn(true)
+                const user = response.data.user.data
+                // setCurrentUser(response.data.user.data)
+                checkAuth(user)
+                
+            //     if(response.data.user.data.attributes.administrator){
+            //         setAuthorized(response.data.user.data.attributes.administrator)
+            //         
+            //     }else{
+            //         notAuthorized()
+            //     }
+            }
+        })
+        
+
+    }, [])
+
+    const checkAuth = (user) =>{
+        let belongsToUser = false
+        debugger
+        if(user.attributes){
+            belongsToUser = user.attributes.projects.filter(p => p.id === pageId).length > 0 ? true : false
+            debugger
+            return  belongsToUser || user.attributes.administrator === true ? getProject() : notAuthorized(user)
+           
+        }
+       
+    }
+
+    const notAuthorized = (user) =>{
+        history.push(`/users/${user.id}`)
+    }
+
+    const getProject = () =>{
         fetch(`http://localhost:3001/projects/${pageId}`).then(response => response.json())
         .then(rxData => {
             setProject(rxData.data)
         })
-    }, [])
+    }
 
     
 
@@ -108,7 +152,7 @@ const Project = (props) => {
  
 
    
-
+    // checkAuth()
     return(
         <div>
             <Navbar />
