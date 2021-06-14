@@ -2,6 +2,7 @@ import {React, useState} from 'react'
 import S3FileUpload from 'react-s3'
 import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
+import GetCurrentUser from '../Utilites/CurrentUser'
 
 const AdminProjectTattooRequest = (props) =>{
     const [selectedImage, setSelectedImage] = useState(false)
@@ -19,7 +20,7 @@ const AdminProjectTattooRequest = (props) =>{
         const { value } = e.target; 
         let ifImage = (/\.(gif|jpg|jpeg|png)$/i).test(value)
         
-        if(!ifImage){
+        if(!ifImage ){
             // setShowSubmit(false)
           return;
         }
@@ -53,7 +54,7 @@ const AdminProjectTattooRequest = (props) =>{
            debugger
            if(!!props.project.attributes.tattoo_request.mockupImageLocation){
                return <img className="image-preview" src={props.project.attributes.tattoo_request.mockupImageLocation} alt="Mockup Tattoo Image" />
-           }else{
+           }else if (!!props.project.attributes.tattoo_request.mockupImageLocation && props.user.attributes.administrator){
                return <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/>
            }
           
@@ -69,7 +70,7 @@ const AdminProjectTattooRequest = (props) =>{
             {/* <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br> */}
                 {displayImageOrUploadOption()}
             <div> 
-               {showUpload ? <button onClick={uploadMockup}>Upload Mockup Image</button> : null}
+               {showUpload  ? <button onClick={uploadMockup}>Upload Mockup Image</button> : null}
             </div>
         </div>
     )

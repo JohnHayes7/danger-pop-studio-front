@@ -23,19 +23,11 @@ const Project = (props) => {
         .then(response => {
             debugger
             if (response.data.logged_in ){
-                // let belongsToUser = false
-                // const loggedInUser = response.data.user.data
+
                 setLoggedIn(true)
                 const user = response.data.user.data
-                // setCurrentUser(response.data.user.data)
+                setCurrentUser(response.data.user.data)
                 checkAuth(user)
-                
-            //     if(response.data.user.data.attributes.administrator){
-            //         setAuthorized(response.data.user.data.attributes.administrator)
-            //         
-            //     }else{
-            //         notAuthorized()
-            //     }
             }
         })
         
@@ -82,7 +74,7 @@ const Project = (props) => {
             <div className="project-modules" >
                 <div className="col-1">
                     < ProjectModule label="Appointments" project={project}/>
-                    < ProjectModule label="Notes" project={project} />
+                    {currentUser.attributes.admin ? < ProjectModule label="Notes" project={project} /> : null} 
                     < ProjectModule label="Artist Info" project={project} />
                 </div>
                 <div className="col-2">
@@ -90,8 +82,8 @@ const Project = (props) => {
                     < ProjectModule label="Project Images" project={project} />
                 </div>
                 <div className="col-3">
-                    < ProjectModule label="Tattoo Request" project={project} /> 
-                    < ProjectModule label="Project Info" project={project} />
+                    < ProjectModule label="Tattoo Request" project={project} user={currentUser} /> 
+                    {currentUser.attributes.admin ? < ProjectModule label="Project Info" project={project} /> : null}
                 </div>
             </div>
         )
