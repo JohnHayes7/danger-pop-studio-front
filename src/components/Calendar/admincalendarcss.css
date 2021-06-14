@@ -25,3 +25,16 @@
     /* position: relative; */
 }
 
+.forward-icon{
+    color: white;
+    height: 2ppx;
+    width: 20px;
+    background-color: white;
+    float: right;
+    position: relative;
+    margin-right: 10px;
+}   
+
+.id-icon{
+    display: flex;
+}

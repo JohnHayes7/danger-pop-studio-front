@@ -9,11 +9,12 @@ import Nav from '../Nav/Navbar'
 import FullScreen from '../Fullscreen/Fullscreen'
 import '../Fullscreen/fullscreencss.css'
 import RedirectToLogin from '../Utilites/RedirectToLogin'
+import { Link } from 'react-router-dom'
 const localizer = momentLocalizer(moment)
 
 const AdminCalendar = props => {
   
-  let myEventsList = []
+  let apptsList = []
 
   const [projects, setProjects] = useState([])
   const [showFullScreen, setShowFullScreen] = useState(false)
@@ -59,7 +60,7 @@ const AdminCalendar = props => {
         end: apptEnd(appt.attributes.date, appt.attributes.time, appt.attributes.length_time, appt.attributes.daypart)
       }
 
-      myEventsList = [...myEventsList, apptInfo]
+      apptsList = [...apptsList, apptInfo]
     })
   }
 
@@ -97,7 +98,7 @@ const AdminCalendar = props => {
   const parseIncompleteProjects = () =>{
     let incompleteProjects = projects.filter(p => p.attributes.project_complete_status === null)
     return(
-      <div className="flex">{incompleteProjects.map(p => <div key={p.id} id={p.id} dataid={p.id} onClick={e=>clickHandler(e)} className='project'>Project ID:{p.id}<div>Client Name: {p.attributes.user.name}</div><div>Description:{p.attributes.tattoo_request.description}</div></div>)}</div>
+      <div className="flex">{incompleteProjects.map(p => <div key={p.id} id={p.id} dataid={p.id} onClick={e=>clickHandler(e)} className='project'>Project ID:<div className="id-icon">{p.id}<Link to={`/projects/${p.id}`}><img className="forward-icon" src="/forward-icon.png" /></Link></div><div>Client Name: {p.attributes.user.name}</div><div>Description:{p.attributes.tattoo_request.description}</div></div>)}</div>
     )
   }
 
@@ -145,7 +146,7 @@ const AdminCalendar = props => {
         {showFullScreen ? <FullScreen type="project" project={selectedProject} toggle={toggleFullScreen}  next={nextProject} previous={previousProject}/> : null}
         <Calendar
           localizer={localizer}
-          events={myEventsList}
+          events={apptsList}
           startAccessor="start"
           endAccessor="end"
           style={{ height: 700 }}
