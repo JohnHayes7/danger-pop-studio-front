@@ -89,19 +89,19 @@ const ProjectImageModule = (props) =>{
         // debugger
         return props.project.attributes.final_images.map(i => <img className="image-preview" src={i} alt="final-project-image" />)
     }
-    
+    debugger
     return(
         <div>
             <div>
                 Progress Pics: 
                 <div>{displayProgressPics()}</div>
-                <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
+                <div>{props.user && props.user.attributes.administrator ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null}</div>
                 {showProgressUpload ? <button onClick={e => uploadProgessImage(e)  }>Add Image</button> : null}
             </div>
             <br></br>
             <div>Final Pics:
                 <div>{displayFinalImages()}</div>
-                <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
+                <div>{props.user && props.user.attributes.administrator ? <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/>: null}</div>
                 {showFinalUpload ? <button  onClick={e => uploadFinalImage(e)}>Add Image of Completed Project</button> : null}
             </div>
         </div>

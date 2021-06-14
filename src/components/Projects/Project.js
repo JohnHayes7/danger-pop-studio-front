@@ -69,21 +69,22 @@ const Project = (props) => {
     }
 
     const adminProjMods = () => {
-        
+        debugger
         return(
             <div className="project-modules" >
                 <div className="col-1">
                     < ProjectModule label="Appointments" project={project}/>
-                    {currentUser.attributes.admin ? < ProjectModule label="Notes" project={project} /> : null} 
+                    
+                    {currentUser.attributes.administrator ? < ProjectModule label="Notes" project={project} /> : null} 
                     < ProjectModule label="Artist Info" project={project} />
                 </div>
                 <div className="col-2">
                     < ProjectModule label="User Details" project={project} />
-                    < ProjectModule label="Project Images" project={project} />
+                    < ProjectModule label="Project Images" project={project} user={currentUser} />
                 </div>
                 <div className="col-3">
                     < ProjectModule label="Tattoo Request" project={project} user={currentUser} /> 
-                    {currentUser.attributes.admin ? < ProjectModule label="Project Info" project={project} /> : null}
+                    {currentUser.attributes.administrator ? < ProjectModule label="Project Info" project={project} /> : null}
                 </div>
             </div>
         )
@@ -118,10 +119,10 @@ const Project = (props) => {
     const toggleTitleForm = () => setShowProjectTitleForm(!showProjectTitleForm)
 
     const displayTitleOrForm = () =>{
-        if(showProjectTitleForm){
+        if(showProjectTitleForm && currentUser.attributes.admin){
             return editProjectTitleForm()
         }else{
-            return  <div id="project-title">Title:{project.attributes.title }<button onClick={toggleTitleForm}>Edit</button></div>
+            return  <div id="project-title">Title:{project.attributes.title }{currentUser.attributes.admin ? <button onClick={toggleTitleForm}>Edit</button> : null }</div>
         }
     }
 

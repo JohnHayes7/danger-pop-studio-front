@@ -53,7 +53,7 @@ const ProjectModule = (props) =>{
     const projectTattooRequest = () =>{
         
         if(moduleType()==="Tattoo Request"){
-            return <AdminProjectTattooRequest label={props.label} project={props.project} togglePreviewImage={togglePreviewImage} imageDisplayClass={imageDisplayClass} />
+            return <AdminProjectTattooRequest label={props.label} project={props.project} user={props.user} togglePreviewImage={togglePreviewImage} imageDisplayClass={imageDisplayClass} />
         }
     }
 
@@ -65,7 +65,7 @@ const ProjectModule = (props) =>{
 
     const projectImages = () =>{
         if(moduleType()==="Project Images"){
-            return <ProjectImageModule label={props.label} project={props.project}/>
+            return <ProjectImageModule label={props.label} project={props.project} user={props.user}/>
         }
     }
 
