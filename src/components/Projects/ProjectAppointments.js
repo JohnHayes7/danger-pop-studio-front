@@ -178,8 +178,7 @@ const ProjectAppointments = (props) =>{
                 })
                 
                 request.execute(event => {
-                    
-                    event.status === 'confirmed' ? addApptToDb() : alert('There is a problem with your appt')
+                   addApptToDb()
                     // window.open(event.htmlLink)
                 })
             })
