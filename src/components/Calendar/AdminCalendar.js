@@ -53,7 +53,7 @@ const AdminCalendar = props => {
     appointments.map(appt => {
       // debugger
       const apptInfo = {
-        id: appt.id,
+        projectId: appt.attributes.project.id,
         title: appt.attributes.project.title,
         start: apptStart(appt.attributes.date, appt.attributes.time, appt.attributes.daypart),
         end: apptEnd(appt.attributes.date, appt.attributes.time, appt.attributes.length_time, appt.attributes.daypart)
@@ -102,17 +102,24 @@ const AdminCalendar = props => {
   }
 
   const findSelectedProject = (id) =>{
+    debugger
     let proj = projects.find(p => p.id === id)
-    if(proj === undefined){
-      nextProject()
-    }
+    debugger
     setSelectedProject(proj)
   }
 
   const clickHandler = (e) =>{
-    findSelectedProject(e.currentTarget.id)
+    if(!!e.projectId){
+      debugger
+      findSelectedProject(e.projectId.toString())
+    }else{
+      debugger
+      findSelectedProject(e.currentTarget.id)
+    }
     setShowFullScreen(true)
   }
+
+  
 
   const toggleFullScreen = () => setShowFullScreen(!showFullScreen)
   
@@ -126,77 +133,6 @@ const AdminCalendar = props => {
     let prevId = parseInt(selectedProject.id ) - 1
     findSelectedProject(prevId.toString())
   }
-
-  
-
-  
-
-
-  // let myEventsList = [
-  //   {
-  //     id: 0,
-  //     title: 'Board meeting',
-  //     start: new Date(2018, 0, 29, 9, 0, 0),
-  //     end: new Date(2018, 0, 29, 13, 0, 0),
-  //     resourceId: 1,
-  //   },
-  //   {
-  //     id: 1,
-  //     title: 'MS training',
-  //     start: new Date(2018, 0, 29, 14, 0, 0),
-  //     end: new Date(2018, 0, 29, 16, 30, 0),
-  //     resourceId: 2,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Team lead meeting',
-  //     start: new Date(2018, 0, 29, 8, 30, 0),
-  //     end: new Date(2018, 0, 29, 12, 30, 0),
-  //     resourceId: 3,
-  //   },
-  //   {
-  //     id: 10,
-  //     title: 'Board meeting',
-  //     start: new Date(2018, 0, 30, 23, 0, 0),
-  //     end: new Date(2018, 0, 30, 23, 59, 0),
-  //     resourceId: 1,
-  //   },
-  //   {
-  //     id: 11,
-  //     title: 'Birthday Party',
-  //     start: new Date(2018, 0, 30, 7, 0, 0),
-  //     end: new Date(2018, 0, 30, 10, 30, 0),
-  //     resourceId: 4,
-  //   },
-  //   {
-  //     id: 12,
-  //     title: 'Board meeting',
-  //     start: new Date(2018, 0, 29, 23, 59, 0),
-  //     end: new Date(2018, 0, 30, 13, 0, 0),
-  //     resourceId: 1,
-  //   },
-  //   {
-  //     id: 13,
-  //     title: 'Board meeting',
-  //     start: new Date(2018, 0, 29, 23, 50, 0),
-  //     end: new Date(2018, 0, 30, 13, 0, 0),
-  //     resourceId: 2,
-  //   },
-  //   {
-  //     id: 14,
-  //     title: 'Board meeting',
-  //     start: new Date(2021, 5, 29, 23, 40, 0),
-  //     end: new Date(2021, 5, 30, 13, 0, 0),
-  //     resourceId: 4,
-  //   },
-  // ]
-  
-  // const resourceMap = [
-  //   { resourceId: 1, resourceTitle: 'Board room' },
-  //   { resourceId: 2, resourceTitle: 'Training room' },
-  //   { resourceId: 3, resourceTitle: 'Meeting room 1' },
-  //   { resourceId: 4, resourceTitle: 'Meeting room 2' },
-  // ]
 
   parseAppointments()
   return(
@@ -213,16 +149,10 @@ const AdminCalendar = props => {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 700 }}
+          onSelectEvent={e => clickHandler(e)}
         />
       </div>
     )
 }
-// const AdminCalendar = () => {
-//     return(
-//         <div>
-//             I AM A CALENDAR
-//         </div>
-//     )
-// }
 
 export default AdminCalendar
