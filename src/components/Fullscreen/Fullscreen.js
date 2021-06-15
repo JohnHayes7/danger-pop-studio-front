@@ -8,6 +8,7 @@ const Fullscreen = (props) => {
         switch(props.type){
             case 'project': return typeProject();
             case 'image': return typeImage();
+            case 'admin-options': return typeAdminOpts()
         }
     }
 
@@ -62,6 +63,12 @@ const Fullscreen = (props) => {
                 </div>
                 
             </div>
+        )
+    }
+
+    const typeAdminOpts = () => {
+        return (
+            <div className='full-screen'>Admin Options</div>
         )
     }
 

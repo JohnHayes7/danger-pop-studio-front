@@ -3,13 +3,15 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import './admin-style.css'
 import { Link } from 'react-router-dom'
+import FullScreen from '../Fullscreen/Fullscreen'
 import SignOut from '../Utilites/Signout'
-import CurrentUser from '../Utilites/CurrentUser'
+// import CurrentUser from '../Utilites/CurrentUser'
 
 const AdminPortal = () =>{
 
     const [authorized, setAuthorized] = useState(false)
     const [currentUser, setCurrentUser] = useState({})
+    const [showFullScreen, setShowFullScreen] = useState(false)
     const history = useHistory()
 
     useEffect(() =>{
@@ -52,6 +54,13 @@ const AdminPortal = () =>{
                         </Link>
                     </div>
                     <div className="options-rows">
+                    <Link>
+                        <div className="option" onClick={toggleFullScreen}>
+                            <div  className="selectable-label">Admin Site Options</div>
+                        </div>
+                    </Link>
+                    </div>
+                    <div className="options-rows">
                         <Link to={'/admin/projects'}>
                             <div className="option">
                                 <div className="selectable-label">Projects</div>
@@ -61,18 +70,14 @@ const AdminPortal = () =>{
                             <div className="option">
                                 <div className="selectable-label">Tattoo Requests</div>
                             </div>
-                        </Link>
-                        {/* <Link to={'/admin/options'}>
-                            <div className="option">
-                                <div className="selectable-label">Admin Site Options</div>
-                            </div>
-                        </Link>
-                         */}
+                        </Link>                        
                     </div>
                 </div>
             </div>
         )
     }
+
+    const toggleFullScreen = () => setShowFullScreen(!showFullScreen)
 
     const signOutHandler = () =>{
         SignOut()
@@ -87,6 +92,7 @@ const AdminPortal = () =>{
     return(
         <div>
             {authorized ? parseAdminCategories() : "Loading..."}
+            {showFullScreen ? <FullScreen type="admin-options" toggleFullScreen={toggleFullScreen}/>  : null}
         </div>
     )
 }
