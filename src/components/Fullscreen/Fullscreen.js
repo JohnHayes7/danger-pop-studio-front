@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ProjectAppointments from '../Projects/ProjectAppointments'
 import axios from 'axios'
+import Field from '../InputFields/Field'
 
 const Fullscreen = (props) => {
     
@@ -18,7 +19,7 @@ const Fullscreen = (props) => {
         return( 
             <div className="full-screen" onClick={props.toggle}>
                 <img className="fs-image" src={props.imageSource} alt='body image' />
-
+                
 
             </div>
         )
@@ -72,15 +73,33 @@ const Fullscreen = (props) => {
             <div className='full-screen'>
                 <h1>Admin Options</h1>
                 <div className='fs-top-level'>
-                    <div className='fs-tr-window'>
+                    <div className='admin-option'>
                         <h3>Tattoo Request Window:</h3>
-                        <div className="clickable">
-                            <div className={openClosedClass()} onClick={requestOpenCloseToggle}>{requestWindowOpen ? "Close Tattoo Request Window" : "Open Tattoo Request Window" }</div>
+                        <div className="open-close-option">
+                            <div className={openClosedClass()} onClick={requestOpenCloseToggle}>{requestWindowOpen ? "Click To Close Tattoo Request Window" : "Click To Open Tattoo Request Window" }</div>
                         </div>
                     </div>
-                    <div className='new-admin'>
+                    <div className='admin-option'>
                         <h3>Add New Administrator</h3>
+                        <form> 
+                            <div className='admin-input-fields'>
+                                <Field label='Administrator Email' id="email"/>
+                                <Field label='password' id='password' />
+                            </div>
+                        </form>
                     </div>
+                </div>
+                <div className='fs-bot-level'>
+                    <div className='admin-option'>
+                        <h3>Add New Artist</h3>
+                        <form>
+                            <div className='admin-input-fields'>
+                                <Field label='Artist Email' id="email"/>
+                                <Field label='password' id='password' />
+                            </div>
+                        </form>
+                    </div>
+                    
                 </div>
             </div>
         )

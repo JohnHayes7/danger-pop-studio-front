@@ -79,7 +79,7 @@ const UserProfilePage = (props) =>{
     
     return(
         <div>
-            <Navbar />
+            <Navbar user={user} />
            {authorized ? displayUserData() : <h1>Loading...</h1>}            
         </div>
     )

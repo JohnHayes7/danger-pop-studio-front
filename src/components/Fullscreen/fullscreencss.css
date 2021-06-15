@@ -2,8 +2,8 @@
     border: 10px solid grey;
     z-index: 5;
     position: absolute;
-    left: 10.5%;
-    top: -200px;
+    left: 5%;
+    top: 50px;
     height: 700px;
     width: 1500px;
     background-color: rgba(255, 255, 255, .95);
@@ -115,28 +115,49 @@
     margin-top: auto;
 }
 
-.clickable{
+.open-close-option{
     border: 1px solid grey;
     height: 150px;
     width: 400px;
-    padding: 1%;
-    margin-left: 5%;
+    margin: auto;
+    /* padding: 1%; */
     font-size: 2em;
     font-weight: 500;
     text-align: center;
 }
 
-.fs-tr-window{
-    border: 1px solid grey;
+.admin-option{
+    border: 2px solid grey;
+    margin-left: 5%;
+    height: 275px;
+    width: 600px;
+
+
+
 }
 
 .fs-top-level{
+    position: relative;
     display: flex;
+    margin-bottom: 1%;
+}
+.fs-bot-level{
+    position: relative;
+    display: flex;
+    margin-bottom: 2%;
 }
 
-.new-admin{
+.new-admin-form{
     position: relative;
-    right: 0px;
+    /* right: 0px; */
+    border: 1px solid grey;
+    margin-left: 25%;
+    width: 500px;
+    height: 100px;
+}
+
+.new-artist-form{
+    position: relative;
     border: 1px solid grey;
 }
 
@@ -146,4 +167,8 @@
     height: 80%;
     margin-left: 20%;
     margin-top: 5%;
+}
+
+.admin-input-fields{
+    margin-left: 1%;
 }
