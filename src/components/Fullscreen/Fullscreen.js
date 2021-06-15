@@ -18,6 +18,8 @@ const Fullscreen = (props) => {
         return( 
             <div className="full-screen" onClick={props.toggle}>
                 <h1>FULL SCREEN IMAGE</h1>
+                <img className="fs-image" src={props.imageSource} alt='body image' />
+
 
             </div>
         )
@@ -77,7 +79,7 @@ const Fullscreen = (props) => {
                             <div className={openClosedClass()} onClick={requestOpenCloseToggle}>{requestWindowOpen ? "Close Tattoo Request Window" : "Open Tattoo Request Window" }</div>
                         </div>
                     </div>
-                    <div>
+                    <div className='new-admin'>
                         <h3>Add New Administrator</h3>
                     </div>
                 </div>
