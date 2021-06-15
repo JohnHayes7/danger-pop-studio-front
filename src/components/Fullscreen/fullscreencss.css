@@ -3,9 +3,9 @@
     z-index: 5;
     position: absolute;
     left: 10.5%;
-    top: 250px;
+    top: -200px;
     height: 700px;
-    width: 1300px;
+    width: 1500px;
     background-color: rgba(255, 255, 255, .95);
     color: black;
     text-align: left;
@@ -142,7 +142,8 @@
 
 .fs-image{
     position: relative;
-    width: 80%;
+    width: 60%;
     height: 80%;
-    margin-left: 9%;
+    margin-left: 20%;
+    margin-top: 5%;
 }

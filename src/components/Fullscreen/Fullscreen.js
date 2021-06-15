@@ -17,7 +17,6 @@ const Fullscreen = (props) => {
     const typeImage = () =>{
         return( 
             <div className="full-screen" onClick={props.toggle}>
-                <h1>FULL SCREEN IMAGE</h1>
                 <img className="fs-image" src={props.imageSource} alt='body image' />
 
 
