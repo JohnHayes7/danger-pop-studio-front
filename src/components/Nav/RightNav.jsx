@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom'
-import SignOut from '../Utilites/Signout'
+import UserSignOut from '../User/UserSignOut'
 import axios from 'axios'
 
 const Ul = styled.ul`
@@ -33,6 +33,13 @@ const Ul = styled.ul`
 
 const RightNav = ({ open }) => {
 
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  useEffect(() =>{
+    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    .then(response => setLoggedIn(response.data.logged_in))
+  },[])
+
   return (
     <Ul open={open}>
       <li>
@@ -48,7 +55,7 @@ const RightNav = ({ open }) => {
         <Link to="/contact">Contact</Link>
       </li>
       <li>
-        <Link to="/sign-in">Sign In</Link>
+        {loggedIn ? <Link to="/sign-out">Sign Out</Link> : <Link to="/sign-in">Sign In</Link>}
       </li>
     </Ul>
   )
