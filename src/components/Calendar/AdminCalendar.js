@@ -9,12 +9,14 @@ import Nav from '../Nav/Navbar'
 import FullScreen from '../Fullscreen/Fullscreen'
 import '../Fullscreen/fullscreencss.css'
 import RedirectToLogin from '../Utilites/RedirectToLogin'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 const localizer = momentLocalizer(moment)
 
 const AdminCalendar = props => {
   
   let apptsList = []
+
+  const history = useHistory()
 
   const [projects, setProjects] = useState([])
   const [showFullScreen, setShowFullScreen] = useState(false)
@@ -31,7 +33,7 @@ const AdminCalendar = props => {
         getAppointments()
       }else{
         alert('You are not authorized to view this page')
-        RedirectToLogin()
+        history.push('/')
       }  
     })
     .catch(error => RedirectToLogin())

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ProjectAppointments from '../Projects/ProjectAppointments'
+import axios from 'axios'
 
 const Fullscreen = (props) => {
-    debugger
+    
+    const [requestWindowOpen, setRequestWindowOpen] = useState(true)
 
     const propsType = () => {
         switch(props.type){
@@ -16,6 +18,7 @@ const Fullscreen = (props) => {
         return( 
             <div className="full-screen" onClick={props.toggle}>
                 <h1>FULL SCREEN IMAGE</h1>
+
             </div>
         )
     }
@@ -55,22 +58,49 @@ const Fullscreen = (props) => {
                         <div className='project-image'>Progress Images: <div>{parseProgressImages()}</div></div>
                         {/* <div> Mockup Image:</div> */}
                     </div>
-                    <div>
+                    {/* <div>
                        
-                    </div>
-                    
-                    
+                    </div> */}
                 </div>
-                
             </div>
         )
     }
 
     const typeAdminOpts = () => {
         return (
-            <div className='full-screen'>Admin Options</div>
+            <div className='full-screen'>
+                <h1>Admin Options</h1>
+                <div className='fs-top-level'>
+                    <div className='fs-tr-window'>
+                        <h3>Tattoo Request Window:</h3>
+                        <div className="clickable">
+                            <div className={openClosedClass()} onClick={requestOpenCloseToggle}>{requestWindowOpen ? "Close Tattoo Request Window" : "Open Tattoo Request Window" }</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Add New Administrator</h3>
+                    </div>
+                </div>
+            </div>
         )
     }
+
+    const openClosedClass = () => requestWindowOpen ? "window-open" : "window-closed"
+
+    const requestOpenCloseToggle = () =>{
+        setRequestWindowOpen(!requestWindowOpen)
+        // const windowState = {"open": !requestWindowOpen}
+        // debugger
+        axios({method: 'patch', url: `http://localhost:3001/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
+            debugger
+            // console.log(resp)
+            // Refresh()
+          }).catch( err => {  
+            console.log(err)
+          })
+    }
+
+    
 
     return(
         <div>{propsType()}</div>
