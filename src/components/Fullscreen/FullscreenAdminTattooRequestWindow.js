@@ -1,0 +1,32 @@
+import React, {useState} from 'react'
+import axios from 'axios'
+
+const FsTattooRequestWindow = () =>{
+
+    const [requestWindowOpen, setRequestWindowOpen] = useState(true)
+
+    const openClosedClass = () => requestWindowOpen ? "window-open" : "window-closed"
+
+    const requestOpenCloseToggle = () =>{
+        setRequestWindowOpen(!requestWindowOpen)
+        // const windowState = {"open": !requestWindowOpen}
+        // debugger
+        axios({method: 'patch', url: `http://localhost:3001/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
+            debugger
+            // console.log(resp)
+            // Refresh()
+          }).catch( err => {  
+            console.log(err)
+          })
+    }
+    return(
+        <div className='admin-option'>
+            <h3>Tattoo Request Window:</h3>
+            <div className="open-close-option">
+                <div className={openClosedClass()} onClick={requestOpenCloseToggle}>{requestWindowOpen ? "Click To Close Tattoo Request Window" : "Click To Open Tattoo Request Window" }</div>
+            </div>
+        </div>
+    )
+}
+
+export default FsTattooRequestWindow
