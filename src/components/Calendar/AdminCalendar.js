@@ -76,7 +76,7 @@ const AdminCalendar = props => {
     if(daypart === "PM"){
         hour +=12
     }
-    debugger
+   
     return new Date(year, monthIndex, day, hour, min)
     // return null
   }
@@ -92,7 +92,7 @@ const AdminCalendar = props => {
     if(daypart === "PM"){
         hour +=12
     }
-    debugger
+    
     return new Date(year, monthIndex, day, hour, min)
   }
 
@@ -105,18 +105,18 @@ const AdminCalendar = props => {
   }
 
   const findSelectedProject = (id) =>{
-    debugger
+    
     let proj = projects.find(p => p.id === id)
-    debugger
+    
     setSelectedProject(proj)
   }
 
   const clickHandler = (e) =>{
     if(!!e.projectId){
-      debugger
+      
       findSelectedProject(e.projectId.toString())
     }else{
-      debugger
+      
       findSelectedProject(e.currentTarget.id)
     }
     setShowFullScreen(true)
