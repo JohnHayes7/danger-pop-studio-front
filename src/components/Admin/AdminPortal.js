@@ -3,8 +3,8 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import './admin-style.css'
 import { Link } from 'react-router-dom'
+import Nav from '../Nav/Navbar'
 import FullScreen from '../Fullscreen/Fullscreen'
-import SignOut from '../Utilites/Signout'
 // import CurrentUser from '../Utilites/CurrentUser'
 
 const AdminPortal = () =>{
@@ -35,10 +35,11 @@ const AdminPortal = () =>{
     const parseAdminCategories = () =>{
         return(
             <div>
+                <Nav />
                 <div className="admin-welcome">
                     <h1>Administrator Portal</h1>
                     <span className="admin-greeting">Welcome Back {currentUser.name}</span><br></br>
-                    <button onClick={signOutHandler}>Sign Out</button>
+                    {/* <button onClick={signOutHandler}>Sign Out</button> */}
                 </div>
                 <div className="admin-options">
                     <div className="options-rows">
@@ -79,10 +80,10 @@ const AdminPortal = () =>{
 
     const toggleFullScreen = () => setShowFullScreen(!showFullScreen)
 
-    const signOutHandler = () =>{
-        SignOut()
-        history.push('/')
-    }
+    // const signOutHandler = () =>{
+    //     SignOut()
+    //     history.push('/')
+    // }
 
     const notAuthorized = () =>{
         alert('You Are Not Authorized to View This Page')
