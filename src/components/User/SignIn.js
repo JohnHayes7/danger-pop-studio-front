@@ -72,12 +72,12 @@ const SignIn = () =>{
 
     
 
-    const redirectToUserPage = () => history.push(`/`)
+    const redirectToHomePage = () => history.push(`/`)
 
     debugger
     return(
         <div>
-            {!loggedIn ? displayForm() : redirectToUserPage()}
+            {!loggedIn ? displayForm() : redirectToHomePage()}
         </div>
         
     )

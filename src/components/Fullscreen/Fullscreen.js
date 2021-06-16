@@ -3,6 +3,7 @@ import ProjectAppointments from '../Projects/ProjectAppointments'
 import axios from 'axios'
 import Field from '../InputFields/Field'
 
+
 const Fullscreen = (props) => {
     
     const [requestWindowOpen, setRequestWindowOpen] = useState(true)
@@ -25,9 +26,8 @@ const Fullscreen = (props) => {
         )
     }
 
-    const parseProgressImages = () =>{
-        return props.project.attributes.progress_images.map(img => <img className='progress-image' src={img} alt="tattoo-progress image" />)
-    }
+
+    
 
     const typeProject = () =>{
         debugger
@@ -68,6 +68,12 @@ const Fullscreen = (props) => {
         )
     }
 
+    const parseProgressImages = () =>{
+        return props.project.attributes.progress_images.map(img => <img className='progress-image' src={img} alt="tattoo-progress image" />)
+    }
+
+    
+
     const typeAdminOpts = () => {
         return (
             <div className='full-screen'>
@@ -86,6 +92,9 @@ const Fullscreen = (props) => {
                                 <Field label='Administrator Email' id="email"/>
                                 <Field label='password' id='password' />
                             </div>
+                            <div className='submit-button'>
+                                Create New Admin
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -96,6 +105,9 @@ const Fullscreen = (props) => {
                             <div className='admin-input-fields'>
                                 <Field label='Artist Email' id="email"/>
                                 <Field label='password' id='password' />
+                            </div>
+                            <div className='submit-button'>
+                                Create New Artist
                             </div>
                         </form>
                     </div>

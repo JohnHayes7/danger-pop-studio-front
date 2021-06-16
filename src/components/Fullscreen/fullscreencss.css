@@ -172,3 +172,16 @@
 .admin-input-fields{
     margin-left: 1%;
 }
+
+.submit-button{
+    border: 3px solid grey;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    margin-top: 2%;
+    font-size: 2em;
+}
+
+.submit-button:hover{
+    font-weight: 500;
+}
