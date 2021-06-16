@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import Field from '../InputFields/Field'
+import FsArtistForm from './FullscreenArtistForm'
+import FsAdminForm from './FullscreenAdminForm'
 
 const FullscreenAdminOptions = () =>{
 
@@ -32,7 +34,8 @@ const FullscreenAdminOptions = () =>{
                         <div className={openClosedClass()} onClick={requestOpenCloseToggle}>{requestWindowOpen ? "Click To Close Tattoo Request Window" : "Click To Open Tattoo Request Window" }</div>
                     </div>
                 </div>
-                <div className='admin-option'>
+                <FsAdminForm />
+                {/* <div className='admin-option'>
                     <h3>Add New Administrator</h3>
                     <form> 
                         <div className='admin-input-fields'>
@@ -43,22 +46,10 @@ const FullscreenAdminOptions = () =>{
                             Create New Admin
                         </div>
                     </form>
-                </div>
+                </div> */}
             </div>
             <div className='fs-bot-level'>
-                <div className='admin-option'>
-                    <h3>Add New Artist</h3>
-                    <form>
-                        <div className='admin-input-fields'>
-                            <Field label='Artist Email' id="email"/>
-                            <Field label='password' id='password' />
-                        </div>
-                        <div className='submit-button'>
-                            Create New Artist
-                        </div>
-                    </form>
-                </div>
-                
+                <FsArtistForm />
             </div>
         </div>
     )
