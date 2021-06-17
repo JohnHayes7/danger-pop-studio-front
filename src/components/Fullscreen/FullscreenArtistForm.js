@@ -15,7 +15,7 @@ const FsArtistForm = () =>{
     }
 
     const emailInput = (e) => {
-        debugger
+        
         setEmail(e.target.value)
         // setEmail()
     }
@@ -28,15 +28,9 @@ const FsArtistForm = () =>{
     const saveNewArtist = () =>{
         axios.post('http://localhost:3001/artists', {artist}, {withCredentials: true})
         .then(response =>{
-            // if (response.data.data.attributes.administrator){
-            //     alert('You Have added a New Admin')
-            //     // setRefreshState(!refreshState)
-                
-            // }
-            debugger
-            // let rxdUser = response.data.user.data.attributes
-            // rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
-            
+            if (response.data.data){
+                alert('You Have added a New Artist')
+            }
         })
     }
     return(
@@ -44,8 +38,8 @@ const FsArtistForm = () =>{
             <h3>Add New Artist</h3>
             <form>
                 <div className='admin-input-fields'>
-                    <Field label='Artist Email' id="email" onChange={e => emailInput(e)}/>
-                    <Field label='password' id='password' onChange={e => passInput(e)}/>
+                    <Field label='Artist Email' id="email" changeHandler={e => emailInput(e)}/>
+                    <Field label='password' id='password' changeHandler={e => passInput(e)}/>
                 </div>
                 <div className='submit-button' onClick={saveNewArtist}>
                     Create New Artist
