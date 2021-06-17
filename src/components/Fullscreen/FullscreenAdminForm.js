@@ -2,10 +2,18 @@ import React, {useState} from 'react'
 import Field from '../InputFields/Field'
 import axios from 'axios'
 
-const FsAdminForm = () =>{
+const FsAdminForm = (props) =>{
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [refreshState, setRefreshState] = useState(false)
+
+    const user = {
+        email: email,
+        password: password,
+        administrator: true
+
+    }
 
     const emailInput = (e) => {
         debugger
@@ -19,7 +27,18 @@ const FsAdminForm = () =>{
 
 
     const saveNewAdmin = (e) =>{
-        
+        axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
+        .then(response =>{
+            if (response.data.data.attributes.administrator){
+                alert('You Have added a New Admin')
+                // setRefreshState(!refreshState)
+                
+            }
+            // debugger
+            // let rxdUser = response.data.user.data.attributes
+            // rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
+            
+        })
     }
 
     return(

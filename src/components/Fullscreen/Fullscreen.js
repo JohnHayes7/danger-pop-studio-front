@@ -5,6 +5,8 @@ import FullscreenAdminOptions from './FullscreenAdminOptions'
 
 
 const Fullscreen = (props) => {
+
+    const [refreshState, setRefreshState] = useState(false)
     
     const propsType = () => {
         switch(props.type){
@@ -18,7 +20,7 @@ const Fullscreen = (props) => {
 
     const typeProject = () => <FullscreenProject project={props.project} toggle={props.toggle} previous={props.previous} next={props.next}  />
     
-    const typeAdminOpts = () => <FullscreenAdminOptions />
+    const typeAdminOpts = () => <FullscreenAdminOptions refreshState={refreshState} setRefreshState={setRefreshState} />
 
     return(
         <div>{propsType()}</div>
