@@ -10,6 +10,7 @@ import FullScreen from '../Fullscreen/Fullscreen'
 import '../Fullscreen/fullscreencss.css'
 import RedirectToLogin from '../Utilites/RedirectToLogin'
 import { Link, useHistory } from 'react-router-dom'
+import '../Toggle/togglecss.css'
 const localizer = momentLocalizer(moment)
 
 const AdminCalendar = props => {
@@ -22,6 +23,8 @@ const AdminCalendar = props => {
   const [showFullScreen, setShowFullScreen] = useState(false)
   const [selectedProject, setSelectedProject] = useState({})
   const [appointments, setAppointments] = useState([])
+  const [backupRequests, setBackupRequests] = useState([])
+  const [toggle, setToggle] = useState(false)
   // const [clickedId, setClickedId] = useState("")
 
   useEffect(() =>{
@@ -31,6 +34,7 @@ const AdminCalendar = props => {
       if(response.data.user.data.attributes.administrator){
         getProjects()
         getAppointments()
+        getTattooRequests()
       }else{
         alert('You are not authorized to view this page')
         history.push('/')
@@ -50,6 +54,14 @@ const AdminCalendar = props => {
   const getAppointments = () => {
     axios.get('http://localhost:3001/appointments', {withCredentials: true})
     .then (response => setAppointments(response.data.data))
+  }
+
+  const getTattooRequests = () => {
+    axios.get('http://localhost:3001/tattoo_requests', {withCredentials: true})
+    .then(response =>{
+      let backups = response.data.data.filter(tr => tr.attributes.backup_project === true)
+      setBackupRequests(backups)
+    })
   }
 
   const parseAppointments = () =>{
@@ -104,6 +116,10 @@ const AdminCalendar = props => {
     )
   }
 
+  const parseBackups = () =>{
+    return <div className="flex">{backupRequests.map(bu  => <div key={bu.id} dataid={bu.id} className='project'>TR ID: {bu.id}</div>)}</div>
+  }
+
   const findSelectedProject = (id) =>{
     
     let proj = projects.find(p => p.id === id)
@@ -137,11 +153,35 @@ const AdminCalendar = props => {
     findSelectedProject(prevId.toString())
   }
 
+  const ToggleButton = () => {
+    return(
+        <div className="wrg-toggle" onClick={triggerToggle}>
+            <div className="wrg-toggle-container">
+                <div className="wrg-toggle-check">
+                    <span>Yes</span>
+                </div>
+                <div className="wrg-toggle-uncheck">
+                    <span>No</span>
+                </div>
+            </div>
+            <div className="wrg-toggle-circle"></div>
+            <input className="wrg-toggle-input" type="checkbox" aria-label="Toggle Button" />
+        </div>
+    )
+}
+
+  
+
+  const triggerToggle = () =>{
+      setToggle(!toggle)
+  }
+
   parseAppointments()
   return(
     <div>
         <Nav />
         <div className='title-description'>Projects to Be Scheduled:</div>
+        Show Backup Projects? {ToggleButton()}
         <div className="to-be-scheduled">
           {parseIncompleteProjects()}
         </div><br></br>
