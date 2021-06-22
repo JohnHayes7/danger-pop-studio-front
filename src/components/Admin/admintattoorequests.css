@@ -5,6 +5,14 @@
     text-align: left;
     margin-bottom: 1%;
 }
+.saved-bu{
+    border: 1px solid white;
+    width: 450px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 1%;
+    background-color: grey;
+}
 
 
 

@@ -1,6 +1,7 @@
 import {React, useState} from 'react'
 import AdminTattooRequestDetails from './AdminTattooRequestDetails'
 import Refresh from '../Utilites/Refresh'
+import axios from 'axios'
 
 const AdminTattooRequest = props => {
     const [showReqDetails, setShowReqDetails] = useState(false)
@@ -38,20 +39,35 @@ const AdminTattooRequest = props => {
         })
     }
 
+    const backupHandler = () =>{
+        const req = props.tr
+        req.attributes.backup = true
+        axios({method: 'put', url: `http://localhost:3001/tattoo_requests/${req.id}`, data: req ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+            debugger
+            Refresh()
+          }).catch( err => {  
+            console.log(err)
+          })  
+    }
+
     const displayDecisionButtons = () => {
         if(!props.tr.attributes.accepted)
         return(
             <div>
-                <button id="approve" onClick={approvalHander}>Approve?</button> <button id='decline'>Decline?</button>
+                <button id="approve" onClick={approvalHander}>Approve?</button> <button id='decline'>Decline?</button> {!props.tr.attributes.backup_project ? <button id='backup' onClick={backupHandler}>Save as Backup?</button> : null}
             </div>  
         )
     }
+
+    const classNameDefiner = () => props.tr.attributes.backup_project ? "saved-bu" : "tattreq-attrs"
     
-  
+    debugger
     return (
 
-        <div  key={props.tr.id} data-id={props.tr.id} className="tattreq-attrs"  >
+        <div  key={props.tr.id} data-id={props.tr.id} className={classNameDefiner()}  >
             <div onClick={toggleShowReqDetails}>
+                
+                {props.tr.attributes.backup_project ?  <div><strong>THIS IS A BACKUP PROJECT</strong></div> : null}
                 <div>Request ID: {props.tr.id}</div>
                 <div>Submitted on: {formattedDate()}</div>
                 <div> {props.tr.attributes.user ? "Requestor has an account" : "Requested as a guest"}</div>
