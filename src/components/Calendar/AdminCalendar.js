@@ -24,7 +24,7 @@ const AdminCalendar = props => {
   const [selectedProject, setSelectedProject] = useState({})
   const [appointments, setAppointments] = useState([])
   const [backupRequests, setBackupRequests] = useState([])
-  const [toggle, setToggle] = useState(false)
+  const [showBackups, setShowBackups] = useState(false)
   // const [clickedId, setClickedId] = useState("")
 
   useEffect(() =>{
@@ -173,7 +173,7 @@ const AdminCalendar = props => {
   
 
   const triggerToggle = () =>{
-      setToggle(!toggle)
+      setShowBackups(!showBackups)
   }
 
   parseAppointments()
@@ -183,7 +183,7 @@ const AdminCalendar = props => {
         <div className='title-description'>Projects to Be Scheduled:</div>
         Show Backup Projects? {ToggleButton()}
         <div className="to-be-scheduled">
-          {parseIncompleteProjects()}
+          {showBackups ? parseBackups() : parseIncompleteProjects()}
         </div><br></br>
         {showFullScreen ? <FullScreen type="project" project={selectedProject} toggle={toggleFullScreen}  next={nextProject} previous={previousProject}/> : null}
         <Calendar
