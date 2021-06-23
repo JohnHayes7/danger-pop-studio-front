@@ -31,6 +31,34 @@
     /* margin-left: .5%; */
 }
 
+.fs-top-options{
+    border: 1px solid grey;
+    width: 70%;
+    padding-left: 1%;
+    margin-left: 5%;
+    /* font-weight: 100; */
+    font-size: 1.2em;
+    overflow: scroll;
+    /* margin-left: .5%; */
+}
+
+.request-options{
+    border: 1px solid grey;
+    margin-left: 5%;
+    padding: 3%;
+}
+
+.request-options:hover{
+    background-color: grey;
+    color: white;
+}
+
+
+.fs-body-location-image{
+    width: 300px;
+    margin-left: 5%;
+}
+
 .fs-top-appts{
     /* align-items: flex-end; */
     border: 1px solid grey;
