@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import FullscreenImage from './FullscreenImage'
 import FullscreenProject from './FullscreenProject'
 import FullscreenAdminOptions from './FullscreenAdminOptions'
+import FullscreenRequest from './FulllscreenRequest'
 
 
 const Fullscreen = (props) => {
@@ -13,6 +14,7 @@ const Fullscreen = (props) => {
             case 'project': return typeProject();
             case 'image': return typeImage();
             case 'admin-options': return typeAdminOpts()
+            case 'request' : return typeTattooRequest()
         }
     }
 
@@ -22,6 +24,8 @@ const Fullscreen = (props) => {
     
     const typeAdminOpts = () => <FullscreenAdminOptions refreshState={refreshState} setRefreshState={setRefreshState} />
 
+    const typeTattooRequest = () => <FullscreenRequest project={props.project} />
+    
     return(
         <div>{propsType()}</div>
     )

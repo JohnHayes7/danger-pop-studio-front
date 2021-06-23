@@ -20,8 +20,10 @@ const AdminCalendar = props => {
   const history = useHistory()
 
   const [projects, setProjects] = useState([])
-  const [showFullScreen, setShowFullScreen] = useState(false)
+  const [showFullProject, setShowFullProject] = useState(false)
+  const [showFullRequest, setShowFullRequest] = useState(false)
   const [selectedProject, setSelectedProject] = useState({})
+  const [selectedRequest, setSelectedRequest] = useState({})
   const [appointments, setAppointments] = useState([])
   const [backupRequests, setBackupRequests] = useState([])
   const [showBackups, setShowBackups] = useState(false)
@@ -73,7 +75,6 @@ const AdminCalendar = props => {
         start: apptStart(appt.attributes.date, appt.attributes.time, appt.attributes.daypart),
         end: apptEnd(appt.attributes.date, appt.attributes.time, appt.attributes.length_time, appt.attributes.daypart)
       }
-
       apptsList = [...apptsList, apptInfo]
     })
   }
@@ -117,15 +118,22 @@ const AdminCalendar = props => {
   }
 
   const parseBackups = () =>{
-    return <div className="flex">{backupRequests.map(bu  => <div key={bu.id} dataid={bu.id} className='project'>TR ID: {bu.id}</div>)}</div>
+    debugger
+    return <div className="flex">{backupRequests.map(bu  => <div key={bu.id} id={bu.id} dataid={bu.id} className='project'><div>TR ID: {bu.id}</div><div>Client Name: {bu.attributes.guest_full_name}</div><div>Description: {bu.attributes.description}</div><div class="a-and-s-button" onClick={e  => findSelectedRequest(e)}>More Info and Scheduling Options</div></div> )}</div>
   }
 
   const findSelectedProject = (id) =>{
-    
     let proj = projects.find(p => p.id === id)
-    
     setSelectedProject(proj)
   }
+
+  const findSelectedRequest = (e) =>{
+    let selectedId = e.target.parentElement.id
+    let req = backupRequests.find(bu => bu.id === selectedId)
+    setSelectedRequest(req)
+    setShowFullRequest(true)
+  }
+
 
   const clickHandler = (e) =>{
     if(!!e.projectId){
@@ -135,12 +143,13 @@ const AdminCalendar = props => {
       
       findSelectedProject(e.currentTarget.id)
     }
-    setShowFullScreen(true)
+    setShowFullProject(true)
   }
 
   
 
-  const toggleFullScreen = () => setShowFullScreen(!showFullScreen)
+  const toggleFullProject = () => setShowFullProject(!showFullProject)
+  const toggleFullRequest = () => setShowFullRequest(!showFullRequest)
   
 
   const nextProject = () => {
@@ -155,7 +164,7 @@ const AdminCalendar = props => {
 
   const ToggleButton = () => {
     return(
-        <div className="wrg-toggle" onClick={triggerToggle}>
+        <div id="toggle-button" className={`wrg-toggle ${showBackups ? 'wrg-toggle--checked' : ''}`}onClick={triggerToggle}>
             <div className="wrg-toggle-container">
                 <div className="wrg-toggle-check">
                     <span>Yes</span>
@@ -185,7 +194,8 @@ const AdminCalendar = props => {
         <div className="to-be-scheduled">
           {showBackups ? parseBackups() : parseIncompleteProjects()}
         </div><br></br>
-        {showFullScreen ? <FullScreen type="project" project={selectedProject} toggle={toggleFullScreen}  next={nextProject} previous={previousProject}/> : null}
+        {showFullProject ? <FullScreen type="project" project={selectedProject} toggle={toggleFullProject}  next={nextProject} previous={previousProject}/> : null}
+        {showFullRequest ? <FullScreen type="request" project={selectedRequest} toggle={toggleFullRequest} /> : null}
         <Calendar
           localizer={localizer}
           events={apptsList}

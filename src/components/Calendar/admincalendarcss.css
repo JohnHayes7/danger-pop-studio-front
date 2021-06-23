@@ -38,3 +38,13 @@
 .id-icon{
     display: flex;
 }
+
+#toggle-button{
+    position: relative;
+    left: 0px;
+}
+
+.a-and-s-button:hover{
+    background-color: white;
+    color: black;
+}   
