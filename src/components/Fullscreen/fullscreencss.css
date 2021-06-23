@@ -80,6 +80,15 @@
 
 }
 
+.fs-bottom{
+    display: flex;
+}
+
+.schedule-options{
+    margin-left: 16.3%;
+    width: 100%;
+}
+
 .fs-bottom-mock-loc-img{
     display: flex;
     /* padding-left: 1%; */

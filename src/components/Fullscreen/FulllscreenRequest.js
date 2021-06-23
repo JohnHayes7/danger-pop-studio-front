@@ -1,7 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
+import axios from 'axios'
 
 const FullscreenRequest = (props) => {
-    debugger
+
+    const [showScheduleOptions, setShowScheduleOptions] = useState(true)
+
+    const toggleFullScreen = () => setShowScheduleOptions(!showScheduleOptions)
+
+    const acceptAsProject = () =>{
+        
+    }
+    
     return(
         <div class='full-screen'>
             <div class='fs-top'>
@@ -13,12 +22,17 @@ const FullscreenRequest = (props) => {
                 </div>
                 <div className='fs-top-options'>
                     <h1>Request Options:</h1><br></br>
-                    <span className='request-options'>Accept {"&"} Schedule</span><span className='request-options'>Accept {"&"} Schedule Later</span><span className='request-options'>Decline</span>
+                    <span className='request-options' onClick={toggleFullScreen}>Accept {"&"} Schedule</span><span className='request-options'>Accept {"&"} Schedule Later</span><span className='request-options'>Decline</span>
                 </div>
             </div>
             <div class='fs-bottom'>
-                <h1>Body Location Image:</h1>
-                <img className="fs-body-location-image" src={props.project.attributes.body_location_image_path} alt='body-location' />
+                <div>
+                    <h1>Body Location Image:</h1>
+                    <img className="fs-body-location-image" src={props.project.attributes.body_location_image_path} alt='body-location' />
+                </div>
+                <div className='schedule-options'>
+                    {showScheduleOptions ? <h1>Scheduling Options:</h1> : null}
+                </div>
             </div>
         </div>
     )
