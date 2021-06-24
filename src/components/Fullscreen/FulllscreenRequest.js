@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import Refresh from '../Utilites/Refresh'
+import ProjectAppointments from '../Projects/ProjectAppointments'
 
 const FullscreenRequest = (props) => {
 
     const [showScheduleOptions, setShowScheduleOptions] = useState(false)
     const [showRequestOptions, setShowRequestOptions]  = useState(true)
+    const [acceptedReqProj, setAcceptedReqProj] = useState({})
 
     const toggleSchedulingOptions = () => setShowScheduleOptions(!showScheduleOptions)
     const toggleRequestOptions = () => setShowRequestOptions(!showRequestOptions)
@@ -21,8 +23,10 @@ const FullscreenRequest = (props) => {
         }).then(resp => resp.json())
         .then(rxData => {
             if(parseInt(props.project.id) === rxData.data.attributes.tattoo_request.id){
+                setAcceptedReqProj(rxData.data)
                 toggleSchedulingOptions()
                 toggleRequestOptions()
+                
             }
         })
         
@@ -42,6 +46,7 @@ const FullscreenRequest = (props) => {
         return(
             <div>
                 <h1>Scheduling Options:</h1>
+                <ProjectAppointments project={acceptedReqProj}/>
             </div>
         )
     }

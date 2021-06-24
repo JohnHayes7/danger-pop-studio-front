@@ -119,10 +119,11 @@ const Project = (props) => {
     const toggleTitleForm = () => setShowProjectTitleForm(!showProjectTitleForm)
 
     const displayTitleOrForm = () =>{
-        if(showProjectTitleForm && currentUser.attributes.admin){
+        debugger
+        if(showProjectTitleForm && currentUser.attributes.administrator){
             return editProjectTitleForm()
         }else{
-            return  <div id="project-title">Title:{project.attributes.title }{currentUser.attributes.admin ? <button onClick={toggleTitleForm}>Edit</button> : null }</div>
+            return  <div id="project-title">Title:{project.attributes.title }{currentUser.attributes.administrator ? <button onClick={toggleTitleForm}>Edit</button> : null }</div>
         }
     }
 
