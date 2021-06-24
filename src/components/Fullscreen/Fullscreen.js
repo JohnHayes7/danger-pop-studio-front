@@ -24,7 +24,7 @@ const Fullscreen = (props) => {
     
     const typeAdminOpts = () => <FullscreenAdminOptions refreshState={refreshState} setRefreshState={setRefreshState} />
 
-    const typeTattooRequest = () => <FullscreenRequest project={props.project} />
+    const typeTattooRequest = () => <FullscreenRequest project={props.project} toggle={props.toggle} />
     
     return(
         <div>{propsType()}</div>
