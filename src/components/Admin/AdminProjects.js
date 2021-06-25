@@ -1,5 +1,6 @@
 import {React, useEffect, useState} from 'react'
 import { useHistory } from 'react-router-dom'
+import Nav from '../Nav/Navbar'
 import './adminprojects.css'
 
 const AdminProjects = () => {
@@ -35,9 +36,9 @@ const AdminProjects = () => {
 
 
 
-    const parseIncompleteProjects = () =>{
-        
-        return projects.data ? projects.data.map( proj => <div  key={proj.id} id={proj.id} className="proj-attrs" onClick={e => clickHandler(e)}> 
+    const projectParser = (passedProjects) =>{
+        debugger
+        return passedProjects.map( proj => <div  key={proj.id} id={proj.id} className="proj-attrs" onClick={e => clickHandler(e)}> 
             
            <div>Title: {proj.attributes.title}</div>
            <div>Request Description: {proj.attributes.tattoo_request.description}</div>
@@ -45,28 +46,35 @@ const AdminProjects = () => {
            <div>Client Email: {proj.attributes.user.email}</div>
            <div>Client Phone: {proj.attributes.user.phone_number}</div>
            {artistInfo(proj) }
-           <div>Project Complete ? {proj.attributes.project_complete_status ? "Yes" : "No"}</div>
-        </div>) : null
+           {/* <div>Project Complete ? {proj.attributes.project_complete_status ? "Yes" : "No"}</div> */}
+        </div>) 
     }
 
-    const parseCompleteProjects = () =>{
+    const findAndParseIncompleteProjects = () =>{
+        const incompleteProjects = projects.data ? projects.data.filter(proj => proj.attributes.project_complete_status === null || proj.attributes.project_complete_status === false ) : []
+        // debugger
+        return  projectParser(incompleteProjects) 
+    }
 
-    
+    const findAndParseCompleteProjects = () =>{
+        const completedProjects = projects.data ? projects.data.filter(proj => proj.attributes.project_complete_status === true) : []
+        return projectParser(completedProjects) 
     
     }
 
 
     return(
         <div>   
+            <Nav />
             <h1>Administrator Project Portal</h1>
             <div className='all-projs'>
                 <div id="incomplete-projs">
                     <h2>Incomplete Projects:</h2>
-                    <div>{parseIncompleteProjects()}</div>
+                    <div>{findAndParseIncompleteProjects()}</div>
                 </div>
                 <div id='complete-projs'>
                     <h2>Complete Projects:</h2>
-                    <div>{parseCompleteProjects()}</div>
+                    <div>{findAndParseCompleteProjects()}</div>
                 </div>
             
              </div>
