@@ -4,3 +4,16 @@
     padding: 15px;
     text-align: left;
 }
+
+.all-projs{
+    display: flex;
+}
+
+#incomplete-projs{
+    margin-left: 10%;
+}
+
+#complete-projs{
+    position: relative;
+    margin-left: 20%;
+}

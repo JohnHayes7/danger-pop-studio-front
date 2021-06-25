@@ -16,7 +16,7 @@ const UserSignout = () =>{
 
     return(
         <div>
-            <div>Logging Out...</div>
+            <div><h1>Logging Out...</h1><h3>Thanks for Visiting Danger Pop</h3></div>
             {logOutUser()}
         </div>
         
