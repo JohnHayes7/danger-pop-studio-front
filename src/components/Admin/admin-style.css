@@ -49,3 +49,16 @@
     font-size: 2em;
 }
 
+.left-align{
+    text-align: left;
+    padding-left: 2%;
+}
+
+.left-item{
+    display: flex;
+}
+
+.right-inputs{
+    position: relative;
+    margin-left: 7% ;
+}
