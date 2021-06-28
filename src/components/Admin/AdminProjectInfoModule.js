@@ -8,13 +8,14 @@ const AdminProjectInfoModule = (props) =>{
 
     useEffect(() => {
         props.project.attributes.project_complete_status === true ? setProjectComplete(true) : setProjectComplete(false)
+        props.project.attributes.deposit_received_status === true ? setDepositReceived(true) : setDepositReceived(false)
     }, [])
 
 
     const completedToggleButton = () => {
        
         return(
-            <div className={`wrg-toggle ${projectComplete ? 'wrg-toggle--checked' : ''}`} onClick={e => clickHandler(e)} >
+            <div className={`wrg-toggle ${projectComplete ? 'wrg-toggle--checked' : ''}`} onClick={e => completedClickHandler(e)} >
                 {toggleYesNo()}
                 <div className="wrg-toggle-circle"></div>
                 <input className="wrg-toggle-input" type="checkbox" aria-label="Toggle Button" />
@@ -24,7 +25,7 @@ const AdminProjectInfoModule = (props) =>{
 
     const depositToggleButton = () => {
         return(
-            <div className={`wrg-toggle ${depositReceived ? 'wrg-toggle--checked' : ''}`} onClick={e => clickHandler(e)} >
+            <div className={`wrg-toggle ${depositReceived ? 'wrg-toggle--checked' : ''}`} onClick={e=> depositClickHandler(e)} >
                 {toggleYesNo()}
                 <div className="wrg-toggle-circle"></div>
                 <input className="wrg-toggle-input" type="checkbox" aria-label="Toggle Button" />
@@ -46,12 +47,27 @@ const AdminProjectInfoModule = (props) =>{
        ) 
     }
 
-    const updateProjectInDb = (saveIndicator) =>{
-        let completed  = saveIndicator === "No" ? true : false
-        const projectData = {
-            "project_id": props.project.id,
-            "completed_status": completed
+    const updateProjectInDb = (catIndicator, valIndicator) =>{
+
+        const projectData = {}
+        if(catIndicator === "Project"){
+            let completed  = valIndicator === "No" ? true : false
+            projectData["project_id"] = props.project.id
+            projectData["completed_status"] = completed
+            // const projectData = {
+            //     "project_id": props.project.id,
+            //     "completed_status": completed
+            // }
+        }else if(catIndicator === "Deposit"){
+            let received = valIndicator === "No" ? true : false
+            projectData["project_id"] = props.project.id
+            projectData["deposit_received"] = received
+            // const projectData = {
+            //     "project_id": props.project.id,
+            //     "deposit_received": received
+            // }
         }
+        
         
         axios({method: 'patch', url: `http://localhost:3001/projects/${props.project.id}`, data: projectData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             setProjectComplete(resp.data.data.attributes.project_complete_status)
@@ -61,9 +77,16 @@ const AdminProjectInfoModule = (props) =>{
         
     }
 
-    const clickHandler = (e) =>{
+    const completedClickHandler = (e) =>{
         setProjectComplete(!projectComplete)
-        updateProjectInDb(e.target.textContent)
+        let cat = e.currentTarget.parentElement.parentElement.innerText.split(" ")[0]
+        updateProjectInDb(cat, e.target.textContent)
+    }
+
+    const depositClickHandler = (e) =>{
+        setDepositReceived(!depositReceived)
+        let cat = e.currentTarget.parentElement.parentElement.innerText.split(" ")[0]
+        updateProjectInDb(cat, e.target.textContent)   
     }
 
     return(
