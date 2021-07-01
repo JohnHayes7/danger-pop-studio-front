@@ -34,7 +34,7 @@ const AdminAppointments = () =>{
     return(
         <div>
             <h1>Administrator Appointment Portal</h1>
-            <iframe src='https://calendar.google.com/calendar/embed?src=warwickcreativeservices%40gmail.com&ctz=America%2FNew_York'  width="1000" height="800" frameborder="0" scrolling="no"></iframe>
+            {/* <iframe src='https://calendar.google.com/calendar/embed?src=warwickcreativeservices%40gmail.com&ctz=America%2FNew_York'  width="1000" height="800" frameborder="0" scrolling="no"></iframe> */}
             {/* <img src="https://calendar.google.com/calendar/embed?src=warwickcreativeservices%40gmail.com&ctz=America%2FNew_York" width="1000" height="800" /> */}
             <div>{parseAllAppts()}</div>
         </div>
