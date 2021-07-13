@@ -11,12 +11,14 @@ const SignIn = () =>{
     const [userPassword, setUserPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(null)
     
+    // const URL = 'https://danger-pop-api.herokuapp.com'
+    const URL = 'http://localhost:3001'
     
 
     const history = useHistory()
 
     useEffect(() =>{
-        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true})
         .then(response => {
             setLoggedIn(response.data.logged_in)
             // debugger
@@ -39,9 +41,10 @@ const SignIn = () =>{
             email: userEmail,
             password: userPassword
         }
-        axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+        axios.post(URL + '/login', {user}, {withCredentials: true})
         .then(response =>{
             debugger
+            console.log(response)
             let rxdUser = response.data.user.data.attributes
             rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
             

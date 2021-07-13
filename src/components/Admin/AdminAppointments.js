@@ -5,19 +5,7 @@ import { ReactEmbeddedGoogleCalendar } from 'react-embedded-google-calendar';
 const AdminAppointments = () =>{
     // DECOMMISSIONED 6.7.21 BY JH
     const [state, setState] = useState([])
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/appointments').then(response => response.json())
-    //     .then(rxData => {
-    //         setState(rxData)
-    //     })
-    // }, [])
-
-    // useEffect(() => {
-    //     fetch('https://www.googleapis.com/calendar/v3/calendars/')
-    // })
-
-    
-
+  
     const parseAllAppts = () =>{
       
         return state.data ? state.data.map( appt => <div  key={appt.id}className="appt-attrs">

@@ -7,7 +7,7 @@ const FsAdminForm = (props) =>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [refreshState, setRefreshState] = useState(false)
-
+    const URL = "https://danger-pop-api.herokuapp.com/"
     const user = {
         email: email,
         password: password,
@@ -27,7 +27,7 @@ const FsAdminForm = (props) =>{
 
 
     const saveNewAdmin = (e) =>{
-        axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
+        axios.post(URL + '/users', {user}, {withCredentials: true})
         .then(response =>{
             if (response.data.data.attributes.administrator){
                 alert('You Have added a New Admin')

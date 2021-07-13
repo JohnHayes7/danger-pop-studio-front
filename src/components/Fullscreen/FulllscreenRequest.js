@@ -11,10 +11,12 @@ const FullscreenRequest = (props) => {
     const toggleSchedulingOptions = () => setShowScheduleOptions(!showScheduleOptions)
     const toggleRequestOptions = () => setShowRequestOptions(!showRequestOptions)
 
+    const URL = 'https://danger-pop-api.herokuapp.com/'
+
     const acceptAsProject = () =>{
         const req = props.project
         req.attributes.accepted = true
-        fetch('http://localhost:3001/projects',{
+        fetch(URL + '/projects',{
             method: "post",
             headers:{
                 'content-type': 'application/json'

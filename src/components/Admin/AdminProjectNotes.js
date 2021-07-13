@@ -13,13 +13,15 @@ const AdminProjectNotes = (props) =>{
 
     const toggleProjectNotesForm = () => setShowProjNoteForm(!showProjNoteForm)
    
+    const URL = "https://danger-pop-api.herokuapp.com/"
+
     const deleteNote = (e) =>{
         e.preventDefault()
         deleteNoteFromDb(e.currentTarget.dataset.id)
     }
 
     const deleteNoteFromDb = (id) =>{
-        axios({method: 'DELETE', url: `http://localhost:3001/project_notes/${id}`,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'DELETE', url: `${URL}/project_notes/${id}`,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             console.log(resp)
             Refresh()
           }).catch( err => {  

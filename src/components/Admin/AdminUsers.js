@@ -7,8 +7,9 @@ import './adminusers.css'
 
 const AdminUsers = () =>{
     const [state, setState] = useState([])
+    const URL = "https://danger-pop-api.herokuapp.com/"
     useEffect(() => {
-        fetch('http://localhost:3001/users').then(response => response.json())
+        fetch(URL + '/users').then(response => response.json())
         .then(rxData => {
             setState(rxData)
         })

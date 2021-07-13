@@ -6,12 +6,12 @@ const FsTattooRequestWindow = () =>{
     const [requestWindowOpen, setRequestWindowOpen] = useState(true)
 
     const openClosedClass = () => requestWindowOpen ? "window-open" : "window-closed"
-
+    const URL = 'https://danger-pop-api.herokuapp.com/'
     const requestOpenCloseToggle = () =>{
         setRequestWindowOpen(!requestWindowOpen)
         // const windowState = {"open": !requestWindowOpen}
         // debugger
-        axios({method: 'patch', url: `http://localhost:3001/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'patch', url: `${URL}/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
             debugger
             // console.log(resp)
             // Refresh()

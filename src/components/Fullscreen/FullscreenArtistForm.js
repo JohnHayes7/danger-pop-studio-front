@@ -7,6 +7,9 @@ const FsArtistForm = () =>{
     const [password, setPassword] = useState("")
     // const [refreshState, setRefreshState] = useState(false)
 
+    const URL ="https://danger-pop-api.herokuapp.com/"
+
+
     const artist = {
         email: email,
         password: password,
@@ -26,7 +29,7 @@ const FsArtistForm = () =>{
 
 
     const saveNewArtist = () =>{
-        axios.post('http://localhost:3001/artists', {artist}, {withCredentials: true})
+        axios.post(URL + '/artists', {artist}, {withCredentials: true})
         .then(response =>{
             if (response.data.data){
                 alert('You Have added a New Artist')

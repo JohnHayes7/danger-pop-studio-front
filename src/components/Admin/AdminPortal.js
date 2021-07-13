@@ -9,22 +9,28 @@ import FullScreen from '../Fullscreen/Fullscreen'
 
 const AdminPortal = () =>{
 
+    const URL = 'http://localhost:3001'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
+
     const [authorized, setAuthorized] = useState(false)
     const [currentUser, setCurrentUser] = useState({})
     const [showFullScreen, setShowFullScreen] = useState(false)
     const history = useHistory()
 
     useEffect(() =>{
-        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true})
             .then(response => {
+                debugger
                 if (response.data.logged_in){
                     if(response.data.user.data.attributes.administrator){
                         setAuthorized(response.data.user.data.attributes.administrator)
                         setCurrentUser(response.data.user.data.attributes)
                     }else{
+                        alert(response.data.message)
                         notAuthorized()
                     }
                 }else{
+                    alert(response.data.message)
                     notAuthorized()
                 }
             })
@@ -79,11 +85,6 @@ const AdminPortal = () =>{
     }
 
     const toggleFullScreen = () => setShowFullScreen(!showFullScreen)
-
-    // const signOutHandler = () =>{
-    //     SignOut()
-    //     history.push('/')
-    // }
 
     const notAuthorized = () =>{
         alert('You Are Not Authorized to View This Page')

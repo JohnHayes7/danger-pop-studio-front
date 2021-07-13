@@ -6,6 +6,8 @@ import Refresh from '../Utilites/Refresh'
 const AdminProjectNoteForm = (props) =>{
 
     const [noteContent, setNoteContent] = useState('')
+
+    const URL = "https://danger-pop-api.herokuapp.com/"
     
     const noteInput = (e) => setNoteContent(e.target.value)
 
@@ -15,7 +17,7 @@ const AdminProjectNoteForm = (props) =>{
             "project_id": props.project.id,
             "content": noteContent
         }
-        axios({method: 'post', url: `http://localhost:3001/project_notes`, data: noteData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'post', url: `${URL}/project_notes`, data: noteData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             console.log(resp)
             Refresh()
           }).catch( err => {  

@@ -8,7 +8,7 @@ const ProjectUser = (props) =>{
     const [idImage, setIdImage] = useState({})
     const [showUpload, setShowUpload] = useState(false)
     
-    
+    const URL = 'https://danger-pop-api.herokuapp.com/'
 
     const config = {
         bucketName: process.env.REACT_APP_S3_BUCKET_NAME,
@@ -32,7 +32,7 @@ const ProjectUser = (props) =>{
     const patchImageLocationToDb = (location) =>{
         const user = props.project.attributes.user
         user.id_img_path = location
-        axios({method: 'put', url: `http://localhost:3001/users/${user.id}`, data: user ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'put', url: `${URL}/users/${user.id}`, data: user ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             Refresh()
           }).catch( err => {  
             console.log(err)

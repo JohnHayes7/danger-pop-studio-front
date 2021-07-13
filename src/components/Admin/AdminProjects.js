@@ -7,8 +7,10 @@ const AdminProjects = () => {
     const [projects, setProjects] = useState([])
     const history = useHistory()
     
+    const URL = "https://danger-pop-api.herokuapp.com/"
+
     useEffect(() => {
-        fetch('http://localhost:3001/projects').then(response => response.json())
+        fetch( URL + '/projects').then(response => response.json())
         .then(rxData => {
             setProjects(rxData)
         })

@@ -25,6 +25,8 @@ const ProjectImageModule = (props) =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
+    const URL = "https://danger-pop-api.herokuapp.com/"
+
     const fileChange = (e) => {
         
         const { value } = e.target; 
@@ -62,7 +64,7 @@ const ProjectImageModule = (props) =>{
         const data ={
             'finalimagelocation': location
         }
-        axios({method: 'put', url: `http://localhost:3001/projects/${props.project.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'put', url: `${URL}/projects/${props.project.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             debugger
             Refresh()
           }).catch( err => {  
@@ -74,7 +76,7 @@ const ProjectImageModule = (props) =>{
         const data = {
             'progressimagelocation': location
         }
-        axios({method: 'put', url: `http://localhost:3001/projects/${props.project.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'put', url: `${URL}/projects/${props.project.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             Refresh()
           }).catch( err => {  
             console.log(err)

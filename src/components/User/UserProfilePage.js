@@ -17,10 +17,12 @@ const UserProfilePage = (props) =>{
     const [authorized, setAuthorized] = useState(false)
     const history = useHistory()
     const pageId = props.location.pathname.split('/')[2]
+
+    const URL = 'https://danger-pop-api.herokuapp.com/'
         
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true})
         .then(response => {
             
             if(response.data.user.data){
@@ -42,7 +44,7 @@ const UserProfilePage = (props) =>{
     const isAuthorized = () =>{
         const user_id = { id: pageId }
         
-        axios.post('http://localhost:3001/authorized', {user_id}, {withCredentials: true})
+        axios.post(URL + '/authorized', {user_id}, {withCredentials: true})
         .then(response =>{
             
             setAuthorized(response.data.authorized)

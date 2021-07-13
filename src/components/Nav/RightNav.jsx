@@ -33,10 +33,11 @@ const Ul = styled.ul`
 
 const RightNav = ({ open }) => {
 
+  const URL = 'https://danger-pop-api.herokuapp.com/'
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() =>{
-    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    axios.get(URL + '/logged_in', {withCredentials: true})
     .then(response => setLoggedIn(response.data.logged_in))
   },[])
 

@@ -3,7 +3,8 @@ import axios from 'axios'
 
 const SignOut = () =>{
     // const history = useHistory()
-    axios.delete('http://localhost:3001/logout', {withCredentials: true})
+    const URL = 'https://danger-pop-api.herokuapp.com/'
+    axios.delete(URL + '/logout', {withCredentials: true})
     .then(response =>{
         return response.data.logged_out
     })

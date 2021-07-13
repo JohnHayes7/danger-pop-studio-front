@@ -8,6 +8,8 @@ const AdminTattooRequest = props => {
     const [showApproved, setShowApproved] = useState(true)
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
 
+    const URL = "https://danger-pop-api.herokuapp.com/"
+
     const formattedDate = () => {
         let date = props.tr.attributes.created_at
         let dateAry = date.split('-')
@@ -23,7 +25,7 @@ const AdminTattooRequest = props => {
         const req = props.tr
         
         req.attributes.accepted = true
-        fetch('http://localhost:3001/projects',{
+        fetch(URL + '/projects',{
             method: "post",
             headers:{
                 'content-type': 'application/json'
@@ -42,7 +44,7 @@ const AdminTattooRequest = props => {
     const backupHandler = () =>{
         const req = props.tr
         req.attributes.backup = true
-        axios({method: 'put', url: `http://localhost:3001/tattoo_requests/${req.id}`, data: req ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
+        axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: req ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
             Refresh()
           }).catch( err => {  
             console.log(err)

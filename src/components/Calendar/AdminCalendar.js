@@ -17,6 +17,8 @@ const AdminCalendar = props => {
   
   let apptsList = []
 
+  const URL =  "https://danger-pop-api.herokuapp.com/"
+
   const history = useHistory()
 
   const [projects, setProjects] = useState([])
@@ -31,7 +33,7 @@ const AdminCalendar = props => {
 
   useEffect(() =>{
     // NEEDS A REFACTOR TO UTILITES
-    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    axios.get(URL +'/logged_in', {withCredentials: true})
     .then(response => {
       if(response.data.user.data.attributes.administrator){
         getProjects()
@@ -46,7 +48,7 @@ const AdminCalendar = props => {
   }, [])
 
   const getProjects = () => {
-    axios.get('http://localhost:3001/projects', {withCredentials: true})
+    axios.get(URL + '/projects', {withCredentials: true})
     .then(response =>{
         setProjects(response.data.data)
         // getAppointmentsFromProjects()
@@ -54,12 +56,12 @@ const AdminCalendar = props => {
   }
 
   const getAppointments = () => {
-    axios.get('http://localhost:3001/appointments', {withCredentials: true})
+    axios.get(URL + '/appointments', {withCredentials: true})
     .then (response => setAppointments(response.data.data))
   }
 
   const getTattooRequests = () => {
-    axios.get('http://localhost:3001/tattoo_requests', {withCredentials: true})
+    axios.get(URL + '/tattoo_requests', {withCredentials: true})
     .then(response =>{
       let backups = response.data.data.filter(tr => tr.attributes.backup_project === true)
       setBackupRequests(backups)

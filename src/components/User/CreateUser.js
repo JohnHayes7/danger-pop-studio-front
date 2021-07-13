@@ -15,6 +15,7 @@ const CreateUser = (props) =>{
     const [confirmUserPassword, setConfirmUserPassword] = useState("")
     // const [submitSuccess, setSubmitSuccess] = useState(false)
 
+    const URL = 'https://danger-pop-api.herokuapp.com/'
     const formData = {
         'user':{
             'name': fullName,
@@ -55,7 +56,7 @@ const CreateUser = (props) =>{
     const submitHandler = (e) =>{
         e.preventDefault()
         // NEED TO MOVE TO REDUX ACTION
-        fetch(`http://localhost:3001/users`, {
+        fetch(`${URL}/users`, {
             method: 'POST',
             headers:{
                 "Content-Type": "application/json"

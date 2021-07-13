@@ -5,6 +5,7 @@ const AdminProjectInfoModule = (props) =>{
 
     const[projectComplete, setProjectComplete] = useState(false)
     const[depositReceived, setDepositReceived] = useState(false)
+    const URL = "https://danger-pop-api.herokuapp.com/"
 
     useEffect(() => {
         props.project.attributes.project_complete_status === true ? setProjectComplete(true) : setProjectComplete(false)
@@ -34,7 +35,6 @@ const AdminProjectInfoModule = (props) =>{
     }
 
     const toggleYesNo = () => {
-        debugger
        return (
             <div className="wrg-toggle-container">
                 <div className="wrg-toggle-check">
@@ -54,22 +54,15 @@ const AdminProjectInfoModule = (props) =>{
             let completed  = valIndicator === "No" ? true : false
             projectData["project_id"] = props.project.id
             projectData["completed_status"] = completed
-            // const projectData = {
-            //     "project_id": props.project.id,
-            //     "completed_status": completed
-            // }
+            
         }else if(catIndicator === "Deposit"){
             let received = valIndicator === "No" ? true : false
             projectData["project_id"] = props.project.id
             projectData["deposit_received"] = received
-            // const projectData = {
-            //     "project_id": props.project.id,
-            //     "deposit_received": received
-            // }
         }
         
         
-        axios({method: 'patch', url: `http://localhost:3001/projects/${props.project.id}`, data: projectData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'patch', url: `${URL}/projects/${props.project.id}`, data: projectData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             setProjectComplete(resp.data.data.attributes.project_complete_status)
           }).catch( err => {  
             console.log(err)
@@ -80,6 +73,7 @@ const AdminProjectInfoModule = (props) =>{
     const completedClickHandler = (e) =>{
         setProjectComplete(!projectComplete)
         let cat = e.currentTarget.parentElement.parentElement.innerText.split(" ")[0]
+        debugger
         updateProjectInDb(cat, e.target.textContent)
     }
 

@@ -21,10 +21,11 @@ const ProjectAppointments = (props) =>{
     const [time, setTime] = useState('')
     const [duration, setDuration] = useState('')
     const [daypart, setDaypart] = useState("PM")
+    const URL = 'https://danger-pop-api.herokuapp.com/'
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true})
         .then(response => {
             // debugger
             setAdmin(response.data.user.data.attributes.administrator)
@@ -72,7 +73,12 @@ const ProjectAppointments = (props) =>{
 
     const daypartSelector = (e) =>{
         setDaypart(e.target.value)
-    }       
+    }
+    
+    const parseDayParts = () => {
+        const dayparts = ["AM", "PM"]
+        return dayparts.map(dp => <option value={dp}>{dp}</option>)
+    }
 
 
     const newApptForm = () => {
@@ -86,8 +92,7 @@ const ProjectAppointments = (props) =>{
                             <Field id="year" placeholder="YYYY" year={year} changeHandler={e => yearInput(e)}/>
                             <Field id="time" placeholder="hh:mm" time={time} changeHandler={e => timeInput(e)}/>
                             <select className="daypart-duration" onChange={e=> daypartSelector(e)}>
-                                <option value="AM">AM</option>
-                                <option value="PM">PM</option>
+                                {parseDayParts()}
                             </select>
                             <select className="daypart-duration" onChange={e => durationSelector(e)}>
                                 <option value="30">30 Mins</option>
@@ -199,7 +204,7 @@ const ProjectAppointments = (props) =>{
             'user_id': props.project.attributes.user.id
         }
 
-        axios({method: 'post', url: 'http://localhost:3001/appointments', data: data,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'post', url: URL + '/appointments', data: data,   headers: {'Content-Type': 'application/json'}}).then(resp => {
           debugger
             if(resp.status === 200){
                 Refresh()

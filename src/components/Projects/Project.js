@@ -18,8 +18,10 @@ const Project = (props) => {
 
     const pageId = parseInt(props.location.pathname.split('/').splice(-1)[0])
 
+    const URL = 'https://danger-pop-api.herokuapp.com/'
+
     useEffect(() => {
-        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true})
         .then(response => {
             debugger
             if (response.data.logged_in ){
@@ -36,7 +38,6 @@ const Project = (props) => {
 
     const checkAuth = (user) =>{
         let belongsToUser = false
-        debugger
         if(user.attributes){
             belongsToUser = user.attributes.projects.filter(p => p.id === pageId).length > 0 ? true : false
             debugger
@@ -51,7 +52,7 @@ const Project = (props) => {
     }
 
     const getProject = () =>{
-        fetch(`http://localhost:3001/projects/${pageId}`).then(response => response.json())
+        fetch(`${URL}/projects/${pageId}`).then(response => response.json())
         .then(rxData => {
             setProject(rxData.data)
         })
@@ -69,7 +70,7 @@ const Project = (props) => {
     }
 
     const adminProjMods = () => {
-        debugger
+        
         return(
             <div className="project-modules" >
                 <div className="col-1">
@@ -107,7 +108,7 @@ const Project = (props) => {
             "title": newProjectTitle
         }
         
-        axios({method: 'patch', url: `http://localhost:3001/projects/${project.id}`, data: projectData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'patch', url: `${URL}/projects/${project.id}`, data: projectData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             Refresh()
           }).catch( err => {  
             console.log(err)

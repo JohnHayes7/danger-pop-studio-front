@@ -32,14 +32,16 @@ const TattooRequestForm = () =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
+    const URL = 'https://danger-pop-api.herokuapp.com'
+
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        axios.get('http://localhost:3001/request_windows/1',{withCredentials:true})
+        axios.get(URL + '/request_windows/1',{withCredentials:true})
         .then(response => {
             setRequestWindowOpen(response.data.openState)
         })
 
-        axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true})
         .then(response => {
             console.log(response)
             if(response.data.logged_in){
@@ -58,7 +60,7 @@ const TattooRequestForm = () =>{
 
 
     const postDataToDb = (fileData) =>{
-        axios({method: 'post', url: 'http://localhost:3001/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'post', url: URL + '/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
           
           if(resp.data.map){
                 resp.data.map(d => alert(d))
@@ -151,10 +153,10 @@ const TattooRequestForm = () =>{
 
     const adminOptions = () =>{
         return(
-                <div className='tr-admin-options'>
-                    <h1>Admin Options:</h1>
-                    {openClosedOptions()}
-                </div>
+            <div className='tr-admin-options'>
+                <h1>Admin Options:</h1>
+                {openClosedOptions()}
+            </div>
         )
     }
 
@@ -170,7 +172,7 @@ const TattooRequestForm = () =>{
         setRequestWindowOpen(!requestWindowOpen)
         // const windowState = {"open": !requestWindowOpen}
         debugger
-        axios({method: 'patch', url: `http://localhost:3001/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'patch', url: `${URL}/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
             debugger
             // console.log(resp)
             // Refresh()
