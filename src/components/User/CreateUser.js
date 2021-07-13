@@ -79,7 +79,8 @@ const CreateUser = (props) =>{
 
     return(
         <div className="create-new-user-form-parent">
-            <h3>Create A DANGER POP Account</h3>
+            <h3>COMING SOON</h3>
+            {/* <h3>Create A DANGER POP Account</h3>
             <form onSubmit={e => submitHandler(e)}>
                 <Field id="full-name" placeholder={'Enter Full Name'} fullName={fullName} changeHandler={e => fullNameInput(e)} /> <br></br>
                 <Field id='phone' placeholder ={'Enter Phone #'} phone={phone}  changeHandler={e=> phoneInput(e)} /><br></br>
@@ -87,7 +88,7 @@ const CreateUser = (props) =>{
                 <Field id='password' placeholder={'Enter Password'} userPassword={userPassword} changeHandler={e=> userPasswordInput(e)} /><br></br>
                 <Field id='password' placeholder={'Confirm Password'} confirmUserPassword={confirmUserPassword} changeHandler={e=> userConfirmPasswordInput(e)} />
                 <button>Submit</button>
-            </form>
+            </form> */}
         </div>
     )
 }
