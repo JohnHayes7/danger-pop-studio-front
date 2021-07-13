@@ -20,6 +20,8 @@ import UserProfilePage from './components/User/UserProfilePage';
 import AdminCalendar from './components/Calendar/AdminCalendar'
 import UserSignout from './components/User/UserSignOut'
 import PasswordReset from './components/User/PasswordReset'
+import About from './components/About/About'
+import Contact from './components/Contact/Contact'
 // import LoginUser from './components/User/LoginUser';
 // require('dotenv').config()
 
@@ -28,6 +30,8 @@ function App() {
     <Router>
       <div className="App">
         <Route exact path="/" component={Home}/>
+        <Route exact path="/about" component={About}/>
+        <Route exact path="/contact" component={Contact}/>
         <Route exact path="/admin" component={AdminPortal} />
         <Route exact path="/admin/users" component={AdminUsers} />
         {/* <Route exact path="/admin/appts" component={AdminAppointments} /> */}
