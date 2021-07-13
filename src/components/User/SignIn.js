@@ -58,12 +58,12 @@ const SignIn = () =>{
                         <Field id='email' placeholder={'Enter Email'} userEmail={userEmail} changeHandler={e=> userEmailInput(e)} /><br></br>
                         <Field id='password' placeholder={'Enter Password'} userPassword={userPassword} changeHandler={e=> userPasswordInput(e)} />
                         <button>Sign In</button>
-                    </form>
+                    </form><br></br>
                     
-                <div>
-                    <div>Forgot Password</div>
-                    <div><Link to='/create-profile'>Create An Account</Link></div>
-                </div>
+                    <div>
+                        <div><Link to='/password-reset'>Forgot Password</Link></div>
+                        <div><Link to='/create-profile'>Create An Account</Link></div>
+                    </div>
                 </div>
             </div>
             

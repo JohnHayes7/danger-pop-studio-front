@@ -19,6 +19,7 @@ import CreateUser from './components/User/CreateUser';
 import UserProfilePage from './components/User/UserProfilePage';
 import AdminCalendar from './components/Calendar/AdminCalendar'
 import UserSignout from './components/User/UserSignOut'
+import PasswordReset from './components/User/PasswordReset'
 // import LoginUser from './components/User/LoginUser';
 // require('dotenv').config()
 
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/sign-out" component={UserSignout} />
         <Route exact path ="/users/:id" component={UserProfilePage} />
         <Route exact path="/create-profile" component={CreateUser} />
+        <Route exact path="/password-reset" component={PasswordReset} />
        
         {/* <Route exact path="/login" component={LoginUser} /> */}
         
