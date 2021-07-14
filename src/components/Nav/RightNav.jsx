@@ -33,7 +33,7 @@ const Ul = styled.ul`
 
 const RightNav = ({ open }) => {
 
-  const URL = 'https://danger-pop-api.herokuapp.com/'
+  const URL = 'https://danger-pop-api.herokuapp.com'
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() =>{

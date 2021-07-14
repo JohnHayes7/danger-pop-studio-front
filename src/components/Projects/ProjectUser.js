@@ -8,7 +8,7 @@ const ProjectUser = (props) =>{
     const [idImage, setIdImage] = useState({})
     const [showUpload, setShowUpload] = useState(false)
     
-    const URL = 'https://danger-pop-api.herokuapp.com/'
+    const URL = 'https://danger-pop-api.herokuapp.com'
 
     const config = {
         bucketName: process.env.REACT_APP_S3_BUCKET_NAME,

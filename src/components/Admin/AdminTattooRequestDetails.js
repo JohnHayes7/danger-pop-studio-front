@@ -10,15 +10,15 @@ const AdminTattooRequestDetails = (props) => {
 
     const parseNotes = () => props.tr.attributes.notes.map( n => <li key={n.id}>{n.content}</li>)
 
-    const fullScreen = () =>{
-        setImageWidth("35vw")
-        setImageHeight("80vh")
-    }
+    // const fullScreen = () =>{
+    //     setImageWidth("35vw")
+    //     setImageHeight("80vh")
+    // }
 
-    const fitToDetail = () =>{
-        setImageWidth("220px")
-        setImageHeight("250px")
-    }
+    // const fitToDetail = () =>{
+    //     setImageWidth("220px")
+    //     setImageHeight("250px")
+    // }
 
     // const toggleFullScreen = () => imageWidth === "220px" ? fullScreen() : fitToDetail()  
     

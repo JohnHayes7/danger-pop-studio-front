@@ -7,7 +7,7 @@ const AdminProjectNoteForm = (props) =>{
 
     const [noteContent, setNoteContent] = useState('')
 
-    const URL = "https://danger-pop-api.herokuapp.com/"
+    const URL = "https://danger-pop-api.herokuapp.com"
     
     const noteInput = (e) => setNoteContent(e.target.value)
 

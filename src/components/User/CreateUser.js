@@ -15,7 +15,7 @@ const CreateUser = (props) =>{
     const [confirmUserPassword, setConfirmUserPassword] = useState("")
     // const [submitSuccess, setSubmitSuccess] = useState(false)
 
-    const URL = 'https://danger-pop-api.herokuapp.com/'
+    const URL = 'https://danger-pop-api.herokuapp.com'
     const formData = {
         'user':{
             'name': fullName,

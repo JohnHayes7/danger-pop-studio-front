@@ -19,7 +19,7 @@ const AdminProjectTattooRequest = (props) =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
-    const URL = "https://danger-pop-api.herokuapp.com/"
+    const URL = "https://danger-pop-api.herokuapp.com"
 
     const fileChange = (e) => {
         

@@ -8,7 +8,7 @@ const AdminTattooRequest = props => {
     const [showApproved, setShowApproved] = useState(true)
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
 
-    const URL = "https://danger-pop-api.herokuapp.com/"
+    const URL = "https://danger-pop-api.herokuapp.com"
 
     const formattedDate = () => {
         let date = props.tr.attributes.created_at

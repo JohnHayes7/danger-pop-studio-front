@@ -17,7 +17,7 @@ const AdminCalendar = props => {
   
   let apptsList = []
 
-  const URL =  "https://danger-pop-api.herokuapp.com/"
+  const URL =  "https://danger-pop-api.herokuapp.com"
 
   const history = useHistory()
 

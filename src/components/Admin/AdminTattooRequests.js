@@ -9,7 +9,7 @@ const AdminTattooRequests = () => {
     const [showApproved, setShowApproved] = useState(false)
     
     // const [approvedRequests, setApproved]
-    const URL =  "https://danger-pop-api.herokuapp.com/"
+    const URL =  "https://danger-pop-api.herokuapp.com"
     useEffect(() => {
         fetch(URL + '/tattoo_requests').then(response => response.json())
         .then(rxData => {

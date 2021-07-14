@@ -7,7 +7,7 @@ const FsArtistForm = () =>{
     const [password, setPassword] = useState("")
     // const [refreshState, setRefreshState] = useState(false)
 
-    const URL ="https://danger-pop-api.herokuapp.com/"
+    const URL ="https://danger-pop-api.herokuapp.com"
 
 
     const artist = {

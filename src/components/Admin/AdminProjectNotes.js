@@ -13,7 +13,7 @@ const AdminProjectNotes = (props) =>{
 
     const toggleProjectNotesForm = () => setShowProjNoteForm(!showProjNoteForm)
    
-    const URL = "https://danger-pop-api.herokuapp.com/"
+    const URL = "https://danger-pop-api.herokuapp.com"
 
     const deleteNote = (e) =>{
         e.preventDefault()
