@@ -4,10 +4,11 @@ import { fetchUsers } from '../../actions/fetchUsers'
 import { useEffect } from "react";
 import { useDispatch} from 'react-redux'
 import './adminusers.css'
+import URL from '../Utilites/Url'
 
 const AdminUsers = () =>{
     const [state, setState] = useState([])
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
     useEffect(() => {
         fetch(URL + '/users').then(response => response.json())
         .then(rxData => {

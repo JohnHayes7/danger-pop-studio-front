@@ -2,13 +2,14 @@ import {React, useState} from 'react'
 import AdminTattooRequestDetails from './AdminTattooRequestDetails'
 import Refresh from '../Utilites/Refresh'
 import axios from 'axios'
+import URL from '../Utilites/Url'
 
 const AdminTattooRequest = props => {
     const [showReqDetails, setShowReqDetails] = useState(false)
     const [showApproved, setShowApproved] = useState(true)
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
 
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
 
     const formattedDate = () => {
         let date = props.tr.attributes.created_at

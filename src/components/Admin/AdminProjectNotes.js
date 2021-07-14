@@ -3,6 +3,7 @@ import AdminProjectNoteForm from './AdminProjectNoteForm'
 import './adminprojectnoteformcss.css'
 import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
+import URL from '../Utilites/Url'
 
 
 const AdminProjectNotes = (props) =>{
@@ -13,7 +14,7 @@ const AdminProjectNotes = (props) =>{
 
     const toggleProjectNotesForm = () => setShowProjNoteForm(!showProjNoteForm)
    
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
 
     const deleteNote = (e) =>{
         e.preventDefault()

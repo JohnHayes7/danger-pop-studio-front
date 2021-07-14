@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import './admintattoorequests.css'
 import AdminTattooRequestDetails from './AdminTattooRequestDetails'
 import AdminTattooRequest from './AdminTattooRequest'
+import URL from '../Utilites/Url'
 
 
 const AdminTattooRequests = () => {
@@ -9,7 +10,7 @@ const AdminTattooRequests = () => {
     const [showApproved, setShowApproved] = useState(false)
     
     // const [approvedRequests, setApproved]
-    const URL =  "https://danger-pop-api.herokuapp.com"
+    // const URL =  "https://danger-pop-api.herokuapp.com"
     useEffect(() => {
         fetch(URL + '/tattoo_requests').then(response => response.json())
         .then(rxData => {

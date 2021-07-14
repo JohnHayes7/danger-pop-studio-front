@@ -3,6 +3,7 @@ import Field from '../InputFields/Field'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import URL from '../Utilites/Url'
 import './signincss.css'
 
 const SignIn = () =>{
@@ -11,7 +12,7 @@ const SignIn = () =>{
     const [userPassword, setUserPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(null)
     
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
     // const URL = 'http://localhost:3001'
     
 
@@ -21,7 +22,6 @@ const SignIn = () =>{
         axios.get(URL + '/logged_in', {withCredentials: true})
         .then(response => {
             setLoggedIn(response.data.logged_in)
-            // debugger
             
         })
     }, [])

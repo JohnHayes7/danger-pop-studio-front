@@ -6,6 +6,7 @@ import Field from '../InputFields/Field'
 import { useHistory } from 'react-router-dom'
 // import browserHistory  from 'react-router';
 import './request-form.css'
+import URL from '../Utilites/Url'
 
 const TattooRequestForm = () =>{
     // TO DO: GENERATE RANDOM IDs IN RAILS
@@ -32,7 +33,7 @@ const TattooRequestForm = () =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES

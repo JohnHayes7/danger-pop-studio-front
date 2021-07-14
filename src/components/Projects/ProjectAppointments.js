@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import axios from 'axios'
 import Field from '../InputFields/Field'
 import Refresh from '../Utilites/Refresh'
+import URL from '../Utilites/Url'
 
 
 const ProjectAppointments = (props) =>{
@@ -21,7 +22,7 @@ const ProjectAppointments = (props) =>{
     const [time, setTime] = useState('')
     const [duration, setDuration] = useState('')
     const [daypart, setDaypart] = useState("PM")
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES

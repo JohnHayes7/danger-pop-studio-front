@@ -10,6 +10,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import SignIn from './SignIn'
 import './userprofile.css'
+import URL from '../Utilites/Url'
 
 const UserProfilePage = (props) =>{
 
@@ -18,7 +19,7 @@ const UserProfilePage = (props) =>{
     const history = useHistory()
     const pageId = props.location.pathname.split('/')[2]
 
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
         
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES

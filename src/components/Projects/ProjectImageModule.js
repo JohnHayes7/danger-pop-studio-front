@@ -2,6 +2,7 @@ import {React, useState} from 'react'
 import S3FileUpload from 'react-s3'
 import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
+import URL from '../Utilites/Url'
 
 
 const ProjectImageModule = (props) =>{
@@ -25,7 +26,7 @@ const ProjectImageModule = (props) =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
 
     const fileChange = (e) => {
         

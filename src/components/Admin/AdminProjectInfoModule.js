@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import URL from '../Utilites/Url'
 
 const AdminProjectInfoModule = (props) =>{
 
     const[projectComplete, setProjectComplete] = useState(false)
     const[depositReceived, setDepositReceived] = useState(false)
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
 
     useEffect(() => {
         props.project.attributes.project_complete_status === true ? setProjectComplete(true) : setProjectComplete(false)

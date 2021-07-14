@@ -2,12 +2,13 @@ import {React, useEffect, useState} from 'react'
 import { useHistory } from 'react-router-dom'
 import Nav from '../Nav/Navbar'
 import './adminprojects.css'
+import URL from '../Utilites/Url'
 
 const AdminProjects = () => {
     const [projects, setProjects] = useState([])
     const history = useHistory()
     
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
 
     useEffect(() => {
         fetch( URL + '/projects').then(response => response.json())

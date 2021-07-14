@@ -5,6 +5,7 @@ import Field from '../InputFields/Field'
 import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
 import {useHistory} from 'react-router-dom'
+import URL from '../Utilites/Url'
 
 import './projectcss.css'
 
@@ -18,7 +19,7 @@ const Project = (props) => {
 
     const pageId = parseInt(props.location.pathname.split('/').splice(-1)[0])
 
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
 
     useEffect(() => {
         axios.get(URL + '/logged_in', {withCredentials: true})

@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom'
 import Nav from '../Nav/Navbar'
 import FullScreen from '../Fullscreen/Fullscreen'
 // import CurrentUser from '../Utilites/CurrentUser'
+import URL from '../Utilites/Url'
 
 const AdminPortal = () =>{
 
     // const URL = 'http://localhost:3001'
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
 
     const [authorized, setAuthorized] = useState(false)
     const [currentUser, setCurrentUser] = useState({})

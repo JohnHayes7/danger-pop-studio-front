@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Refresh from '../Utilites/Refresh'
 import ProjectAppointments from '../Projects/ProjectAppointments'
+import URL from '../Utilites/Url'
 
 const FullscreenRequest = (props) => {
 
@@ -11,7 +12,7 @@ const FullscreenRequest = (props) => {
     const toggleSchedulingOptions = () => setShowScheduleOptions(!showScheduleOptions)
     const toggleRequestOptions = () => setShowRequestOptions(!showRequestOptions)
 
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
 
     const acceptAsProject = () =>{
         const req = props.project

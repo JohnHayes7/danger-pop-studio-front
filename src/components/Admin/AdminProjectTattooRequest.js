@@ -4,6 +4,7 @@ import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
 import FullScreen from '../Fullscreen/Fullscreen'
 import GetCurrentUser from '../Utilites/CurrentUser'
+import URL from '../Utilites/Url'
 
 const AdminProjectTattooRequest = (props) =>{
     const [selectedImage, setSelectedImage] = useState(false)
@@ -19,7 +20,7 @@ const AdminProjectTattooRequest = (props) =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
 
     const fileChange = (e) => {
         

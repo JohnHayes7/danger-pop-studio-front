@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import URL from '../Utilites/Url'
 
 const FsTattooRequestWindow = () =>{
 
     const [requestWindowOpen, setRequestWindowOpen] = useState(true)
 
     const openClosedClass = () => requestWindowOpen ? "window-open" : "window-closed"
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
     const requestOpenCloseToggle = () =>{
         setRequestWindowOpen(!requestWindowOpen)
         // const windowState = {"open": !requestWindowOpen}

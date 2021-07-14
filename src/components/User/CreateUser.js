@@ -2,7 +2,7 @@ import {React, useState} from 'react'
 import './createuserformcss.css'
 import { connect } from 'react-redux'
 import {useHistory} from 'react-router-dom'
-
+import URL from '../Utilites/Url'
 import Field from '../InputFields/Field'
 
 
@@ -15,7 +15,7 @@ const CreateUser = (props) =>{
     const [confirmUserPassword, setConfirmUserPassword] = useState("")
     // const [submitSuccess, setSubmitSuccess] = useState(false)
 
-    const URL = 'https://danger-pop-api.herokuapp.com'
+    // const URL = 'https://danger-pop-api.herokuapp.com'
     const formData = {
         'user':{
             'name': fullName,

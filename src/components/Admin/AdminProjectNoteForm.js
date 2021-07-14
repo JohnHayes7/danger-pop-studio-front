@@ -2,12 +2,13 @@ import {React, useReducer, useState} from 'react'
 import Field from '../InputFields/Field'
 import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
+import URL from '../Utilites/Url'
 
 const AdminProjectNoteForm = (props) =>{
 
     const [noteContent, setNoteContent] = useState('')
 
-    const URL = "https://danger-pop-api.herokuapp.com"
+    // const URL = "https://danger-pop-api.herokuapp.com"
     
     const noteInput = (e) => setNoteContent(e.target.value)
 

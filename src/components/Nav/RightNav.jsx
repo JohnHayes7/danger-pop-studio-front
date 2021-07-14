@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom'
 import UserSignOut from '../User/UserSignOut'
 import axios from 'axios'
+import URL from '../Utilites/Url'
 
 const Ul = styled.ul`
   list-style: none;
@@ -33,7 +34,7 @@ const Ul = styled.ul`
 
 const RightNav = ({ open }) => {
 
-  const URL = 'https://danger-pop-api.herokuapp.com'
+  // const URL = 'https://danger-pop-api.herokuapp.com'
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() =>{
