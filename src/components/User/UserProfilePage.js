@@ -23,7 +23,7 @@ const UserProfilePage = (props) =>{
         
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        axios.get(URL + '/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true, credentials: "include"})
         .then(response => {
             
             if(response.data.user.data){
@@ -45,7 +45,7 @@ const UserProfilePage = (props) =>{
     const isAuthorized = () =>{
         const user_id = { id: pageId }
         
-        axios.post(URL + '/authorized', {user_id}, {withCredentials: true})
+        axios.post(URL + '/authorized', {user_id}, {withCredentials: true, credentials: "include"}) 
         .then(response =>{
             
             setAuthorized(response.data.authorized)

@@ -12,14 +12,11 @@ const SignIn = () =>{
     const [userPassword, setUserPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(null)
     
-    // const URL = 'https://danger-pop-api.herokuapp.com'
-    // const URL = 'http://localhost:3001'
-    
 
     const history = useHistory()
 
     useEffect(() =>{
-        axios.get(URL + '/logged_in', {withCredentials: true})
+        axios.get(URL + '/logged_in', {withCredentials: true, credentials: "include"})
         .then(response => {
             setLoggedIn(response.data.logged_in)
             
@@ -41,12 +38,12 @@ const SignIn = () =>{
             email: userEmail,
             password: userPassword
         }
-        axios.post(URL + '/login', {user}, {withCredentials: true})
+        axios.post(URL + '/login', {user}, {withCredentials: true, credentials:"include"})
         .then(response =>{
-            debugger
             if (!response.data.errors){
                 let rxdUser = response.data.user.data.attributes
-                rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
+                console.log(response)
+                // rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
             }else{
                 alert("Could Not Find User, Please check your login credentials or create and account")
             }
@@ -81,7 +78,6 @@ const SignIn = () =>{
 
     const redirectToHomePage = () => history.push(`/`)
 
-    debugger
     return(
         <div>
             {!loggedIn ? displayForm() : redirectToHomePage()}
