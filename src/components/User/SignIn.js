@@ -44,9 +44,13 @@ const SignIn = () =>{
         axios.post(URL + '/login', {user}, {withCredentials: true})
         .then(response =>{
             debugger
-            console.log(response)
-            let rxdUser = response.data.user.data.attributes
-            rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
+            if (!response.data.errors){
+                let rxdUser = response.data.user.data.attributes
+                rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
+            }else{
+                alert("Could Not Find User, Please check your login credentials or create and account")
+            }
+            
             
         })
         
