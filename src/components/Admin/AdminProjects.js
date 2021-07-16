@@ -8,10 +8,8 @@ const AdminProjects = () => {
     const [projects, setProjects] = useState([])
     const history = useHistory()
     
-    // const URL = "https://danger-pop-api.herokuapp.com"
-
     useEffect(() => {
-        fetch( URL + '/projects').then(response => response.json())
+        fetch(URL + '/projects').then(response => response.json())
         .then(rxData => {
             setProjects(rxData)
         })
@@ -55,7 +53,6 @@ const AdminProjects = () => {
 
     const findAndParseIncompleteProjects = () =>{
         const incompleteProjects = projects.data ? projects.data.filter(proj => proj.attributes.project_complete_status === null || proj.attributes.project_complete_status === false ) : []
-        // debugger
         return  projectParser(incompleteProjects) 
     }
 
