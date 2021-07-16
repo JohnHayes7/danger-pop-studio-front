@@ -43,7 +43,7 @@ const SignIn = () =>{
             if (!response.data.errors){
                 let rxdUser = response.data.user.data.attributes
                 console.log(response)
-                // rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
+                rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
             }else{
                 alert("Could Not Find User, Please check your login credentials or create and account")
             }
