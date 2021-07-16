@@ -8,6 +8,8 @@ import { useHistory } from 'react-router-dom'
 import './request-form.css'
 import ApiUrl from '../Utilites/Url'
 
+require('dotenv').config()
+
 const TattooRequestForm = () =>{
     // TO DO: GENERATE RANDOM IDs IN RAILS
     // TO DO: ADD REQUEST DATE
@@ -82,11 +84,10 @@ const TattooRequestForm = () =>{
    
    
     const handleSubmit = (e) =>{
-        debugger
+        
         e.preventDefault();
         if(confirmEmail()){
             S3FileUpload.uploadFile(file, config).then((data) => {
-                debugger
                 const fileData = {
                     tattoo_request: {
                         'guest_email': email,
