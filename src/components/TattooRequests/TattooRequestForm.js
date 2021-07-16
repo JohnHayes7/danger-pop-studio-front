@@ -76,12 +76,13 @@ const TattooRequestForm = () =>{
     }
 
     
-   
+    
    
     const handleSubmit = (e) =>{
         debugger
         e.preventDefault();
         if(confirmEmail()){
+            console.log(`Config: ${config}`)
             S3FileUpload.uploadFile(file, config).then((data) => {
                 debugger
                 const fileData = {
