@@ -6,7 +6,7 @@ import Field from '../InputFields/Field'
 import { useHistory } from 'react-router-dom'
 // import browserHistory  from 'react-router';
 import './request-form.css'
-import URL from '../Utilites/Url'
+import ApiUrl from '../Utilites/Url'
 
 const TattooRequestForm = () =>{
     // TO DO: GENERATE RANDOM IDs IN RAILS
@@ -37,12 +37,12 @@ const TattooRequestForm = () =>{
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        axios.get(URL + '/request_windows/1',{withCredentials:true})
+        axios.get(ApiUrl + '/request_windows/1',{withCredentials:true})
         .then(response => {
             setRequestWindowOpen(response.data.openState)
         })
 
-        axios.get(URL + '/logged_in', {withCredentials: true})
+        axios.get(ApiUrl + '/logged_in', {withCredentials: true})
         .then(response => {
             console.log(response)
             if(response.data.logged_in){
@@ -61,7 +61,7 @@ const TattooRequestForm = () =>{
 
 
     const postDataToDb = (fileData) =>{
-        axios({method: 'post', url: URL + '/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'post', url: ApiUrl + '/tattoo_requests', data: fileData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
           
           if(resp.data.map){
                 resp.data.map(d => alert(d))
@@ -173,7 +173,7 @@ const TattooRequestForm = () =>{
         setRequestWindowOpen(!requestWindowOpen)
         // const windowState = {"open": !requestWindowOpen}
         debugger
-        axios({method: 'patch', url: `${URL}/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'patch', url: `${ApiUrl}/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
             debugger
             // console.log(resp)
             // Refresh()
