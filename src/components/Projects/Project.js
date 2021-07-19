@@ -18,8 +18,12 @@ const Project = (props) => {
     const history = useHistory()
     // console.log(x.location.pathname.split('/').splice(-1)[0])
     const path = props.location.pathname
-    const pageId = path.split('/').splice(-1)[0] === '/' ? parseInt(props.location.pathname.split('/').splice(-2)[0]) : parseInt(props.location.pathname.split('/').splice(-1)[0])
-
+    const pageIdOne = path.split('/').splice(-1)[0]
+    console.log(`pageIdOne = ${pageIdOne}`)
+    const pageIdTwo = path.split('/').splice(-1)[0]
+    console.log(`pageIdTwo = ${pageIdTwo}`)
+    const pageId = path.split('/').splice(-1)[0] === '/' ? parseInt(path.split('/').splice(-2)[0]) : parseInt(path.split('/').splice(-1)[0])
+    console.log(`pageId = ${pageId}`)
     // const URL = 'https://danger-pop-api.herokuapp.com'
 
     useEffect(() => {
