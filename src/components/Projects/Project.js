@@ -16,7 +16,7 @@ const Project = (props) => {
     const [currentUser, setCurrentUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const history = useHistory()
-
+    console.log(props.location.pathname.split('/').splice(-1)[0])
     const pageId = parseInt(props.location.pathname.split('/').splice(-1)[0])
 
     // const URL = 'https://danger-pop-api.herokuapp.com'
