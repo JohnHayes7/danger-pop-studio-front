@@ -53,6 +53,7 @@ const Project = (props) => {
     }
 
     const getProject = () =>{
+        console.log(pageId)
         fetch(`${URL}/projects/${pageId}`).then(response => response.json())
         .then(rxData => {
             setProject(rxData.data)
