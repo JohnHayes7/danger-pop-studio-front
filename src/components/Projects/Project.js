@@ -16,9 +16,9 @@ const Project = (props) => {
     const [currentUser, setCurrentUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const history = useHistory()
-    let x = props
-    console.log(x.location.pathname.split('/').splice(-1)[0])
-    const pageId = parseInt(props.location.pathname.split('/').splice(-1)[0])
+    // console.log(x.location.pathname.split('/').splice(-1)[0])
+    const path = props.location.pathname
+    const pageId = path.split('/').splice(-1)[0] === '/' ? parseInt(props.location.pathname.split('/').splice(-2)[0]) : parseInt(props.location.pathname.split('/').splice(-1)[0])
 
     // const URL = 'https://danger-pop-api.herokuapp.com'
 
