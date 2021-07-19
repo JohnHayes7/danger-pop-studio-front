@@ -18,6 +18,7 @@ const Project = (props) => {
     const history = useHistory()
     // console.log(x.location.pathname.split('/').splice(-1)[0])
     const path = props.location.pathname
+    console.log(path)
     const pageIdOne = path.split('/').splice(-1)[0]
     console.log(`pageIdOne = ${pageIdOne}`)
     const pageIdTwo = path.split('/').splice(-1)[0]
