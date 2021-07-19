@@ -35,6 +35,8 @@ const TattooRequestForm = () =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
+    
+
     // const URL = 'https://danger-pop-api.herokuapp.com'
 
     useEffect(() =>{
@@ -84,7 +86,7 @@ const TattooRequestForm = () =>{
    
    
     const handleSubmit = (e) =>{
-        
+        console.log(config)
         e.preventDefault();
         if(confirmEmail()){
             S3FileUpload.uploadFile(file, config).then((data) => {
