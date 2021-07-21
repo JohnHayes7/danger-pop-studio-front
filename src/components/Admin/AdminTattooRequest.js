@@ -44,9 +44,16 @@ const AdminTattooRequest = props => {
 
     const backupHandler = () =>{
         const req = props.tr
-        req.attributes.backup = true
-        axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: req ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
-            Refresh()
+        
+        const data = {
+            tattoo_request:{
+                backup: true
+            }
+        }
+
+        axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
+            console.log(resp)
+            // Refresh()
           }).catch( err => {  
             console.log(err)
           })  
