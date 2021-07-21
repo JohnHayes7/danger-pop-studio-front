@@ -54,7 +54,7 @@ const AdminProjectTattooRequest = (props) =>{
         debugger
         axios({method: 'put', url: `${apiUrl}/tattoo_requests/${props.project.attributes.tattoo_request.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             console.log(resp)
-            Refresh()
+            // Refresh()
           }).catch( err => {  
             console.log(err)
           })  
