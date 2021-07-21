@@ -4,7 +4,7 @@ import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
 import FullScreen from '../Fullscreen/Fullscreen'
 import GetCurrentUser from '../Utilites/CurrentUser'
-import URL from '../Utilites/Url'
+import apiUrl from '../Utilites/Url'
 
 const AdminProjectTattooRequest = (props) =>{
     const [selectedImage, setSelectedImage] = useState(false)
@@ -35,7 +35,9 @@ const AdminProjectTattooRequest = (props) =>{
 
     const uploadMockup = (e) =>{
         e.preventDefault()
+        
         S3FileUpload.uploadFile(selectedImage, config).then((data) => {
+            console.log(data)
             patchMockupImageToDb(data.location)
         })
         .catch((err) =>{
@@ -47,7 +49,8 @@ const AdminProjectTattooRequest = (props) =>{
         const data ={
             'mockupimagelocation': location
         }
-        axios({method: 'put', url: `${URL}/tattoo_requests/${props.project.attributes.tattoo_request.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        debugger
+        axios({method: 'put', url: `${apiUrl}/tattoo_requests/${props.project.attributes.tattoo_request.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             debugger
             Refresh()
           }).catch( err => {  
