@@ -85,7 +85,7 @@ const TattooRequestForm = () =>{
     
    
    
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) =>{    
         e.preventDefault();
         if(confirmEmail()){
             S3FileUpload.uploadFile(file, config).then((data) => {
