@@ -53,7 +53,12 @@ const AdminTattooRequest = props => {
 
         axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
             console.log(resp)
-            // Refresh()
+            if(resp.statusText === "OK"){
+                Refresh()
+            }else{
+                alert('Unable to Save as Backup, Please contact system admin')
+            }
+            
           }).catch( err => {  
             console.log(err)
           })  
