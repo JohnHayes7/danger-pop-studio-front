@@ -15,13 +15,13 @@ const SignIn = () =>{
 
     const history = useHistory()
 
-    useEffect(() =>{
-        axios.get(URL + '/logged_in', {withCredentials: true, credentials: "include"})
-        .then(response => {
-            setLoggedIn(response.data.logged_in)
+    // useEffect(() =>{
+    //     axios.get(URL + '/logged_in', {withCredentials: true, credentials: "include"})
+    //     .then(response => {
+    //         setLoggedIn(response.data.logged_in)
             
-        })
-    }, [])
+    //     })
+    // }, [])
 
     const userEmailInput = (e) =>{
         e.preventDefault()
@@ -40,12 +40,14 @@ const SignIn = () =>{
         }
         axios.post(URL + '/login', {user}, {withCredentials: true, credentials:"include"})
         .then(response =>{
-            if (!response.data.errors){
-                let rxdUser = response.data.user.data.attributes
-                console.log(response)
-                rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
+            
+            if (!response.data.failure){
+                
+                let rxdUser = response.data.user
+                localStorage.setItem("token", response.data.jwt)
+                rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.id}`)
             }else{
-                alert("Could Not Find User, Please check your login credentials or create and account")
+                alert(response.data.failure)
             }
             
             

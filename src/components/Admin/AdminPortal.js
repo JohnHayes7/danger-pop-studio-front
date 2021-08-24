@@ -10,9 +10,6 @@ import URL from '../Utilites/Url'
 
 const AdminPortal = () =>{
 
-    // const URL = 'http://localhost:3001'
-    // const URL = 'https://danger-pop-api.herokuapp.com'
-
     const [authorized, setAuthorized] = useState(false)
     const [currentUser, setCurrentUser] = useState({})
     const [showFullScreen, setShowFullScreen] = useState(false)
