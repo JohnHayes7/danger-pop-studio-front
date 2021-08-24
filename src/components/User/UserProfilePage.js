@@ -23,17 +23,27 @@ const UserProfilePage = (props) =>{
         
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        axios.get(URL + '/logged_in', {withCredentials: true, credentials: "include"})
-        .then(response => {
-            
-            if(response.data.user.data){
-                setUser(response.data.user.data.attributes)
-                isAuthorized()
-            }else{
-                redirectToLogin()
-            }
-        })
-        .catch(error => redirectToLogin())
+        debugger
+        const token = localStorage.getItem("token")
+        if(token){
+            fetch(URL + '/auto_login', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                const matched = data.data.attributes.id === parseInt(pageId)
+                if(data.data.type === "user" && matched){
+                    const rxdUser = data.data
+                    setUser(rxdUser.attributes)
+                    setAuthorized(true)
+                    
+                }else{
+                    redirectToLogin()
+                }
+            })
+        }
     }, [])
 
     const redirectToLogin = () =>{
@@ -43,13 +53,15 @@ const UserProfilePage = (props) =>{
     }
 
     const isAuthorized = () =>{
-        const user_id = { id: pageId }
-        
-        axios.post(URL + '/authorized', {user_id}, {withCredentials: true, credentials: "include"}) 
-        .then(response =>{
+        debugger
+        if(user.id === parseInt(pageId)){
+            setAuthorized(true) 
+        }else{
+            alert("You Are Not Authorized To View This Page")
             
-            setAuthorized(response.data.authorized)
-        })
+        }
+        
+        
     }
 
     const signOutHandler = () =>{
