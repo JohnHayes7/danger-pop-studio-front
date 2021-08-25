@@ -23,7 +23,7 @@ const UserProfilePage = (props) =>{
         
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        debugger
+       
         const token = localStorage.getItem("token")
         if(token){
             fetch(URL + '/auto_login', {
@@ -52,17 +52,17 @@ const UserProfilePage = (props) =>{
         history.push('/sign-in')
     }
 
-    const isAuthorized = () =>{
-        debugger
-        if(user.id === parseInt(pageId)){
-            setAuthorized(true) 
-        }else{
-            alert("You Are Not Authorized To View This Page")
+    // const isAuthorized = () =>{
+    //     debugger
+    //     if(user.id === parseInt(pageId)){
+    //         setAuthorized(true) 
+    //     }else{
+    //         alert("You Are Not Authorized To View This Page")
             
-        }
+    //     }
         
         
-    }
+    // }
 
     const signOutHandler = () =>{
         

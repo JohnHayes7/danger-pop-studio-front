@@ -7,7 +7,8 @@ const UserSignout = () =>{
     const history = useHistory()
 
     const logOutUser = () =>{
-        SignOut()
+        // SignOut()
+        localStorage.removeItem('token')
         setTimeout(()=>{
             history.push('/')
         }, 1000)

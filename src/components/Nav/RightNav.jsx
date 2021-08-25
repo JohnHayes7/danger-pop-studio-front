@@ -37,10 +37,29 @@ const RightNav = ({ open }) => {
   // const URL = 'https://danger-pop-api.herokuapp.com'
   const [loggedIn, setLoggedIn] = useState(false)
 
+  // useEffect(() =>{
+  //   axios.get(URL + '/logged_in', {withCredentials: true})
+  //   .then(response => setLoggedIn(response.data.logged_in))
+  // },[])
+
   useEffect(() =>{
-    axios.get(URL + '/logged_in', {withCredentials: true})
-    .then(response => setLoggedIn(response.data.logged_in))
-  },[])
+    // NEEDS A REFACTOR TO UTILITES
+    const token = localStorage.getItem("token")
+    if(token){
+      debugger
+        fetch(URL + '/logged_in', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+          setLoggedIn(data.logged_in)
+        })
+    }else{
+      setLoggedIn(false)
+    }
+}, [])
 
   return (
     <Ul open={open}>
