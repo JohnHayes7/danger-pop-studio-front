@@ -69,7 +69,7 @@ const AdminProjectTattooRequest = (props) =>{
         if(!!props.project.attributes.tattoo_request.mockupImageLocation){
             return <img className="image-preview" onClick={toggleMockupPreview} src={props.project.attributes.tattoo_request.mockupImageLocation} alt="Mockup Tattoo Image" />
         }else{
-            return props.user.attributes.administrator === true ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null
+            return props.user.administrator === true ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null
         }
         
     }

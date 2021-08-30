@@ -16,22 +16,50 @@ const AdminPortal = () =>{
     const history = useHistory()
 
     useEffect(() =>{
-        axios.get(URL + '/logged_in', {withCredentials: true})
-            .then(response => {
-                debugger
-                if (response.data.logged_in){
-                    if(response.data.user.data.attributes.administrator){
-                        setAuthorized(response.data.user.data.attributes.administrator)
-                        setCurrentUser(response.data.user.data.attributes)
-                    }else{
-                        alert(response.data.message)
-                        notAuthorized()
-                    }
-                }else{
-                    alert(response.data.message)
-                    notAuthorized()
+        const token = localStorage.getItem("token")
+        if(token){
+            fetch(URL + '/auto_login', {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
             })
+            .then(resp => resp.json())
+            .then(data => {
+                debugger
+                let rxdUser = data.data
+                if (rxdUser.attributes.administrator){
+                    setCurrentUser(rxdUser.attributes)
+                    setAuthorized(true)
+                }else{
+                    notAuthorized()
+                }
+                // const matched = data.data.attributes.id === parseInt(pageId)
+                // if(data.data.type === "user" && matched){
+                //     const rxdUser = data.data
+                //     setUser(rxdUser.attributes)
+                //     setAuthorized(true)
+                    
+                // }else{
+                //     redirectToLogin()
+                // }
+            })
+        }
+        // axios.get(URL + '/logged_in', {withCredentials: true})
+        //     .then(response => {
+        //         debugger
+        //         if (response.data.logged_in){
+        //             if(response.data.user.data.attributes.administrator){
+        //                 setAuthorized(response.data.user.data.attributes.administrator)
+        //                 setCurrentUser(response.data.user.data.attributes)
+        //             }else{
+        //                 alert(response.data.message)
+        //                 notAuthorized()
+        //             }
+        //         }else{
+        //             alert(response.data.message)
+        //             notAuthorized()
+        //         }
+        //     })
         // 
         // .catch(error => alert('Error Will Robinson'))
     }, [])

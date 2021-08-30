@@ -46,20 +46,40 @@ const TattooRequestForm = () =>{
             setRequestWindowOpen(response.data.openState)
         })
 
-        axios.get(ApiUrl + '/logged_in', {withCredentials: true})
-        .then(response => {
-            console.log(response)
-            if(response.data.logged_in){
-                const user = response.data.user.data.attributes
+        const token = localStorage.getItem("token")
+        if(token){
+            fetch(ApiUrl + '/auto_login', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                debugger
+                let rxdUser = data.data.attributes
                 setIsGuest(false)
-                setFullName(user.name)
-                setEmail(user.email)
-                setPhone(user.phone_number)
-                setAdmin(user.administrator)
-            }
+                setFullName(rxdUser.name)
+                setEmail(rxdUser.email)
+                setPhone(rxdUser.phone_number)
+                setAdmin(rxdUser.administrator)
+                // setAdmin(rxdUser.administrator)
+            })
+        }
+
+        // axios.get(ApiUrl + '/logged_in', {withCredentials: true})
+        // .then(response => {
+        //     console.log(response)
+        //     if(response.data.logged_in){
+        //         const user = response.data.user.data.attributes
+        //         setIsGuest(false)
+        //         setFullName(user.name)
+        //         setEmail(user.email)
+        //         setPhone(user.phone_number)
+        //         setAdmin(user.administrator)
+        //     }
                 
-        //     
-        })
+        // //     
+        // })
         // .catch(error => redirectToLogin())
     }, [])
 

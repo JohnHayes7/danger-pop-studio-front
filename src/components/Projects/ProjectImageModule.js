@@ -98,13 +98,13 @@ const ProjectImageModule = (props) =>{
             <div>
                 Progress Pics: 
                 <div>{displayProgressPics()}</div>
-                <div>{props.user && props.user.attributes.administrator ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null}</div>
+                <div>{props.user && props.user.administrator ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null}</div>
                 {showProgressUpload ? <button onClick={e => uploadProgessImage(e)  }>Add Image</button> : null}
             </div>
             <br></br>
             <div>Final Pics:
                 <div>{displayFinalImages()}</div>
-                <div>{props.user && props.user.attributes.administrator ? <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/>: null}</div>
+                <div>{props.user && props.user.administrator ? <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/>: null}</div>
                 {showFinalUpload ? <button  onClick={e => uploadFinalImage(e)}>Add Image of Completed Project</button> : null}
             </div>
         </div>

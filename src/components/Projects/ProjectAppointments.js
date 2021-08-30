@@ -26,12 +26,25 @@ const ProjectAppointments = (props) =>{
 
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-        axios.get(URL + '/logged_in', {withCredentials: true})
-        .then(response => {
-            // debugger
-            setAdmin(response.data.user.data.attributes.administrator)
-        })
-        .catch(error => redirectToLogin())
+        const token = localStorage.getItem("token")
+        if(token){
+            fetch(URL + '/auto_login', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                let rxdUser = data.data
+                setAdmin(rxdUser.attributes.administrator)
+            })
+        }
+        // axios.get(URL + '/logged_in', {withCredentials: true})
+        // .then(response => {
+        //     // debugger
+        //     setAdmin(response.data.user.data.attributes.administrator)
+        // })
+        // .catch(error => redirectToLogin())
     }, [])
 
     const redirectToLogin = () =>{

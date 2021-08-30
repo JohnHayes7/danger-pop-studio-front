@@ -18,40 +18,37 @@ const Project = (props) => {
     const history = useHistory()
     // console.log(x.location.pathname.split('/').splice(-1)[0])
     const path = props.location.pathname
-    console.log(path)
     const pageIdOne = path.split('/').splice(-1)[0]
-    console.log(`pageIdOne = ${pageIdOne}`)
     const pageIdTwo = path.split('/').splice(-1)[0]
-    console.log(`pageIdTwo = ${pageIdTwo}`)
     const pageId = path.split('/').splice(-1)[0] === "" ? parseInt(path.split('/').splice(-2)[0]) : parseInt(path.split('/').splice(-1)[0])
-    console.log(`pageId = ${pageId}`)
+
     // const URL = 'https://danger-pop-api.herokuapp.com'
 
     useEffect(() => {
-        axios.get(URL + '/logged_in', {withCredentials: true})
-        .then(response => {
-            debugger
-            if (response.data.logged_in ){
-
+        const token = localStorage.getItem("token")
+        if(token){
+            fetch(URL + '/auto_login', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                debugger
                 setLoggedIn(true)
-                const user = response.data.user.data
-                setCurrentUser(response.data.user.data)
+                const user = data.data.attributes
+                setCurrentUser(user)
                 checkAuth(user)
-            }
-        })
-        
-
+            })
+        }
     }, [])
 
     const checkAuth = (user) =>{
         let belongsToUser = false
-        if(user.attributes){
-            belongsToUser = user.attributes.projects.filter(p => p.id === pageId).length > 0 ? true : false
-            debugger
-            return  belongsToUser || user.attributes.administrator === true ? getProject() : notAuthorized(user)
-           
+        if(user.id){
+            belongsToUser = user.projects.filter(p => p.id === pageId).length > 0 ? true : false
+            return  belongsToUser || user.administrator === true ? getProject() : notAuthorized(user)
         }
-       
     }
 
     const notAuthorized = (user) =>{
@@ -84,7 +81,7 @@ const Project = (props) => {
                 <div className="col-1">
                     < ProjectModule label="Appointments" project={project}/>
                     
-                    {currentUser.attributes.administrator ? < ProjectModule label="Notes" project={project} /> : null} 
+                    {currentUser.administrator ? < ProjectModule label="Notes" project={project} /> : null} 
                     < ProjectModule label="Artist Info" project={project} />
                 </div>
                 <div className="col-2">
@@ -93,7 +90,7 @@ const Project = (props) => {
                 </div>
                 <div className="col-3">
                     < ProjectModule label="Tattoo Request" project={project} user={currentUser} /> 
-                    {currentUser.attributes.administrator ? < ProjectModule label="Project Info" project={project} /> : null}
+                    {currentUser.administrator ? < ProjectModule label="Project Info" project={project} /> : null}
                 </div>
             </div>
         )
@@ -129,10 +126,10 @@ const Project = (props) => {
 
     const displayTitleOrForm = () =>{
         debugger
-        if(showProjectTitleForm && currentUser.attributes.administrator){
+        if(showProjectTitleForm && currentUser.administrator){
             return editProjectTitleForm()
         }else{
-            return  <div id="project-title">Title:{project.attributes.title }{currentUser.attributes.administrator ? <button onClick={toggleTitleForm}>Edit</button> : null }</div>
+            return  <div id="project-title">Title:{project.attributes.title }{currentUser.administrator ? <button onClick={toggleTitleForm}>Edit</button> : null }</div>
         }
     }
 
