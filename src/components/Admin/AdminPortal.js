@@ -33,15 +33,6 @@ const AdminPortal = () =>{
                 }else{
                     notAuthorized()
                 }
-                // const matched = data.data.attributes.id === parseInt(pageId)
-                // if(data.data.type === "user" && matched){
-                //     const rxdUser = data.data
-                //     setUser(rxdUser.attributes)
-                //     setAuthorized(true)
-                    
-                // }else{
-                //     redirectToLogin()
-                // }
             })
         }
         // axios.get(URL + '/logged_in', {withCredentials: true})
