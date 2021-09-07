@@ -18,6 +18,7 @@ const  Field = props => {
             case 'day': return props.day
             case 'year': return props.year
             case 'time': return props.time
+            case 'token': return props.resetToken
             
         }
     }
@@ -36,6 +37,7 @@ const  Field = props => {
             case 'month': return 'date-field'
             case 'year': return 'date-field'
             case 'time': return 'date-field'
+            case 'token': return 'input-field'
         }
     }
 

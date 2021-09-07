@@ -3,6 +3,7 @@ import FullscreenImage from './FullscreenImage'
 import FullscreenProject from './FullscreenProject'
 import FullscreenAdminOptions from './FullscreenAdminOptions'
 import FullscreenRequest from './FulllscreenRequest'
+import FullscreenPwReset from './FullscreenPwReset'
 
 
 const Fullscreen = (props) => {
@@ -15,6 +16,7 @@ const Fullscreen = (props) => {
             case 'image': return typeImage();
             case 'admin-options': return typeAdminOpts()
             case 'request' : return typeTattooRequest()
+            case 'pwresetconfirm': return typePwResetConfirm()
         }
     }
 
@@ -25,6 +27,8 @@ const Fullscreen = (props) => {
     const typeAdminOpts = () => <FullscreenAdminOptions refreshState={refreshState} setRefreshState={setRefreshState} />
 
     const typeTattooRequest = () => <FullscreenRequest project={props.project} toggle={props.toggle} />
+
+    const typePwResetConfirm = () => <FullscreenPwReset />
     
     return(
         <div>{propsType()}</div>
