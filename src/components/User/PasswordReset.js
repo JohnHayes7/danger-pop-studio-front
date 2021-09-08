@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import Field from '../InputFields/Field'
 import axios from 'axios'
 import ApiUrl from '../Utilites/Url'
@@ -11,6 +12,7 @@ const PasswordReset = () => {
     const [tokenSent, setTokenSent] = useState(false)
     const [userPassword, setUserPassword] = useState('')
     const [confirmUserPassword, setConfirmUserPassword] = useState('')
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
     const userEmailInput = (e) => {
         setUserEmail(e.target.value)
@@ -55,17 +57,26 @@ const PasswordReset = () => {
             password: userPassword,
             token: resetToken
         }
-
         axios({method: 'post', url: ApiUrl + '/password/reset', data: userInfo,   headers: {'Content-Type': 'application/json'}}).then(resp => {
           if(resp.data.status === 'ok'){
-              return <Fullscreen type="pwresetconfirm" />
+             setShowSuccessMessage(true) 
           }
 
           }).catch( err => {  
             //catch the error
             console.log(err)
           })
-        
+    }
+
+    const successMessage = () => {
+        setUserPassword(" ")
+        setConfirmUserPassword(" ")
+        setResetToken(" ")
+        return(
+            <div>
+                <h3>You have successfully reset your password.  Please click <Link to="/sign-in">here</Link> to proceed</h3>
+            </div>
+        )
     }
 
     const userPasswordInput = (e) => {
@@ -99,6 +110,7 @@ const PasswordReset = () => {
                     </form>
                 </div>
                 {passwordMatch()}
+                {showSuccessMessage ? successMessage() : null}
                 {/* {!!resetToken ? <button onClick={e => submitReset(e)} className='form-submit-button'>Submit</button> : null} */}
             </div>
         )
