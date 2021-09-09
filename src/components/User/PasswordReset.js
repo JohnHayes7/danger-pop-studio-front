@@ -13,6 +13,7 @@ const PasswordReset = () => {
     const [userPassword, setUserPassword] = useState('')
     const [confirmUserPassword, setConfirmUserPassword] = useState('')
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    const [showErrorMessage, setShowErrorMessage] = useState(false)
 
     const userEmailInput = (e) => {
         setUserEmail(e.target.value)
@@ -58,9 +59,15 @@ const PasswordReset = () => {
             token: resetToken
         }
         axios({method: 'post', url: ApiUrl + '/password/reset', data: userInfo,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-          if(resp.data.status === 'ok'){
+            debugger
+            if(resp.data.status === 'ok'){
              setShowSuccessMessage(true) 
-          }
+            }else if (resp.data.status === 'fail'){
+                setShowErrorMessage(true)
+                errorMessage()
+            }else{
+               return null
+            }
 
           }).catch( err => {  
             //catch the error
@@ -77,6 +84,16 @@ const PasswordReset = () => {
                 <h3>You have successfully reset your password.  Please click <Link to="/sign-in">here</Link> to proceed</h3>
             </div>
         )
+    }
+
+    const errorMessage = () => {
+        // setConfirmUserPassword(" ")
+        return(
+            <div>
+                <h2>Token Error: Please ensure token is accurate.  Tokens are case sensitive.  Best practice is to copy and paste from your reset email</h2>
+            </div>
+        )
+
     }
 
     const userPasswordInput = (e) => {
@@ -102,6 +119,7 @@ const PasswordReset = () => {
         return(
             <div>
                 <div>Email: {userEmail}</div>
+                {showErrorMessage ? errorMessage() : null}
                 <div>Please Enter Reset Token And New Password: 
                     <form>
                         <Field id="token" placeholder='Token' resetToken={resetToken} changeHandler={e=>tokenInput(e)}/>
@@ -111,6 +129,7 @@ const PasswordReset = () => {
                 </div>
                 {passwordMatch()}
                 {showSuccessMessage ? successMessage() : null}
+                
                 {/* {!!resetToken ? <button onClick={e => submitReset(e)} className='form-submit-button'>Submit</button> : null} */}
             </div>
         )
