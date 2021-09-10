@@ -6,6 +6,8 @@ import URL from '../Utilites/Url'
 
 const AdminTattooRequest = props => {
     const [showReqDetails, setShowReqDetails] = useState(false)
+    const [requestCanDisplay, setRequestCanDisplay] = useState(true)
+    const [declineConfirmationCanDisplay, setDeclineConfirmationCanDisplay] = useState(false)
     const [showApproved, setShowApproved] = useState(true)
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
 
@@ -44,13 +46,11 @@ const AdminTattooRequest = props => {
 
     const backupHandler = () =>{
         const req = props.tr
-        
         const data = {
             tattoo_request:{
                 backup: true
             }
         }
-
         axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
             console.log(resp)
             if(resp.statusText === "OK"){
@@ -64,41 +64,113 @@ const AdminTattooRequest = props => {
           })  
     }
 
+    const declineHandler = () => {
+        // debugger
+        setRequestCanDisplay(false)
+        setDeclineConfirmationCanDisplay(true)
+        // declineConfirmation()
+        // const req = props.tr
+        // const data = {
+        //     tattoo_request:{
+        //         declined: true
+        //     }
+        // }
+        // axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
+        //     // console.log(resp)
+        //     debugger
+        //     if(resp.statusText === "OK"){
+        //         Refresh()
+        //     }else{
+        //         alert('Unable to Save as Backup, Please contact system admin')
+        //     }
+            
+        //   }).catch( err => {  
+        //     console.log(err)
+        //   })  
+    }
+
+    
+
     const displayDecisionButtons = () => {
         if(!props.tr.attributes.accepted)
         return(
             <div>
-                <button id="approve" onClick={approvalHander}>Approve?</button> <button id='decline'>Decline?</button> {!props.tr.attributes.backup_project ? <button id='backup' onClick={backupHandler}>Save as Backup?</button> : null}
+                <button id="approve" onClick={approvalHander}>Approve?</button> 
+                <button id='decline' onClick={declineHandler}>Decline?</button> 
+                {!props.tr.attributes.backup_project ? <button id='backup' onClick={backupHandler}>Save as Backup?</button> : null}
             </div>  
         )
     }
 
     const classNameDefiner = () => props.tr.attributes.backup_project ? "saved-bu" : "tattreq-attrs"
-    
-    debugger
-    return (
 
-        <div  key={props.tr.id} data-id={props.tr.id} className={classNameDefiner()}  >
-            <div onClick={toggleShowReqDetails}>
-                
-                {props.tr.attributes.backup_project ?  <div><strong>THIS IS A BACKUP PROJECT</strong></div> : null}
-                <div>Request ID: {props.tr.id}</div>
-                <div>Submitted on: {formattedDate()}</div>
-                <div> {props.tr.attributes.user ? "Requestor has an account" : "Requested as a guest"}</div>
-                <div>Requestor's Email: {props.tr.attributes.user ? props.tr.attributes.user.email : props.tr.attributes.guest_email}</div>
-                {props.tr.attributes.user ? <div>Client Name: {props.tr.attributes.user.name}</div> : null}
-                {props.tr.attributes.user ? <div>Previously Tattoo Approved? {props.tr.attributes.user.tattoo_approved ? "Yes" : "No"}</div> : null}
-                <div>Description: {props.tr.attributes.description}</div>
+    const displayRequest = () =>{
+        return(
+            <div>
+                <div onClick={toggleShowReqDetails}>
+                    {props.tr.attributes.backup_project ?  <div><strong>THIS IS A BACKUP PROJECT</strong></div> : null}
+                    <div>Request ID: {props.tr.id}</div>
+                    <div>Submitted on: {formattedDate()}</div>
+                    <div> {props.tr.attributes.user ? "Requestor has an account" : "Requested as a guest"}</div>
+                    <div>Requestor's Email: {props.tr.attributes.user ? props.tr.attributes.user.email : props.tr.attributes.guest_email}</div>
+                    {props.tr.attributes.user ? <div>Client Name: {props.tr.attributes.user.name}</div> : null}
+                    {props.tr.attributes.user ? <div>Previously Tattoo Approved? {props.tr.attributes.user.tattoo_approved ? "Yes" : "No"}</div> : null}
+                    <div>Description: {props.tr.attributes.description}</div>
+                    <br></br>
+                </div>
+                    <AdminTattooRequestDetails key={props.tr.id} tr={props.tr} showReqDetails={showReqDetails}/>
                 <br></br>
-            </div>
-                <AdminTattooRequestDetails key={props.tr.id} tr={props.tr} showReqDetails={showReqDetails}/>
-            <br></br>
-            <div><strong>{props.tr.attributes.accepted ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
-            <br></br>
-            {/* MUST ADD LOGIC FOR APPROVED VS UNAPPROVED REQUESTS */}
-            {displayDecisionButtons()}
+                <div><strong>{props.tr.attributes.accepted ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
+                <br></br>
+                {/* MUST ADD LOGIC FOR APPROVED VS UNAPPROVED REQUESTS */}
+                {displayDecisionButtons()}
             
+            </div>
+        )
+    }
+
+    const displayDeclineConfirmation = () => {
+        return(
+            <div>
+                <h1>Are You Sure You Want to Decline This Request?</h1>
+                <button>Yes Decline and Notify Requestor</button> <button onClick={cancelDecline}>Cancel</button> 
+            </div>
+        )
+    }
+
+    const cancelDecline = () => {
+        setRequestCanDisplay(true)
+        setDeclineConfirmationCanDisplay(false)
+    }
+    
+    // debugger
+    return (
+        <div key={props.tr.id} data-id={props.tr.id} className={classNameDefiner()}>
+            {requestCanDisplay ? displayRequest() : null}
+            {declineConfirmationCanDisplay ? displayDeclineConfirmation() : null}
         </div>
+        
+        // <div  key={props.tr.id} data-id={props.tr.id} className={classNameDefiner()}  >
+        //     <div onClick={toggleShowReqDetails}>
+                
+        //         {props.tr.attributes.backup_project ?  <div><strong>THIS IS A BACKUP PROJECT</strong></div> : null}
+        //         <div>Request ID: {props.tr.id}</div>
+        //         <div>Submitted on: {formattedDate()}</div>
+        //         <div> {props.tr.attributes.user ? "Requestor has an account" : "Requested as a guest"}</div>
+        //         <div>Requestor's Email: {props.tr.attributes.user ? props.tr.attributes.user.email : props.tr.attributes.guest_email}</div>
+        //         {props.tr.attributes.user ? <div>Client Name: {props.tr.attributes.user.name}</div> : null}
+        //         {props.tr.attributes.user ? <div>Previously Tattoo Approved? {props.tr.attributes.user.tattoo_approved ? "Yes" : "No"}</div> : null}
+        //         <div>Description: {props.tr.attributes.description}</div>
+        //         <br></br>
+        //     </div>
+        //         <AdminTattooRequestDetails key={props.tr.id} tr={props.tr} showReqDetails={showReqDetails}/>
+        //     <br></br>
+        //     <div><strong>{props.tr.attributes.accepted ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
+        //     <br></br>
+        //     {/* MUST ADD LOGIC FOR APPROVED VS UNAPPROVED REQUESTS */}
+        //     {displayDecisionButtons()}
+            
+        // </div>
     )
 }
 
