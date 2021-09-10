@@ -87,7 +87,6 @@ const PasswordReset = () => {
     }
 
     const errorMessage = () => {
-        // setConfirmUserPassword(" ")
         return(
             <div>
                 <h2>Token Error: Please ensure token is accurate.  Tokens are case sensitive.  Best practice is to copy and paste from your reset email</h2>

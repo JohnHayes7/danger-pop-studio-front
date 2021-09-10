@@ -23,7 +23,7 @@ const TattooRequestForm = () =>{
     const [isGuest, setIsGuest] = useState(true)
     const [progress , setProgress] = useState(0)
     const [showSubmit, setShowSubmit] = useState(false)
-    const [image, setImage] = useState({})
+    const [selectedImage, setSelectedImage] = useState({})
     const [requestWindowOpen, setRequestWindowOpen] = useState(true)
     const history = useHistory()
     
@@ -108,6 +108,7 @@ const TattooRequestForm = () =>{
     const handleSubmit = (e) =>{    
         e.preventDefault();
         if(confirmEmail()){
+            debugger
             S3FileUpload.uploadFile(file, config).then((data) => {
                 const fileData = {
                     tattoo_request: {
@@ -142,8 +143,16 @@ const TattooRequestForm = () =>{
             setShowSubmit(false)
           return;
         }
-        setImage(URL.createObjectURL(e.target.files[0]))
-        setFile(e.target.files[0]) 
+        setSelectedImage(URL.createObjectURL(e.target.files[0]))
+        setFile(e.target.files[0])      
+        const imgId =  e.target.files[0].name.split('.')[0]
+        const localPart = email.split('@')[0]
+        const extension = e.target.files[0].name.split(".")[1]
+        const concatFileName = imgId + "-" + localPart + "." + extension
+        let blob = file.slice(0, file.size, file.type)
+        const newFile = new File([blob], concatFileName, {type: file.type} )
+        // debugger
+        setFile(newFile) 
         setShowSubmit(true)
        
     }
