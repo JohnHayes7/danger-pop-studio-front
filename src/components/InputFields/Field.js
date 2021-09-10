@@ -19,7 +19,7 @@ const  Field = props => {
             case 'year': return props.year
             case 'time': return props.time
             case 'token': return props.resetToken
-            
+            case 'tr-request-decline': return props.declineText;
         }
     }
 
@@ -38,6 +38,7 @@ const  Field = props => {
             case 'year': return 'date-field'
             case 'time': return 'date-field'
             case 'token': return 'input-field'
+            case 'tr-request-decline': return 'decription-field';
         }
     }
 

@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import AdminTattooRequestDetails from './AdminTattooRequestDetails'
+import Field from '../InputFields/Field'
 import Refresh from '../Utilites/Refresh'
 import axios from 'axios'
 import URL from '../Utilites/Url'
@@ -8,8 +9,12 @@ const AdminTattooRequest = props => {
     const [showReqDetails, setShowReqDetails] = useState(false)
     const [requestCanDisplay, setRequestCanDisplay] = useState(true)
     const [declineConfirmationCanDisplay, setDeclineConfirmationCanDisplay] = useState(false)
+    const [declineExplanationCanDisplay, setDeclneExplanationCanDisplay] = useState(false)
     const [showApproved, setShowApproved] = useState(true)
+    const [explanationText, setExplanationText] = useState(" ")
+
     const toggleShowReqDetails = () => setShowReqDetails(!showReqDetails)
+    
 
     // const URL = "https://danger-pop-api.herokuapp.com"
 
@@ -133,14 +138,40 @@ const AdminTattooRequest = props => {
         return(
             <div>
                 <h1>Are You Sure You Want to Decline This Request?</h1>
-                <button>Yes Decline and Notify Requestor</button> <button onClick={cancelDecline}>Cancel</button> 
+                <button onClick={confirmDecline}>Yes Decline and Notify Requestor</button> <button onClick={cancelDecline}>Cancel</button> 
             </div>
+        )
+    }
+
+    const confirmDecline = () => {
+        
+        setDeclineConfirmationCanDisplay(false)
+        setDeclneExplanationCanDisplay(true)
+    }
+
+    const declineInput = (e) =>{
+        setExplanationText(e.target.value)
+        debugger
+    }
+
+    const declineTextArea = () => {
+        return(
+            <div>
+            <h3>Please Enter Your Reason for Declining</h3>
+            <h3>This message will be sent to the Requestor</h3>
+            <form>
+                <Field id="tr-request-decline" label="" placeHolder="Please Enter A Description of Your Desired Tattoo " explanationText={explanationText} changeHandler={(e) => declineInput(e)}/><br></br>
+                <button>Submit</button> <button onClick={cancelDecline}>Cancel</button>
+            </form>
+            
+        </div>
         )
     }
 
     const cancelDecline = () => {
         setRequestCanDisplay(true)
         setDeclineConfirmationCanDisplay(false)
+        setDeclneExplanationCanDisplay(false)
     }
     
     // debugger
@@ -148,6 +179,7 @@ const AdminTattooRequest = props => {
         <div key={props.tr.id} data-id={props.tr.id} className={classNameDefiner()}>
             {requestCanDisplay ? displayRequest() : null}
             {declineConfirmationCanDisplay ? displayDeclineConfirmation() : null}
+            {declineExplanationCanDisplay ? declineTextArea() : null}
         </div>
         
         // <div  key={props.tr.id} data-id={props.tr.id} className={classNameDefiner()}  >
