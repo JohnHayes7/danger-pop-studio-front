@@ -73,25 +73,8 @@ const AdminTattooRequest = props => {
         // debugger
         setRequestCanDisplay(false)
         setDeclineConfirmationCanDisplay(true)
-        // declineConfirmation()
-        // const req = props.tr
-        // const data = {
-        //     tattoo_request:{
-        //         declined: true
-        //     }
-        // }
-        // axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
-        //     // console.log(resp)
-        //     debugger
-        //     if(resp.statusText === "OK"){
-        //         Refresh()
-        //     }else{
-        //         alert('Unable to Save as Backup, Please contact system admin')
-        //     }
-            
-        //   }).catch( err => {  
-        //     console.log(err)
-        //   })  
+        
+        
     }
 
     
@@ -127,7 +110,6 @@ const AdminTattooRequest = props => {
                 <br></br>
                 <div><strong>{props.tr.attributes.accepted ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
                 <br></br>
-                {/* MUST ADD LOGIC FOR APPROVED VS UNAPPROVED REQUESTS */}
                 {displayDecisionButtons()}
             
             </div>
@@ -151,7 +133,7 @@ const AdminTattooRequest = props => {
 
     const declineInput = (e) =>{
         setExplanationText(e.target.value)
-        debugger
+        
     }
 
     const declineTextArea = () => {
@@ -161,11 +143,33 @@ const AdminTattooRequest = props => {
             <h3>This message will be sent to the Requestor</h3>
             <form>
                 <Field id="tr-request-decline" label="" placeHolder="Please Enter A Description of Your Desired Tattoo " explanationText={explanationText} changeHandler={(e) => declineInput(e)}/><br></br>
-                <button>Submit</button> <button onClick={cancelDecline}>Cancel</button>
+                <button onClick={declineSubmitHandler}>Submit</button> <button onClick={cancelDecline}>Cancel</button>
             </form>
             
         </div>
         )
+    }
+
+    const declineSubmitHandler = () =>{
+        const req = props.tr
+        const data = {
+            tattoo_request:{
+                declined: true,
+                reason: explanationText
+            }
+        }
+        axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
+            // console.log(resp)
+            debugger
+            // if(resp.statusText === "OK"){
+            //     Refresh()
+            // }else{
+            //     alert('Unable to Save as Backup, Please contact system admin')
+            // }
+            
+          }).catch( err => {  
+            console.log(err)
+          })  
     }
 
     const cancelDecline = () => {

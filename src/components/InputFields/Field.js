@@ -38,7 +38,7 @@ const  Field = props => {
             case 'year': return 'date-field'
             case 'time': return 'date-field'
             case 'token': return 'input-field'
-            case 'tr-request-decline': return 'decription-field';
+            case 'tr-request-decline': return 'explanation-field';
         }
     }
 
