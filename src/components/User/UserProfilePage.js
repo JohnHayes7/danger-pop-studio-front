@@ -74,8 +74,8 @@ const UserProfilePage = (props) =>{
         return(
             <div>
                 <div className="user-title">
-                    <h1>{user.name}</h1>
-                    <button onClick={signOutHandler}>Logout</button>
+                    <h1>Welcome back, {user.name}</h1>
+                    {/* <button onClick={signOutHandler}>Logout</button> */}
                 </div>
                 
                 <div className='user-layout'>

@@ -61,7 +61,7 @@ const PasswordReset = () => {
         axios({method: 'post', url: ApiUrl + '/password/reset', data: userInfo,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             debugger
             if(resp.data.status === 'ok'){
-             setShowSuccessMessage(true) 
+                setShowSuccessMessage(true) 
             }else if (resp.data.status === 'fail'){
                 setShowErrorMessage(true)
                 errorMessage()
@@ -76,9 +76,9 @@ const PasswordReset = () => {
     }
 
     const successMessage = () => {
-        setUserPassword(" ")
-        setConfirmUserPassword(" ")
-        setResetToken(" ")
+        // setUserPassword(" ")
+        // setConfirmUserPassword(" ")
+        // setResetToken(" ")
         return(
             <div>
                 <h3>You have successfully reset your password.  Please click <Link to="/sign-in">here</Link> to proceed</h3>

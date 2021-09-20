@@ -38,7 +38,7 @@ const ProjectUser = (props) =>{
           }).catch( err => {  
             console.log(err)
           })
-        }
+    }
 
 
     const fileChange = (e) => {
