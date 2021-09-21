@@ -11,6 +11,7 @@ const SignIn = () =>{
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(null)
+    const [firstTimeLogin, setFirstTimeLogin] = useState(false)
     
 
     const history = useHistory()
@@ -40,11 +41,12 @@ const SignIn = () =>{
         }
         axios.post(URL + '/login', {user}, {withCredentials: true, credentials:"include"})
         .then(response =>{
-            
+            debugger
             if (!response.data.failure){
                 
                 let rxdUser = response.data.user
                 localStorage.setItem("token", response.data.jwt)
+
                 rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.id}`)
             }else{
                 alert(response.data.failure)

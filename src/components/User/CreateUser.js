@@ -22,6 +22,7 @@ const CreateUser = (props) =>{
             "phone_number": phone,
             'email': userEmail,
             'password': userPassword,
+            'account_creation_method': 'user'
         } 
     }
 

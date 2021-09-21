@@ -110,6 +110,8 @@ const TattooRequestForm = () =>{
         if(confirmEmail()){
             debugger
             S3FileUpload.uploadFile(file, config).then((data) => {
+                const creationMethod = isGuest ? "auto" : "user"
+                const initialLogIn = creationMethod === "auto" ? true : false
                 const fileData = {
                     tattoo_request: {
                         'guest_email': email,
@@ -118,7 +120,9 @@ const TattooRequestForm = () =>{
                         'description': requestText,
                         'allergies': allergies,
                         'body_location_image_path': data.location,
-                        'is_guest': isGuest
+                        'is_guest': isGuest,
+                        'account_creation_method': creationMethod,
+                        'inital_login': initialLogIn
                         
                     } 
                 }
@@ -132,6 +136,9 @@ const TattooRequestForm = () =>{
         }
         
     }
+
+    
+
 
 
     const fileChange = (e) => {
