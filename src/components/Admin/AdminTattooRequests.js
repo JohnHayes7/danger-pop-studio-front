@@ -47,12 +47,11 @@ const AdminTattooRequests = () => {
 
     const parseAllTattooRequests = () => {
         if(showApproved){
-            return requests.data ? requests.data.map( tr => <AdminTattooRequest key={tr.id} tr={tr}/>) : null
+            return requests.data ? requests.data.map( tr => tr.attributes.declined != true ? <AdminTattooRequest key={tr.id} tr={tr}/> : null) : null
         }else{
             
             const notApproved = requests.data ? requests.data.filter(r => r.attributes.accepted === null) :null
             const notDeclined = requests.data? notApproved.filter(p => p.attributes.declined != true) : null
-            // const notDeclinced = notApproved
             return requests.data ? notDeclined.map(tr => <AdminTattooRequest key={tr.id} tr={tr} />) : null
         }
         
