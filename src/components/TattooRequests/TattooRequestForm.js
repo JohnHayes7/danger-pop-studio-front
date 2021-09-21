@@ -144,12 +144,13 @@ const TattooRequestForm = () =>{
           return;
         }
         setSelectedImage(URL.createObjectURL(e.target.files[0]))
-        setFile(e.target.files[0])      
+        // setFile(e.target.files[0])      
         const imgId =  e.target.files[0].name.split('.')[0]
         const localPart = email.split('@')[0]
         const extension = e.target.files[0].name.split(".")[1]
         const concatFileName = imgId + "-" + localPart + "." + extension
-        let blob = file.slice(0, file.size, file.type)
+        debugger
+        let blob = e.target.files[0].slice(0, file.size, file.type)
         const newFile = new File([blob], concatFileName, {type: file.type} )
         // debugger
         setFile(newFile) 

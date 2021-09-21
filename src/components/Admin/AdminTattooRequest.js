@@ -160,7 +160,7 @@ const AdminTattooRequest = props => {
         }
         axios({method: 'put', url: `${URL}/tattoo_requests/${req.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {  
             // console.log(resp)
-            debugger
+            
             // if(resp.statusText === "OK"){
             //     Refresh()
             // }else{
