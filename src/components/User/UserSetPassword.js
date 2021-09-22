@@ -30,16 +30,17 @@ const UserSetPassword = (props) => {
 
     const submitPassSet = (e) => {
         e.preventDefault()
-        const userInfo = {
+        const user = {
             email: props.email,
             password: userPassword,
         }
-        axios({method: 'put', url: ApiUrl + '/password/user_set', data: userInfo,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        axios({method: 'put', url: ApiUrl + '/password/user_set', data: user,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             debugger
-            if(!!resp.data.data){
-                const user = resp.data.data
+            if(!!resp.data.user){
+                const user = resp.data.user
+                localStorage.setItem("token", resp.data.jwt)
                 history.push(`/users/${user.id}`)
-                debugger
+                
             }
 
           }).catch( err => {  

@@ -24,7 +24,7 @@ const UserProfilePage = (props) =>{
         
     useEffect(() =>{
         // NEEDS A REFACTOR TO UTILITES
-       
+       debugger
         const token = localStorage.getItem("token")
         if(token){
             fetch(URL + '/auto_login', {
