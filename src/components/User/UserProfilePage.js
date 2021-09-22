@@ -16,6 +16,7 @@ const UserProfilePage = (props) =>{
 
     const [user, setUser] = useState({})
     const [authorized, setAuthorized] = useState(false)
+    const [initialLogIn, setinitialLogin] = useState(false)
     const history = useHistory()
     const pageId = props.location.pathname.split('/')[2]
 

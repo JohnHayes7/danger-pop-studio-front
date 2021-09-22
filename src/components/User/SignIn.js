@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import URL from '../Utilites/Url'
+import UserSetPassword from './UserSetPassword'
 import './signincss.css'
 
 const SignIn = () =>{
@@ -11,7 +12,7 @@ const SignIn = () =>{
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(null)
-    const [firstTimeLogin, setFirstTimeLogin] = useState(false)
+    const [initalLogin, setInitialLogin] = useState(false)
     
 
     const history = useHistory()
@@ -42,7 +43,10 @@ const SignIn = () =>{
         axios.post(URL + '/login', {user}, {withCredentials: true, credentials:"include"})
         .then(response =>{
             debugger
-            if (!response.data.failure){
+            if(!response.data.failure && response.data.user.inital_login){
+                setInitialLogin(true)
+            }
+            else if (!response.data.failure){
                 
                 let rxdUser = response.data.user
                 localStorage.setItem("token", response.data.jwt)
@@ -78,13 +82,26 @@ const SignIn = () =>{
         )
     }
 
+    const displaySetPasswordForm = () => {
+       return <UserSetPassword email={userEmail} />
+    }
+
+    const displayDecider = () => {
+        if(!loggedIn && initalLogin){
+            return displaySetPasswordForm()
+        }else{
+            return displayForm()
+        }
+    }
+
     
 
     const redirectToHomePage = () => history.push(`/`)
 
     return(
         <div>
-            {!loggedIn ? displayForm() : redirectToHomePage()}
+           
+            {!loggedIn ? displayDecider() : redirectToHomePage()}
         </div>
         
     )
