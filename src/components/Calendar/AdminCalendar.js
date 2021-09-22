@@ -11,7 +11,7 @@ import '../Fullscreen/fullscreencss.css'
 import RedirectToLogin from '../Utilites/RedirectToLogin'
 import { Link, useHistory } from 'react-router-dom'
 import '../Toggle/togglecss.css'
-import URL from '../Utilites/Url'
+import url from '../Utilites/Url'
 
 const localizer = momentLocalizer(moment)
 
@@ -35,35 +35,43 @@ const AdminCalendar = props => {
 
   useEffect(() =>{
     // NEEDS A REFACTOR TO UTILITES
-    axios.get(URL +'/logged_in', {withCredentials: true})
-    .then(response => {
-      if(response.data.user.data.attributes.administrator){
-        getProjects()
-        getAppointments()
-        getTattooRequests()
-      }else{
-        alert('You are not authorized to view this page')
-        history.push('/')
-      }  
-    })
-    .catch(error => RedirectToLogin())
+    const token = localStorage.getItem('token')
+    if(token){
+      fetch(url + '/auto_login', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(resp => resp.json())
+      .then(data => {
+        const user = !!data.data ? data.data : null
+        if(user.attributes.administrator){
+          getProjects()
+          getAppointments()
+          getTattooRequests()
+        }else{
+          alert('You are not authorized to view this page')
+          history.push('/')
+        }
+      })
+    }
   }, [])
 
   const getProjects = () => {
-    axios.get(URL + '/projects', {withCredentials: true})
+    axios.get(url + '/projects', {withCredentials: true})
     .then(response =>{
+      // debugger
         setProjects(response.data.data)
         // getAppointmentsFromProjects()
     })
   }
 
   const getAppointments = () => {
-    axios.get(URL + '/appointments', {withCredentials: true})
+    axios.get(url + '/appointments', {withCredentials: true})
     .then (response => setAppointments(response.data.data))
   }
 
   const getTattooRequests = () => {
-    axios.get(URL + '/tattoo_requests', {withCredentials: true})
+    axios.get(url + '/tattoo_requests', {withCredentials: true})
     .then(response =>{
       let backups = response.data.data.filter(tr => tr.attributes.backup_project === true)
       setBackupRequests(backups)
@@ -72,7 +80,7 @@ const AdminCalendar = props => {
 
   const parseAppointments = () =>{
     appointments.map(appt => {
-      // debugger
+      debugger
       const apptInfo = {
         projectId: appt.attributes.project.id,
         title: appt.attributes.project.title,
