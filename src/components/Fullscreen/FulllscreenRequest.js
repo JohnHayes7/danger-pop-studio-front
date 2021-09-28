@@ -12,8 +12,6 @@ const FullscreenRequest = (props) => {
     const toggleSchedulingOptions = () => setShowScheduleOptions(!showScheduleOptions)
     const toggleRequestOptions = () => setShowRequestOptions(!showRequestOptions)
 
-    // const URL = 'https://danger-pop-api.herokuapp.com'
-
     const acceptAsProject = () =>{
         const req = props.project
         req.attributes.accepted = true
@@ -31,8 +29,7 @@ const FullscreenRequest = (props) => {
                 toggleRequestOptions()
                 
             }
-        })
-        
+        }) 
     }
 
     const displayRequestOptions = () =>{

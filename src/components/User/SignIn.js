@@ -13,17 +13,16 @@ const SignIn = () =>{
     const [userPassword, setUserPassword] = useState('')
     const [loggedIn, setLoggedIn] = useState(null)
     const [initalLogin, setInitialLogin] = useState(false)
+    const [displayButton, setDisplayButton] = useState(true)
+   
     
 
     const history = useHistory()
 
-    // useEffect(() =>{
-    //     axios.get(URL + '/logged_in', {withCredentials: true, credentials: "include"})
-    //     .then(response => {
-    //         setLoggedIn(response.data.logged_in)
-            
-    //     })
-    // }, [])
+
+    const displayLoading = () => {
+        return <div>Signing You In...</div>
+    }
 
     const userEmailInput = (e) =>{
         e.preventDefault()
@@ -40,6 +39,7 @@ const SignIn = () =>{
             email: userEmail,
             password: userPassword
         }
+        setDisplayButton(false)
         axios.post(URL + '/login', {user}, {withCredentials: true, credentials:"include"})
         .then(response =>{
             debugger
@@ -69,7 +69,7 @@ const SignIn = () =>{
                     <form className='sign-in-form' onSubmit={e => submitHandler(e)}>
                         <Field id='email' placeholder={'Enter Email'} userEmail={userEmail} changeHandler={e=> userEmailInput(e)} /><br></br>
                         <Field id='password' placeholder={'Enter Password'} userPassword={userPassword} changeHandler={e=> userPasswordInput(e)} />
-                        <button>Sign In</button>
+                        {displayButton ? <button>Sign In</button> : displayLoading()}
                     </form><br></br>
                     
                     <div>

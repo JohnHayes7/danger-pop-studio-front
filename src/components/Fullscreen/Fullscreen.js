@@ -7,7 +7,7 @@ import FullscreenPwReset from './FullscreenPwReset'
 
 
 const Fullscreen = (props) => {
-
+    debugger
     const [refreshState, setRefreshState] = useState(false)
     
     const propsType = () => {
@@ -24,7 +24,7 @@ const Fullscreen = (props) => {
 
     const typeProject = () => <FullscreenProject project={props.project} toggle={props.toggle} previous={props.previous} next={props.next}  />
     
-    const typeAdminOpts = () => <FullscreenAdminOptions refreshState={refreshState} setRefreshState={setRefreshState} />
+    const typeAdminOpts = () => <FullscreenAdminOptions toggle={props.toggleFullScreenOptions} refreshState={refreshState} setRefreshState={setRefreshState} />
 
     const typeTattooRequest = () => <FullscreenRequest project={props.project} toggle={props.toggle} />
 

@@ -35,24 +35,6 @@ const AdminPortal = () =>{
                 }
             })
         }
-        // axios.get(URL + '/logged_in', {withCredentials: true})
-        //     .then(response => {
-        //         debugger
-        //         if (response.data.logged_in){
-        //             if(response.data.user.data.attributes.administrator){
-        //                 setAuthorized(response.data.user.data.attributes.administrator)
-        //                 setCurrentUser(response.data.user.data.attributes)
-        //             }else{
-        //                 alert(response.data.message)
-        //                 notAuthorized()
-        //             }
-        //         }else{
-        //             alert(response.data.message)
-        //             notAuthorized()
-        //         }
-        //     })
-        // 
-        // .catch(error => alert('Error Will Robinson'))
     }, [])
 
     const parseAdminCategories = () =>{
@@ -79,7 +61,7 @@ const AdminPortal = () =>{
                     </div>
                     <div className="options-rows">
                     <Link>
-                        <div className="option" onClick={toggleFullScreen}>
+                        <div className="option" onClick={toggleFullScreenOptions}>
                             <div  className="selectable-label">Admin Site Options</div>
                         </div>
                     </Link>
@@ -101,7 +83,7 @@ const AdminPortal = () =>{
         )
     }
 
-    const toggleFullScreen = () => setShowFullScreen(!showFullScreen)
+    const toggleFullScreenOptions = () => setShowFullScreen(!showFullScreen)
 
     const notAuthorized = () =>{
         alert('You Are Not Authorized to View This Page')
@@ -111,7 +93,7 @@ const AdminPortal = () =>{
     return(
         <div>
             {authorized ? parseAdminCategories() : "Loading..."}
-            {showFullScreen ? <FullScreen type="admin-options" toggleFullScreen={toggleFullScreen}/>  : null}
+            {showFullScreen ? <FullScreen type="admin-options" toggleFullScreenOptions={toggleFullScreenOptions}/>  : null}
         </div>
     )
 }
