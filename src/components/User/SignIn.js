@@ -53,6 +53,7 @@ const SignIn = () =>{
 
                 rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.id}`)
             }else{
+                setDisplayButton(true)
                 alert(response.data.failure)
             }
             
