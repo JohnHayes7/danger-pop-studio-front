@@ -23,10 +23,10 @@ const UserData = (props) => {
         const { value } = e.target; 
         let ifImage = (/\.(gif|jpg|jpeg|png)$/i).test(value)
         
-        // if(!ifImage){
-            // setShowSubmit(false)
-        //   return;
-        // }
+        if(!ifImage){
+            setShowUpload(false)
+          return;
+        }
         // setImage(URL.createObjectURL(e.target.files[0]))
         
         setIdImage(e.target.files[0]) 
@@ -38,7 +38,7 @@ const UserData = (props) => {
         e.preventDefault();
        
             S3FileUpload.uploadFile(idImage, config).then((data) => {
-                
+                debugger
                 patchImageLocationToDb(data.location)
             })
             .catch((err) =>{
@@ -52,9 +52,9 @@ const UserData = (props) => {
         // debugger
         const user = props.user
         user.id_img_path = location
-        // debugger
+        debugger
         axios({method: 'put', url: `${Url}/users/${user.id}`, data: user ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-        //    debugger
+           debugger
             Refresh()
           }).catch( err => {  
             console.log(err)
