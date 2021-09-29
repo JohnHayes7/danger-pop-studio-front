@@ -11,7 +11,6 @@ import ApiUrl from '../Utilites/Url'
 require('dotenv').config()
 
 const TattooRequestForm = () =>{
-    // TO DO: GENERATE RANDOM IDs IN RAILS
     // TO DO: ADD REQUEST DATE
     const [file, setFile] = useState({})
     const [fullName, setFullName] = useState('')
@@ -35,12 +34,8 @@ const TattooRequestForm = () =>{
         secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
     }
 
-    
-
-    // const URL = 'https://danger-pop-api.herokuapp.com'
 
     useEffect(() =>{
-        // NEEDS A REFACTOR TO UTILITES
         axios.get(ApiUrl + '/request_windows/1',{withCredentials:true})
         .then(response => {
             setRequestWindowOpen(response.data.openState)
@@ -66,21 +61,6 @@ const TattooRequestForm = () =>{
             })
         }
 
-        // axios.get(ApiUrl + '/logged_in', {withCredentials: true})
-        // .then(response => {
-        //     console.log(response)
-        //     if(response.data.logged_in){
-        //         const user = response.data.user.data.attributes
-        //         setIsGuest(false)
-        //         setFullName(user.name)
-        //         setEmail(user.email)
-        //         setPhone(user.phone_number)
-        //         setAdmin(user.administrator)
-        //     }
-                
-        // //     
-        // })
-        // .catch(error => redirectToLogin())
     }, [])
 
 
@@ -150,13 +130,11 @@ const TattooRequestForm = () =>{
             setShowSubmit(false)
           return;
         }
-        setSelectedImage(URL.createObjectURL(e.target.files[0]))
-        // setFile(e.target.files[0])      
+        setSelectedImage(URL.createObjectURL(e.target.files[0]))    
         const imgId =  e.target.files[0].name.split('.')[0]
         const localPart = email.split('@')[0]
         const extension = e.target.files[0].name.split(".")[1]
         const concatFileName = imgId + "-" + localPart + "." + extension
-        debugger
         let blob = e.target.files[0].slice(0, file.size, file.type)
         const newFile = new File([blob], concatFileName, {type: file.type} )
         // debugger

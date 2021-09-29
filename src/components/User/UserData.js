@@ -28,8 +28,20 @@ const UserData = (props) => {
           return;
         }
         // setImage(URL.createObjectURL(e.target.files[0]))
+        const file = e.target.files[0]
+        const imgId =  file.name.split('.')[0]
         
-        setIdImage(e.target.files[0]) 
+        const localPart = props.user.email.split('@')[0]
+        const extension = e.target.files[0].name.split(".")[1]
+        const concatFileName = imgId + "-" + localPart + "." + extension
+       
+        let blob = e.target.files[0].slice(0, file.size, file.type)
+        const newFile = new File([blob], concatFileName, {type: file.type} )
+        
+   
+
+
+        setIdImage(newFile) 
         setShowUpload(true)
        
     }
