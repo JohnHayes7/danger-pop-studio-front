@@ -52,8 +52,9 @@ const UserData = (props) => {
         // debugger
         const user = props.user
         user.id_img_path = location
-        debugger
+        // debugger
         axios({method: 'put', url: `${Url}/users/${user.id}`, data: user ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+        //    debugger
             Refresh()
           }).catch( err => {  
             console.log(err)
