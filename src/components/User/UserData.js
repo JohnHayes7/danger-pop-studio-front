@@ -84,7 +84,9 @@ const UserData = (props) => {
     const displayUpload = () => {
         return (
             <div>
-                <div><h3>Please Upload a Photo of your ID</h3></div>
+                <div><h3>You do not have to upload an id image at this time. <br></br>
+                However, if you have an upcoming appointment, you will need to submit a photo of your id, before the appointment.<br></br>
+                To upload a photo of your idea please do so below</h3></div>
                 <div>
                     <input className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
                     {showUpload ? <button onClick={e => handleSubmit(e)}>Upload ID Image</button> : null}
