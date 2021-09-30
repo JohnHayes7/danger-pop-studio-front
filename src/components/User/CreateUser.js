@@ -41,9 +41,8 @@ const CreateUser = (props) =>{
 
     const userEmailInput = (e) =>{
         e.preventDefault()
-        let inputEmail = e.target.value
-        let lowerCaseEmail = inputEmail.toLowerCase()
-        setUserEmail(lowerCaseEmail)
+       
+        setUserEmail(e.target.value)
     }
 
     const userPasswordInput = (e) =>{
