@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import URL from '../Utilites/Url'
 import UserSetPassword from './UserSetPassword'
+import NavBar from '../Nav/Navbar'
 import './signincss.css'
 
 const SignIn = () =>{
@@ -65,6 +66,7 @@ const SignIn = () =>{
     const displayForm = () =>{
         return(
             <div>
+                <NavBar />
                 <h1>Sign In Page</h1>
                 <div className="sign-in-div">
                     <form className='sign-in-form' onSubmit={e => submitHandler(e)}>
@@ -101,7 +103,7 @@ const SignIn = () =>{
 
     return(
         <div>
-           
+            
             {!loggedIn ? displayDecider() : redirectToHomePage()}
         </div>
         

@@ -3,7 +3,7 @@ import './admintattoorequests.css'
 import AdminTattooRequestDetails from './AdminTattooRequestDetails'
 import AdminTattooRequest from './AdminTattooRequest'
 import URL from '../Utilites/Url'
-
+import NavBar from '../Nav/Navbar'
 
 const AdminTattooRequests = () => {
     const [requests, setRequests] = useState([])
@@ -59,6 +59,7 @@ const AdminTattooRequests = () => {
         
     return(
         <div>
+            <NavBar />
             <h1>Administrator Tattoo Requests Portal</h1>
             <div id="toggle-box">
                 <div>Show Approved?</div>
