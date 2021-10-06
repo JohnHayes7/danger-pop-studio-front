@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import Navbar from 'reactjs-navbar'
 import { Link, useHistory } from 'react-router-dom'
-import UserSignOut from '../User/UserSignOut'
-import axios from 'axios'
 import URL from '../Utilites/Url'
+import Loader from 'react-loader-spinner'
+import 'reactjs-navbar/dist/index.css'
 
 const Ul = styled.ul`
   list-style: none;
@@ -32,9 +33,14 @@ const Ul = styled.ul`
 
 
 
+
+
 const RightNav = ({ open }) => {
 
   const [loggedIn, setLoggedIn] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const history = useHistory()
 
   useEffect(() =>{
     // NEEDS A REFACTOR TO UTILITES
@@ -55,24 +61,46 @@ const RightNav = ({ open }) => {
     }
 }, [])
 
+  const menuItemsAry = [
+    {
+      title: "Home",
+      isAuth: true,
+      onClick: () => {
+        return history.push('/')
+      }
+    },
+    {
+      title: "Bookings",
+      isAuth: true,
+      onClick: () => history.push('/tattoo-requests')
+    }
+  ]
+
   return (
-    <Ul open={open}>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/about">About Us</Link>
-      </li>
-      <li>
-        <Link to="/tattoo-requests">Tattoo Requests</Link>
-      </li>
-      <li>
-        <Link to="/contact">Contact</Link>
-      </li>
-      <li>
-        {loggedIn ? <Link to="/sign-out">Sign Out</Link> : <Link to="/sign-in">Sign In</Link>}
-      </li>
-    </Ul>
+    <div><Navbar  loader={<Loader type="Puff" color="#D85B5B" height={50} width={50} />} 
+                  menuItems={menuItemsAry} 
+
+          />
+    </div>
+    // <Ul open={open}>
+    //   <li>
+    //     <Link to="/">Home</Link>
+    //   </li>
+    //   <li>
+    //     <Link to="/about">About Us</Link>
+    //   </li>
+    //   <li>
+    //     <Link to="/tattoo-requests">Tattoo Requests</Link>
+    //   </li>
+    //   <li>
+    //     <Link to="/contact">Contact</Link>
+    //   </li>
+    //   <li>
+    //     {loggedIn ? <Link to="/sign-out">Sign Out</Link> : <Link to="/sign-in">Sign In</Link>}
+    //   </li>
+    // </Ul>
+
+    
   )
 }
 
