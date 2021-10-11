@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import URL from '../Utilites/Url'
 import Loader from 'react-loader-spinner'
 import 'reactjs-navbar/dist/index.css'
+import './Navbar.css'
 
 const Ul = styled.ul`
   list-style: none;
@@ -13,7 +14,7 @@ const Ul = styled.ul`
   li {
     padding: 0px 10px;
     font-size: 1em;
-  }
+  } 
   @media (max-width: 768px) {
     flex-flow: column nowrap;
     background-color: #0D2538;
