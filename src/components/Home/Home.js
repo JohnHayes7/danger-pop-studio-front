@@ -2,6 +2,8 @@ import React from 'react'
 import './home.css'
 import NavBar from '../Nav/Navbar'
 import HomePageImages from './HomePageImages'
+import Slider from './Slider'
+
 
 
 const Home = () =>{
@@ -9,8 +11,11 @@ const Home = () =>{
         <div>
             <NavBar />
             {/* <img className='home-logo' src={"DangerPop_Logo_Red.PNG"} alt="Danger Pop Studio Logo" /> */}
-            <div className="App">
-                {HomePageImages()}
+            <div className="home-image-window">
+                {/* <div className="home-image-display"> */}
+                    <Slider />
+                </div>
+                
                 {/* <h1 className="animated headline-2">Coming Soon</h1>
                 <img className='logo' src={"DangerPop_Logo_Black-BackGround.JPG"} alt="Danger Pop Logo" />
                 <div className="link-boxes">
@@ -27,7 +32,7 @@ const Home = () =>{
                     </div>
                     
                 </div> */}
-            </div>
+            {/* </div> */}
         </div>
     )
 }

@@ -2,3 +2,30 @@
     width: 75vw;
     height: 75vh;
 }
+
+.home-image-window{
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.home-image-display{
+    display: flex;
+    /* margin: auto; */
+    /* padding: 0px 100px 0px; */
+}
+
+.home-image-display img{
+    height: 540px;
+    width: 380px;
+}
+
+.slide{
+    height: 100;
+    width: 100%;
+    /* background-image: url('${content}'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
