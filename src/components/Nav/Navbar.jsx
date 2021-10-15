@@ -5,7 +5,7 @@ import './Navbar.css'
 
 
 const Nav = styled.nav`
-  width: 100%;
+  width: 100vw;
   height: 100px;
   padding-right: 5%;
   // right: 100px;

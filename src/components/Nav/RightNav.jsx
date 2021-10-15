@@ -78,7 +78,7 @@ const RightNav = ({ open }) => {
   ]
 
   return (
-    <div><Navbar  loader={<Loader type="Puff" color="#D85B5B" height={50} width={50} />} 
+    <div><Navbar  loader={<Loader type="Puff" color="#D85B5B" height={0} width={0} />} 
                   menuItems={menuItemsAry} 
 
           />
