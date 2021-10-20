@@ -47,7 +47,6 @@ const RightNav = ({ open }) => {
     // NEEDS A REFACTOR TO UTILITES
     const token = localStorage.getItem("token")
     if(token){
-      debugger
         fetch(URL + '/logged_in', {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -74,6 +73,16 @@ const RightNav = ({ open }) => {
       title: "Bookings",
       isAuth: true,
       onClick: () => history.push('/tattoo-requests')
+    },
+    {
+      title: "FAQ",
+      isAuth: true,
+      onClick: () => history.push('/faq')
+    },
+    {
+      title: "Artists",
+      isAuth: true,
+      onClick: () => history.push('/artists')
     }
   ]
 

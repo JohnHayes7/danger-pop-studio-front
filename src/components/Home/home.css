@@ -10,7 +10,8 @@
     height: 640px;
     width: 96vw;
     margin-left: 2%;
-    border: 3px solid rgba(0, 100, 100, 1);
+    border: 5px solid rgb(105, 105, 105);
+    /* border-radius: ; */
 }
 
 .home-image-display{
