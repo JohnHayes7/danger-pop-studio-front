@@ -70,7 +70,24 @@ const RightNav = ({ open }) => {
       }
     },
     {
-      title: "Bookings",
+      title: "Artists",
+      isAuth: true,
+      subItems: [
+        {title: "John Hayes",
+        isAuth: true,
+        onClick: () => history.push('/artists/hayes')
+        }
+      ],
+      // onClick: () => history.push('/artists'),
+     
+    },
+    {
+      title: "Our Space",
+      isAuth: true,
+      onClick: () => history.push('/space')
+    },
+    {
+      title: "Booking",
       isAuth: true,
       onClick: () => history.push('/tattoo-requests')
     },
@@ -78,11 +95,11 @@ const RightNav = ({ open }) => {
       title: "FAQ",
       isAuth: true,
       onClick: () => history.push('/faq')
-    },
+    },   
     {
-      title: "Artists",
+      title: "Aftercare",
       isAuth: true,
-      onClick: () => history.push('/artists')
+      onClick: () => history.push('/aftercare')
     }
   ]
 
