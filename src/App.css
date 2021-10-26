@@ -84,7 +84,7 @@ a{
 
 
 /* PHONE */
-@media (max-width: 415px){
+@media (max-width: 375px){
   #headline-2{
     text-align: center;
     font-size: 20%;

@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="x">
-          <img height="50 px"  src={"DangerPop_Logo_Red.PNG"} alt={"DangerPop Logo Red "}/>  
+          <img height="100 px"  src={"https://danger-pop-studio.s3.amazonaws.com/logos/logo+W+Large.png"} alt={"Yardley Tattoo Logo White"}/>  
       </div>
       <Burger />
     </nav>
