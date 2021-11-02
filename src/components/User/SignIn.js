@@ -22,7 +22,7 @@ const SignIn = () =>{
 
 
     const displayLoading = () => {
-        return <div>Signing You In...</div>
+        return <div className='signing-you-in'>Signing You In...</div>
     }
 
     const userEmailInput = (e) =>{
@@ -67,17 +67,18 @@ const SignIn = () =>{
         return(
             <div>
                 <NavBar />
-                <h1>Sign In Page</h1>
+                
                 <div className="sign-in-div">
+                <h1 className="sign-in-mess">Please Sign In:</h1>
                     <form className='sign-in-form' onSubmit={e => submitHandler(e)}>
                         <Field id='email' placeholder={'Enter Email'} userEmail={userEmail} changeHandler={e=> userEmailInput(e)} /><br></br>
                         <Field id='password' placeholder={'Enter Password'} userPassword={userPassword} changeHandler={e=> userPasswordInput(e)} />
-                        {displayButton ? <button>Sign In</button> : displayLoading()}
+                        {displayButton ? <button className='sign-in-button'>Sign In</button> : displayLoading()}
                     </form><br></br>
                     
                     <div>
-                        <div><Link to='/password-reset'>Forgot Password</Link></div>
-                        <div><Link to='/create-profile'>Create An Account</Link></div>
+                        <div className='recovery-creation-links'><Link to='/password-reset'>Forgot Password</Link></div>
+                        <div className='recovery-creation-links'><Link to='/create-profile'>Create An Account</Link></div>
                     </div>
                 </div>
             </div>

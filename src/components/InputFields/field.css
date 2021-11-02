@@ -41,5 +41,29 @@
     position: absolute;
 } */
 
+@media(max-width: 380px){
+    .input-field{
+        height: 50px;
+        width: 250px;
+        font-size: 1.1em;
+    }
+    
+    .description-field{
+        height: 100px;
+        width: 250px;
+        font-size: 1.1em;
+        font-family:Arial, Helvetica, sans-serif;
+    }
 
+    .password{
+        height: 50px;
+        width: 250px;
+        font-size: 1.1em;
+    }
+
+    label{
+        width: 1%;
+        left: 5px;
+    }
+}
 
