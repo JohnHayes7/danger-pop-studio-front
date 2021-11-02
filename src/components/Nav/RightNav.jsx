@@ -34,6 +34,23 @@ const Ul = styled.ul`
     }
     
   }
+  @media (max-width: 380px) {
+    flex-flow: column nowrap;
+    background-color: rgba(46, 49, 49, .9);
+    position: fixed;
+    transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
+    top: 0;
+    right: 0;
+    height: 60%;
+    width: 150px;
+    padding-top: 3.5rem;
+    transition: transform 0.1s ease-in-out;
+    li {
+      color: #fff;
+      margin-right: 40px;
+    }
+    
+  }
 `;
 
 
@@ -140,9 +157,9 @@ const inOrOut = () => {
         <Navbar  menuItems={menuItemsAry} />
       </Ul> */}
       <Ul open={open}>
-       <li>
+       {/* <li>
          <Link to="/">Home</Link>
-       </li>
+       </li> */}
        <li id="artists" onMouseEnter={() => setShowArtists(true)} onMouseLeave={() => setShowArtists(false)} onClick={() => setShowArtists(!showArtists)}>
          Artists
          {showArtists ? displayArtistNames() : null}
