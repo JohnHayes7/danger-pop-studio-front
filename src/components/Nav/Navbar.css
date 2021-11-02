@@ -47,6 +47,39 @@ nav{
   
 }
 
+.sub-item{
+  list-style-type: none;
+  position: relative;
+  left: -40px;
+  /* text-align: left; */
+  /* margin: auto; */
+  z-index: 2;
+  font-size: 1.45em;
+  font-weight: 300;
+
+}
+
+.sub-items{
+  background-color: grey;
+  font-size: .6em;
+  /* height: 100%; */
+  height: 100% ;
+  width: 60%;
+  text-align: left;
+  position: relative;
+  top: 0px;
+  z-index: 2;
+  /* left: -100px; */
+}
+
+#artists{
+  font-size: 1.45em;
+  font-weight: 300;
+}
+
+
+
+
 @media(max-width: 380px){
   nav{
     /* width: 50vw; */
