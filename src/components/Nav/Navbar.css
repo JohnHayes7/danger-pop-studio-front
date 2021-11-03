@@ -43,8 +43,13 @@ nav{
 }
 
 .x img{
-  margin-left: 20px;
-  
+  margin-left: 20px; 
+  /* margin-left: 70;  */
+}
+
+.menu{
+  margin-right: 20px;
+  margin-top: 30px;
 }
 
 .sub-item{
@@ -56,11 +61,12 @@ nav{
   z-index: 2;
   font-size: 1.45em;
   font-weight: 300;
+  color: black;
 
 }
 
 .sub-items{
-  background-color: rgba(160, 160, 160, 0.445);
+  background-color: rgba(160, 160, 160, .8);
   font-size: .6em;
   border-radius: 10%;
   /* height: 100%; */

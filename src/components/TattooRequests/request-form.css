@@ -35,8 +35,22 @@
 
 .form-submit-button {
 
+    /* background: rgb(218,55,49);
+    color: white;
+    border-style: outset;
+    border-color:black;
+    height: 80px;
+    width: 50%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    letter-spacing: .2ch;
+    font-weight: 100;   */
+
+
     background: rgb(218,55,49);
-    
+    /* background: #333; */
+    /* margin-top: 10px; */
+    margin: auto;
     color: white;
     
     
@@ -45,14 +59,19 @@
     
     border-color:black;
     
-    height: 80px;
+    height: 100%;
     
-    width: 90%;
+    width: 40%;
     
     font-family:Arial, Helvetica, sans-serif;
-    font-size: 3em;
+    font-size: 2em;
     letter-spacing: .2ch;
-    font-weight: 500;   
+    font-weight: 500;  
+}
+
+.form-submit-button:hover{
+    /* color: #333; */
+    border: 1px solid #fff;
 }
 
 .success-message{
@@ -90,6 +109,21 @@
         /* margin-left: 5%; */
         margin: auto;
     }
+
+    .form-submit-button {
+        background: rgb(218,55,49);
+        color: white;
+        border-style: outset;
+        /* border-color:black; */
+        height: 80px;
+        width: 100%;
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 2em;
+        letter-spacing: .2ch;
+        font-weight: 500;   
+    }
+
+    
 
    
 }
