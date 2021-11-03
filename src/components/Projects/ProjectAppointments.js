@@ -41,7 +41,7 @@ const ProjectAppointments = (props) =>{
         }
         // axios.get(URL + '/logged_in', {withCredentials: true})
         // .then(response => {
-        //     // debugger
+        //     // 
         //     setAdmin(response.data.user.data.attributes.administrator)
         // })
         // .catch(error => redirectToLogin())
@@ -54,7 +54,7 @@ const ProjectAppointments = (props) =>{
     
     const parseAppointments = () => {
         if(props.project.attributes.appointments.length > 0){
-            debugger
+            
             return props.project.attributes.appointments.map(appt => <div>{appt.date} - {appt.time}{appt.daypart} - {appt.length_time}</div>)
         }else{
             return "There are currently no upcoming appointments for this project" 
@@ -205,7 +205,7 @@ const ProjectAppointments = (props) =>{
     }
 
     const addApptToDb = () => {
-        // debugger
+        // 
 
         const data = {
             'day': day,
@@ -219,7 +219,7 @@ const ProjectAppointments = (props) =>{
         }
 
         axios({method: 'post', url: URL + '/appointments', data: data,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-          debugger
+          
             if(resp.status === 200){
                 Refresh()
             }

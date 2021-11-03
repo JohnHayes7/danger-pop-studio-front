@@ -14,7 +14,7 @@ const Slider = () => {
 
     const {translate, transition} = state
     // let x = images()
-    // debugger
+    // 
     return(
         <div className='slider'>
             <SliderContent
@@ -23,7 +23,7 @@ const Slider = () => {
                 width={getWidth()}
             >
             {images.split(',').map((slide, i) =>{
-                // debugger
+                // 
                 return <Slide key={slide + i} content={`https://danger-pop-studio.s3.amazonaws.com/homepageimages/${slide}`}/>
             })}
             </SliderContent>

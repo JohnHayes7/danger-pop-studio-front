@@ -26,7 +26,7 @@ const UserProjects = (props) => {
 
     const parseImages = (images) =>{
         return images.map( i => <img className="image-preview" src={i} />)
-        debugger
+        
     }
 
     return(

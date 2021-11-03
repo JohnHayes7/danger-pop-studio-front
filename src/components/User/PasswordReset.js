@@ -59,7 +59,7 @@ const PasswordReset = () => {
             token: resetToken
         }
         axios({method: 'post', url: ApiUrl + '/password/reset', data: userInfo,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-            debugger
+            
             if(resp.data.status === 'ok'){
                 setShowSuccessMessage(true) 
             }else if (resp.data.status === 'fail'){

@@ -60,7 +60,7 @@ const AdminTattooRequests = () => {
     return(
         <div>
             <NavBar />
-            <h1>Administrator Tattoo Requests Portal</h1>
+            <h1 id="admin-tr-h1">Administrator Tattoo Requests Portal</h1>
             <div id="toggle-box">
                 <div>Show Approved?</div>
                 <div>{toggleButton()}</div><br></br>

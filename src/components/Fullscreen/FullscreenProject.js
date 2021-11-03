@@ -6,7 +6,7 @@ const FullscreenProject = (props) =>{
         return props.project.attributes.progress_images.map(img => <img className='progress-image' src={img} alt="tattoo-progress image" />)
     }
 
-    // debugger
+    // 
     return(
         <div className="full-screen" >
             <div className='fs-top'>

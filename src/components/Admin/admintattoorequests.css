@@ -1,24 +1,35 @@
 .tattreq-attrs{
+
     border: 1px solid white;
     width: 450px;
     padding: 15px;
     text-align: left;
     margin-bottom: 1%;
+    margin: auto;
 }
 .saved-bu{
+  
     border: 1px solid white;
     width: 450px;
     padding: 15px;
     text-align: left;
     margin-bottom: 1%;
     background-color: grey;
+    margin: auto;
 }
 
 
 
 .tattoo-request-panel{
-    display: flex;
-    width: 100%;
+    /* display: flex; */
+    /* width: 30%; */
+    margin: auto;
+}
+
+#admin-tr-h1{
+  /* text-align: left; */
+  font-weight: 300;
+  margin-top: 30px;
 }
 
 #tattreq-details{
@@ -35,14 +46,25 @@
 }
 
  button#approve{
-    background-color:  rgb(69, 218, 49) ;
+    background-color:  rgba(69, 218, 49, .8) ;
     color: white;
  }
 
  button#decline{
-    background-color:  rgb(218,55,49) ;
+    background-color:  rgba(218,55,49, .8) ;
     color: white;
  }
+
+ .decision-button{
+  width: 100%;
+  height: 50px;
+  margin: .5%;
+  border-radius: 5%;
+  font-size: 1.5em;
+  /* font-weight: 100; */
+  /* padding: 1; */
+  /* background-color: black; */
+}
 
  /* TOGGLE BUTTON */
  .wrg-toggle {
@@ -137,8 +159,8 @@
 
   #toggle-box{
       position: relative;
-      text-align: left;
-      margin-left: 10px;
+      /* text-align: left; */
+      margin: auto;
   }
 
  /* END TOGGLE BUTTON */

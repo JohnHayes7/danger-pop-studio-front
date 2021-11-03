@@ -25,7 +25,7 @@ const AdminPortal = () =>{
             })
             .then(resp => resp.json())
             .then(data => {
-                debugger
+                
                 let rxdUser = data.data
                 if (rxdUser.attributes.administrator){
                     setCurrentUser(rxdUser.attributes)

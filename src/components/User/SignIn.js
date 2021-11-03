@@ -43,7 +43,7 @@ const SignIn = () =>{
         setDisplayButton(false)
         axios.post(URL + '/login', {user}, {withCredentials: true, credentials:"include"})
         .then(response =>{
-            debugger
+            
             if(!response.data.failure && response.data.user.inital_login){
                 setInitialLogin(true)
             }

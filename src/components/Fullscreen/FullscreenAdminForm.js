@@ -17,7 +17,7 @@ const FsAdminForm = (props) =>{
     }
 
     const emailInput = (e) => {
-        debugger
+        
         setEmail(e.target.value)
         // setEmail()
     }
@@ -35,7 +35,7 @@ const FsAdminForm = (props) =>{
                 // setRefreshState(!refreshState)
                 
             }
-            // debugger
+            // 
             // let rxdUser = response.data.user.data.attributes
             // rxdUser.administrator ? history.push('/admin') : history.push(`/users/${response.data.user.data.id}`)
             

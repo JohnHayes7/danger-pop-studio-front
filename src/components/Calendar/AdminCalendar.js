@@ -59,7 +59,7 @@ const AdminCalendar = props => {
   const getProjects = () => {
     axios.get(url + '/projects', {withCredentials: true})
     .then(response =>{
-      // debugger
+      
         setProjects(response.data.data)
         // getAppointmentsFromProjects()
     })
@@ -80,7 +80,7 @@ const AdminCalendar = props => {
 
   const parseAppointments = () =>{
     appointments.map(appt => {
-      debugger
+      
       const apptInfo = {
         projectId: appt.attributes.project.id,
         title: appt.attributes.project.title,
@@ -130,7 +130,7 @@ const AdminCalendar = props => {
   }
 
   const parseBackups = () =>{
-    debugger
+   
     return <div className="flex">{backupRequests.map(bu  => <div key={bu.id} id={bu.id} dataid={bu.id} className='project'><div>TR ID: {bu.id}</div><div>Client Name: {bu.attributes.guest_full_name}</div><div>Description: {bu.attributes.description}</div><div class="a-and-s-button" onClick={e  => findSelectedRequest(e)}>More Info and Scheduling Options</div></div> )}</div>
   }
 

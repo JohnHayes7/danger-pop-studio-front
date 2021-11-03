@@ -34,7 +34,7 @@ const Project = (props) => {
             })
             .then(resp => resp.json())
             .then(data => {
-                debugger
+                
                 setLoggedIn(true)
                 const user = data.data.attributes
                 setCurrentUser(user)
@@ -125,7 +125,7 @@ const Project = (props) => {
     const toggleTitleForm = () => setShowProjectTitleForm(!showProjectTitleForm)
 
     const displayTitleOrForm = () =>{
-        debugger
+        
         if(showProjectTitleForm && currentUser.administrator){
             return editProjectTitleForm()
         }else{

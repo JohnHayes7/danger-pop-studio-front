@@ -11,9 +11,9 @@ const FsTattooRequestWindow = () =>{
     const requestOpenCloseToggle = () =>{
         setRequestWindowOpen(!requestWindowOpen)
         // const windowState = {"open": !requestWindowOpen}
-        // debugger
+        // 
         axios({method: 'patch', url: `${URL}/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
-            debugger
+            
             // console.log(resp)
             // Refresh()
           }).catch( err => {  

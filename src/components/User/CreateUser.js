@@ -68,7 +68,7 @@ const CreateUser = (props) =>{
         }).then(response => response.json())
         // console.log("response", response)
         .then(rxData => {
-            debugger
+            
             if(rxData.jwt){
                 localStorage.setItem('token', rxData.jwt)
                 history.push(`users/${rxData.user.id}`)

@@ -35,7 +35,7 @@ const UserSetPassword = (props) => {
             password: userPassword,
         }
         axios({method: 'put', url: ApiUrl + '/password/user_set', data: user,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-            debugger
+            
             if(!!resp.data.user){
                 const user = resp.data.user
                 localStorage.setItem("token", resp.data.jwt)

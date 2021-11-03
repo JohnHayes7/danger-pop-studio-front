@@ -7,7 +7,6 @@ import FullscreenPwReset from './FullscreenPwReset'
 
 
 const Fullscreen = (props) => {
-    // debugger
     const [refreshState, setRefreshState] = useState(false)
     
     const propsType = () => {

@@ -50,7 +50,7 @@ const UserData = (props) => {
         e.preventDefault();
        
             S3FileUpload.uploadFile(idImage, config).then((data) => {
-                debugger
+                
                 patchImageLocationToDb(data.location)
             })
             .catch((err) =>{
@@ -61,12 +61,12 @@ const UserData = (props) => {
     }
 
     const patchImageLocationToDb = (location) =>{
-        // debugger
+        // 
         const user = props.user
         user.id_img_path = location
-        debugger
+        
         axios({method: 'put', url: `${Url}/users/${user.id}`, data: user ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-           debugger
+           
             Refresh()
           }).catch( err => {  
             console.log(err)

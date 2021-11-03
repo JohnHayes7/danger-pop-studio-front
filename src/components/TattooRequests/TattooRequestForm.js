@@ -50,7 +50,7 @@ const TattooRequestForm = () =>{
             })
             .then(resp => resp.json())
             .then(data => {
-                debugger
+                
                 let rxdUser = data.data.attributes
                 setIsGuest(false)
                 setFullName(rxdUser.name)
@@ -88,7 +88,7 @@ const TattooRequestForm = () =>{
     const handleSubmit = (e) =>{    
         e.preventDefault();
         if(confirmEmail()){
-            debugger
+            
             S3FileUpload.uploadFile(file, config).then((data) => {
                 const creationMethod = isGuest ? "auto" : "user"
                 const initialLogIn = creationMethod === "auto" ? true : false
@@ -137,7 +137,7 @@ const TattooRequestForm = () =>{
         const concatFileName = imgId + "-" + localPart + "." + extension
         let blob = e.target.files[0].slice(0, file.size, file.type)
         const newFile = new File([blob], concatFileName, {type: file.type} )
-        // debugger
+        // 
         setFile(newFile) 
         setShowSubmit(true)
        
@@ -189,9 +189,9 @@ const TattooRequestForm = () =>{
     const requestOpenCloseToggle = () =>{
         setRequestWindowOpen(!requestWindowOpen)
         // const windowState = {"open": !requestWindowOpen}
-        debugger
+        
         axios({method: 'patch', url: `${ApiUrl}/request_windows/1`, data: {open: !requestWindowOpen}, headers: {'Content-Type': 'application/json'}}).then(resp => {
-            debugger
+            
             // console.log(resp)
             // Refresh()
           }).catch( err => {  

@@ -70,7 +70,7 @@ const AdminTattooRequest = props => {
     }
 
     const declineHandler = () => {
-        // debugger
+      
         setRequestCanDisplay(false)
         setDeclineConfirmationCanDisplay(true)
         
@@ -178,7 +178,7 @@ const AdminTattooRequest = props => {
         setDeclneExplanationCanDisplay(false)
     }
     
-    // debugger
+    
     return (
         <div key={props.tr.id} data-id={props.tr.id} className={classNameDefiner()}>
             {requestCanDisplay ? displayRequest() : null}

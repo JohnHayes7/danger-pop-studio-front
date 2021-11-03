@@ -66,7 +66,7 @@ const ProjectImageModule = (props) =>{
             'finalimagelocation': location
         }
         axios({method: 'put', url: `${URL}/projects/${props.project.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
-            debugger
+            
             Refresh()
           }).catch( err => {  
             console.log(err)
@@ -89,10 +89,10 @@ const ProjectImageModule = (props) =>{
     }
 
     const displayFinalImages = () => {
-        // debugger
+        // 
         return props.project.attributes.final_images.map(i => <img className="image-preview" src={i} alt="final-project-image" />)
     }
-    debugger
+    
     return(
         <div>
             <div>
