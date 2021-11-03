@@ -83,9 +83,9 @@ const AdminTattooRequest = props => {
         if(!props.tr.attributes.accepted)
         return(
             <div>
-                <button id="approve" onClick={approvalHander}>Approve?</button> 
-                <button id='decline' onClick={declineHandler}>Decline?</button> 
-                {!props.tr.attributes.backup_project ? <button id='backup' onClick={backupHandler}>Save as Backup?</button> : null}
+                <button id="approve" className="decision-button" onClick={approvalHander}>Approve</button> 
+                <button id='decline' className="decision-button" onClick={declineHandler}>Decline</button> 
+                {!props.tr.attributes.backup_project ? <button id='backup' className="decision-button" onClick={backupHandler}>Save as Backup</button> : null}
             </div>  
         )
     }
@@ -107,7 +107,7 @@ const AdminTattooRequest = props => {
                     <br></br>
                 </div>
                     <AdminTattooRequestDetails key={props.tr.id} tr={props.tr} showReqDetails={showReqDetails}/>
-                <br></br>
+                {/* <br></br> */}
                 <div><strong>{props.tr.attributes.accepted ? "This Request has been approved" : "This Request has not yet been approved"}</strong></div>
                 <br></br>
                 {displayDecisionButtons()}
