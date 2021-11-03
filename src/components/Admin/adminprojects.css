@@ -17,3 +17,25 @@
     position: relative;
     margin-left: 20%;
 }
+
+@media(max-width: 380px){
+    .all-projs{
+        display: block;
+    }
+
+    #incomplete-projs{
+        margin-left: 5%;
+    }
+
+    #complete-projs{
+        position: relative;
+        margin-left: 5%;
+    }
+
+    .proj-attrs{
+        border: 1px solid white;
+        width: 300px;
+        padding: 15px;
+        text-align: left;
+    }
+}
