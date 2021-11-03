@@ -62,3 +62,52 @@
     position: relative;
     margin-left: 7% ;
 }
+
+@media(max-width: 380px){
+    .admin-options{
+        border: none;
+        height: 100px;
+        width: 80vw;
+        position: absolute;
+        margin: auto;
+        display: block;
+        align-items: center;
+        /* padding: %; */
+    }  
+    
+    .admin-welcome{
+        position: relative;
+        /* float: left; */
+        /* text-align: left; */
+        left: 0%;
+        font-weight: 100;
+        
+    }
+    
+    .option{
+        border: 1px solid white;
+        height: 75px;
+        width: 90vw;
+        margin-left: 15px;
+        /* left: -10px ; */
+        /* margin-left: auto;
+        margin: 30px; */
+        
+    }
+
+    .selectable-label{
+        position: relative;
+       
+        
+        top: 20px;
+        /* font-size: 2em; */
+        font-weight: 100;
+    }
+
+    .options-rows{
+        position: relative;
+        margin: auto;
+        top: 140px;
+        /* padding: 5px; */
+    }
+}
