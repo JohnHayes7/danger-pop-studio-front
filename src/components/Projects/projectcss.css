@@ -1,5 +1,5 @@
 .project-data-display{
-    border: 1px solid white;
+    border-top: 2px solid #333;
     /* align-content: center;
     height: 800px;
     width: 90%;
@@ -8,6 +8,14 @@
 
 .project-modules{
     display: flex;
+}
+
+.edit-proj-title{
+    background-color: #333;
+    color: white;
+    border: none;
+    margin-left: 1%;
+    /* font-size: .3em; */
 }
 
 .proj-mod{
@@ -28,7 +36,7 @@
 
 #project-title{
     font-size: 2em;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 #project-description{
@@ -80,6 +88,21 @@
     margin-left: 10px;
 }
 
+.add-new-btn{
+    background-color: #333;
+    border: none;
+    color: white;
+    font-weight: 200;
+    font-size: 1em;
+    padding: 20px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.add-new-btn:hover{
+    border: 2px solid rgba(235, 61, 61, 0.664)
+}
+
 /* .date-form{
     margin-left:  100px;
 } */
@@ -94,4 +117,25 @@
 }
 #save-button:hover{
     background-color:rgba(17, 83, 34, 0.664);
+}
+
+@media(max-width: 380px){
+    .project-modules{
+        display: block;
+    }
+
+    .project-data-display{
+        border-top: none;
+    }
+
+    .proj-mod{
+        /* position: relative; */
+        border: 1px solid white;
+        width: 90%;
+        margin-left: 18px;
+        margin-bottom: 15px;
+        height: 300px;  
+        overflow: scroll;
+    
+    }
 }

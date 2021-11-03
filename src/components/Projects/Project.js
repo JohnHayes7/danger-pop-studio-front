@@ -100,7 +100,8 @@ const Project = (props) => {
         return (
             <form>
                 <Field id="title" newProjectTitle={newProjectTitle} changeHandler={e => titleInput(e)} placeholder={project.attributes.title} />
-                <button onClick={e => updateTitle(e)}>Save</button>
+                <button className="edit-proj-title" onClick={e => updateTitle(e)}>Save</button>
+                <button className="edit-proj-title" onClick={toggleTitleForm}>Cancel</button>
             </form>
         )
     }
@@ -129,7 +130,7 @@ const Project = (props) => {
         if(showProjectTitleForm && currentUser.administrator){
             return editProjectTitleForm()
         }else{
-            return  <div id="project-title">Title:{project.attributes.title }{currentUser.administrator ? <button onClick={toggleTitleForm}>Edit</button> : null }</div>
+            return  <div id="project-title">Title:{project.attributes.title }{currentUser.administrator ? <button className="edit-proj-title" onClick={toggleTitleForm}>Edit</button> : null }</div>
         }
     }
 
@@ -138,9 +139,10 @@ const Project = (props) => {
         if(project.attributes){
             return(
                 <div className="id-title-description">
-                    <div id="project-id">Project ID# {project.id}</div>
+                    
                     {displayTitleOrForm()}
                     <div id='project-description'>Description: {project.attributes.tattoo_request.description}</div>
+                    <div id="project-id">Project ID# {project.id}</div>
                 </div>
             )
         }

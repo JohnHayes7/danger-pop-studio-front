@@ -236,7 +236,7 @@ const ProjectAppointments = (props) =>{
 
     const displayUpload = () =>{
         if(admin && showButton){
-            return <div><button onClick={toggleForm}>Add New Appointment</button></div>
+            return <div><button className="add-new-btn" onClick={toggleForm}>Add New Appointment</button></div>
         }       
     }
 

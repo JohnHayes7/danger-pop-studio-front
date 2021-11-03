@@ -74,7 +74,7 @@ const AdminProjectInfoModule = (props) =>{
     const completedClickHandler = (e) =>{
         setProjectComplete(!projectComplete)
         let cat = e.currentTarget.parentElement.parentElement.innerText.split(" ")[0]
-        debugger
+       
         updateProjectInDb(cat, e.target.textContent)
     }
 

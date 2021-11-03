@@ -40,6 +40,7 @@ nav{
   font-size: 1em;
   color: white;
   justify-content: space-between;
+  
 }
 
 .x img{
@@ -49,7 +50,8 @@ nav{
 
 .menu{
   margin-right: 20px;
-  margin-top: 30px;
+  margin-top: 45px;
+  
 }
 
 .sub-item{

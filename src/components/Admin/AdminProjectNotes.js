@@ -55,7 +55,7 @@ const AdminProjectNotes = (props) =>{
     return(
         <div id="notes">
             <div>{parseNotes()}</div>
-            <div><button  onClick={toggleProjectNotesForm}>{noteText}</button></div>
+            <div><button  className="add-new-btn" onClick={toggleProjectNotesForm}>{noteText}</button></div>
             {showProjNoteForm ? <AdminProjectNoteForm project={props.project}/> : null}
         </div>
     )
