@@ -103,6 +103,62 @@
     border: 2px solid rgba(235, 61, 61, 0.664)
 }
 
+.custom-file-upload:hover{
+    border: 2px solid rgba(235, 61, 61, 0.664)
+}
+
+.custom-file-btn:hover{
+    border: 2px solid rgba(235, 61, 61, 0.664)
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.proj-user-mod{
+    display: inline;
+    overflow: scroll;
+}
+
+.upload-message{
+    position: relative;
+    top: 0px;
+}
+
+.proof-of-age{
+    height: 50%;
+}
+
+.custom-file-upload{
+    /* position: relative;
+    background-color: #333;
+    height: 20px;
+    padding: 10px;
+    font-weight: 300; */
+    /* margin-top: 10px;    */
+    background-color: #333;
+    border: none;
+    color: white;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 20px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.custom-file-btn{
+    position: relative;
+    top: -30px;
+
+    background-color: #333;
+    border: none;
+    color: white;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 20px;
+    margin-top: 10px;
+    align-items: center;
+}
 /* .date-form{
     margin-left:  100px;
 } */

@@ -62,9 +62,10 @@ const ProjectUser = (props) =>{
             return <img className="id-image" src={props.project.attributes.user.id_img_path} alt="User ID Image" />
         }else{
             return(
-                <div>
-                    <input className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
-                    {showUpload ? <button onClick={e => handleSubmit(e)}>Upload ID Image</button> : null}
+                <div className='upload-message'>
+                    <input className="input" id="file-upload" type="file" name="file" onChange={e => fileChange(e)}/><br></br>
+                    {showUpload ? <button className="custom-file-btn" onClick={e => handleSubmit(e)}>Click Here To Upload</button> :<label for="file-upload" className="custom-file-upload">Please Upload ID</label>}
+                    {/* {!showUpload?  : null} */}
                 </div>
                 
             )
@@ -72,13 +73,13 @@ const ProjectUser = (props) =>{
     }
     
     return(
-        <div>
+        <div className='proj-user-mod'>
             <div>Name: {props.project.attributes.user.name || "User needs to update profile"}</div>
             <div>ID#: {props.project.attributes.user.id}</div>
             <div>Email: {props.project.attributes.user.email}</div>
             <div>Phone: {props.project.attributes.user.phone_number}</div>
             <div>Allergies: {props.project.attributes.user.allergies}</div>
-            <div>
+            <div className='proof-of-age'>
                 Proof Of Age: 
                 <div>{displayIdOrUpload()}</div>
             </div>
