@@ -38,7 +38,7 @@ const ProjectImageModule = (props) =>{
           return;
         }
         setSelectedImage(e.target.files[0]) 
-        e.currentTarget.id === 'final-images' ? setShowFinalUpload(true) : setShowProgressUpload(true)
+        e.currentTarget.id === 'final-image' ? setShowFinalUpload(true) : setShowProgressUpload(true)
     }
 
     const uploadProgessImage = (e) =>{
@@ -99,18 +99,15 @@ const ProjectImageModule = (props) =>{
                 Progress Pics: 
                 <div>{displayProgressPics()}</div>
                 <div>{!!props.user && props.user.administrator ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null}</div>
-                <label for="progress-images" className="proj-imag-upload">Upload Project Progress Images</label>
-                {showProgressUpload ? <button onClick={e => uploadProgessImage(e)  }>Add Image</button> : null}
+                {showProgressUpload ? <button className="proj-imag-upload" onClick={e => uploadProgessImage(e)}>Add Progress Image</button> : <label for="progress-images" className="proj-imag-upload">Upload Project Progress Images</label>}
             </div>
             <br></br>
-            <div id="final-images"> Final Images:
+            <div id="final-images">
+                Final Images:
                 <div>{displayFinalImages()}</div>
-                <div>{!!props.user && props.user.administrator ? <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/>: null}</div>
-                <label for="final-images" className="proj-imag-upload">Upload Final Project Images</label>
-                {showFinalUpload ? <button  onClick={e => uploadFinalImage(e)}>Add Image of Completed Project</button> : null}
+                <div>{!!props.user && props.user.administrator ? <input id="final-image" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null}</div>
+                {showFinalUpload ? <button  className="proj-imag-upload" onClick={e => uploadFinalImage(e)}>Add Final Project Image</button> : <label for="final-image" className="proj-imag-upload">Upload Final Project Images</label>}
             </div>
-                
-            
         </div>
     ) 
 }
