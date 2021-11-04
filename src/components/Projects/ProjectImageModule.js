@@ -92,21 +92,25 @@ const ProjectImageModule = (props) =>{
         // 
         return props.project.attributes.final_images.map(i => <img className="image-preview" src={i} alt="final-project-image" />)
     }
-    
+  
     return(
         <div>
             <div>
                 Progress Pics: 
                 <div>{displayProgressPics()}</div>
-                <div>{props.user && props.user.administrator ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null}</div>
+                <div>{!!props.user && props.user.administrator ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null}</div>
+                <label for="progress-images" className="proj-imag-upload">Upload Project Progress Images</label>
                 {showProgressUpload ? <button onClick={e => uploadProgessImage(e)  }>Add Image</button> : null}
             </div>
             <br></br>
-            <div>Final Pics:
+            <div id="final-images"> Final Images:
                 <div>{displayFinalImages()}</div>
-                <div>{props.user && props.user.administrator ? <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/>: null}</div>
+                <div>{!!props.user && props.user.administrator ? <input id="final-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/>: null}</div>
+                <label for="final-images" className="proj-imag-upload">Upload Final Project Images</label>
                 {showFinalUpload ? <button  onClick={e => uploadFinalImage(e)}>Add Image of Completed Project</button> : null}
             </div>
+                
+            
         </div>
     ) 
 }

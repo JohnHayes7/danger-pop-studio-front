@@ -51,7 +51,7 @@ const AdminProjectTattooRequest = (props) =>{
                 'mockupimagelocation': location
             }
         }
-        debugger
+        
         axios({method: 'put', url: `${apiUrl}/tattoo_requests/${props.project.attributes.tattoo_request.id}`, data: data ,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             console.log(resp)
             if(resp.statusText === "OK"){
@@ -65,7 +65,7 @@ const AdminProjectTattooRequest = (props) =>{
         }
 
     const displayImageOrUploadOption = () =>{
-        debugger
+       
         if(!!props.project.attributes.tattoo_request.mockupImageLocation){
             return <img className="image-preview" onClick={toggleMockupPreview} src={props.project.attributes.tattoo_request.mockupImageLocation} alt="Mockup Tattoo Image" />
         }else{

@@ -3,6 +3,7 @@ import S3FileUpload from 'react-s3'
 import axios from 'axios'
 import Refresh from '../Utilites/Refresh'
 import URL from '../Utilites/Url'
+// import checkMark from "./public/Check_128x128.png"
 
 const ProjectUser = (props) =>{
 
@@ -80,7 +81,7 @@ const ProjectUser = (props) =>{
             <div>Phone: {props.project.attributes.user.phone_number}</div>
             <div>Allergies: {props.project.attributes.user.allergies}</div>
             <div className='proof-of-age'>
-                Proof Of Age: 
+                Proof Of Age: {showUpload ? <img height={"20px"} width={"20px"} src={'https://danger-pop-studio.s3.amazonaws.com/logos/Check_128x128.png'} alt='green check mark'/> : null}
                 <div>{displayIdOrUpload()}</div>
             </div>
         </div> 

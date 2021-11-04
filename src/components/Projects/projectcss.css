@@ -159,10 +159,27 @@ input[type="file"] {
     margin-top: 10px;
     align-items: center;
 }
+
+.proj-imag-upload{
+    position: relative;
+    top: 30px;
+
+    background-color: #333;
+    border: none;
+    color: white;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 20px;
+    margin-top: 10px;
+    align-items: center;
+}
 /* .date-form{
     margin-left:  100px;
 } */
-
+#final-images{
+    position: relative;
+    top: 50px;
+}
 #save-button{
     border: 1px solid grey;
     width: 100px;
