@@ -13,7 +13,6 @@ const ProjectModule = (props) =>{
     const [showPreview, setShowPreview] = useState(true)
 
     const imageDisplayClass = () =>{
-       
         return showPreview ? "project-image-preview" : "project-image-full"
     }
 
@@ -86,7 +85,7 @@ const ProjectModule = (props) =>{
     return(
         <div>
             <div className='proj-mod'>
-                <div>{moduleType()}:</div><br></br>
+                <div className='proj-mod-name'>{moduleType()}:</div><br></br>
                 {modulePicker()}
             </div> 
         </div>

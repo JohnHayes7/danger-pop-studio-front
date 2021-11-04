@@ -67,7 +67,7 @@ const AdminProjectTattooRequest = (props) =>{
     const displayImageOrUploadOption = () =>{
        
         if(!!props.project.attributes.tattoo_request.mockupImageLocation){
-            return <img className="image-preview" onClick={toggleMockupPreview} src={props.project.attributes.tattoo_request.mockupImageLocation} alt="Mockup Tattoo Image" />
+            return <img className={props.imageDisplayClass()} onClick={toggleMockupPreview} src={props.project.attributes.tattoo_request.mockupImageLocation} alt="Mockup Tattoo Image" />
         }else{
             return props.user.administrator === true ? <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/> : null
         }
@@ -80,18 +80,24 @@ const AdminProjectTattooRequest = (props) =>{
     return(
         <div>
             <div>Request ID: {props.project.attributes.tattoo_request.id}</div>
-            <div> Location on Body:</div>
-            <div>
-               <img className={props.imageDisplayClass()} onClick={toggleBodyPreview} src={props.project.attributes.tattoo_request.body_location_image_path} alt="body image location" />
-                {!showBodyPreview ? <FullScreen type="image" toggle={toggleBodyPreview} imageSource={props.project.attributes.tattoo_request.body_location_image_path}/> : null}
+                <div id="request-images">
+                    <div className='request-image-box'>
+                        <div> Body Location:</div>
+                        <img className={props.imageDisplayClass()} onClick={toggleBodyPreview} src={props.project.attributes.tattoo_request.body_location_image_path} alt="body image location" />
+                    </div>
+                    
+                    <div className='request-image-box'>
+                        <div> Mockup:</div>
+                        {/* <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br> */}
+                        {displayImageOrUploadOption()}
+                    </div>
+                    
+                    <div> 
+                    {showUpload  ? <button onClick={uploadMockup}>Upload Mockup Image</button> : null}
+                </div>
             </div>
-            <div> Mockup Image:</div>
-            {/* <input id="progress-images" className="input" type="file" name="file" onChange={e => fileChange(e)}/><br></br> */}
-                {!showMockupPreview ? <FullScreen type="image" toggle={toggleBodyPreview} imageSource={props.project.attributes.tattoo_request.mockupImageLocation}/> : null}
-                {displayImageOrUploadOption()}
-            <div> 
-               {showUpload  ? <button onClick={uploadMockup}>Upload Mockup Image</button> : null}
-            </div>
+            {!showBodyPreview ? <FullScreen type="image" toggle={toggleBodyPreview} imageSource={props.project.attributes.tattoo_request.body_location_image_path}/> : null}
+            {!showMockupPreview ? <FullScreen type="image" toggle={toggleBodyPreview} imageSource={props.project.attributes.tattoo_request.mockupImageLocation}/> : null}
         </div>
     )
 }
