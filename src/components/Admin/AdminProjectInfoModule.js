@@ -84,11 +84,21 @@ const AdminProjectInfoModule = (props) =>{
         updateProjectInDb(cat, e.target.textContent)   
     }
 
+    const totalsDisplay = () => {
+        return(
+            <div id='total-display'>
+                $100<button className="edit-proj-total">Edit</button>
+            </div>
+        )
+    }
+    
+
     return(
         <div className='left-align'>
+            <div className='left-item'>Total: <div className='right-inputs'>{totalsDisplay()}</div></div> 
             <div className='left-item'>Deposit Received? <div className="right-inputs">{depositToggleButton()}</div></div>
             <div className='left-item'>Project Complete? <div className="right-inputs">{completedToggleButton()}</div></div>
-            <div className='left-item'>Total:</div>
+           
             <div className='left-item'>Materials Used:</div>
         </div>
     )
