@@ -20,6 +20,7 @@ const  Field = props => {
             case 'time': return props.time
             case 'token': return props.resetToken
             case 'tr-request-decline': return props.declineText;
+            case 'price' : return props.totalAdjustment
         }
     }
 
@@ -39,6 +40,7 @@ const  Field = props => {
             case 'time': return 'date-field'
             case 'token': return 'input-field'
             case 'tr-request-decline': return 'explanation-field';
+            case 'price' : return 'price-field'
         }
     }
 
@@ -65,6 +67,14 @@ const  Field = props => {
                     </div>
                     <div className='input-box'>
                         <input className={classType()} autoFocus={true}  placeholder={props.placeholder} type={'password'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
+                    </div>
+                </div>
+            )
+        }else if(classType === 'price-field'){
+            return(
+                <div>
+                    <div className='price-box'>
+                        <input className={classType()} autoFocus={true}  type={'price'} value={inputType()} onChange={props.changeHandler} placeholder={props.placeholder}/>
                     </div>
                 </div>
             )

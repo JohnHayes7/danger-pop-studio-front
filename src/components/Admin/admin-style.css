@@ -81,6 +81,18 @@
     font-size: .8em;
 }
 
+.totals-edit-form{
+    padding: 3%;
+    display: flex;
+    border: 1px solid #333;
+    height: 50px;
+    width: 80%;
+}
+
+.totals-edit-form img{
+    margin-left: 5%;
+}
+
 @media(max-width: 380px){
     .admin-options{
         border: none;

@@ -26,6 +26,7 @@
     margin-bottom: 15px;
     height: 300px;  
     overflow: scroll;
+    border-radius:  10% 10%;
     /* color: #333; */
 
 }
@@ -38,6 +39,7 @@
 .proj-mod:hover{
     border: 1px solid white;
     color: white;
+    
 }
 
 .proj-info{
@@ -224,9 +226,9 @@ input[type="file"] {
 
     .proj-mod{
         /* position: relative; */
-        border: 1px solid white;
+        border: 1px solid rgba(235, 235, 235, .4);
         width: 90%;
-        margin-left: 18px;
+        margin-left: 16px;
         margin-bottom: 15px;
         height: 300px;  
         overflow: scroll;

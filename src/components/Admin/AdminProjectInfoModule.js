@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import URL from '../Utilites/Url'
+import Field from '../InputFields/Field'
 
 const AdminProjectInfoModule = (props) =>{
 
     const[projectComplete, setProjectComplete] = useState(false)
     const[depositReceived, setDepositReceived] = useState(false)
-    // const URL = "https://danger-pop-api.herokuapp.com"
+    const[showTotalsEditForm, setShowTotalsEditForm] = useState(false)
+    const[totalAdjustment, setTotalAdjustment] = useState(0)
+   
 
     useEffect(() => {
         props.project.attributes.project_complete_status === true ? setProjectComplete(true) : setProjectComplete(false)
@@ -84,18 +87,54 @@ const AdminProjectInfoModule = (props) =>{
         updateProjectInDb(cat, e.target.textContent)   
     }
 
+    const editProjectTitleForm = () => {
+        return (
+            <form>
+                {/* <Field id="title" newProjectTitle={newProjectTitle} changeHandler={e => titleInput(e)} placeholder={project.attributes.title} />
+                <button className="edit-proj-title" onClick={e => updateTitle(e)}>Save</button>
+                <button className="edit-proj-title" onClick={toggleTitleForm}>Cancel</button> */}
+            </form>
+        )
+    }
+
     const totalsDisplay = () => {
+        debugger
         return(
             <div id='total-display'>
-                $100<button className="edit-proj-total">Edit</button>
+                {!!props.project.attributes.price ? props.project.attributes.price : "Update Project Total"}<button onClick={toggleTotalEditForm} className="edit-proj-total">Edit</button>
             </div>
         )
     }
+
+    const toggleTotalEditForm = () => setShowTotalsEditForm(!showTotalsEditForm)
+    
+    const totalsEditForm = () => {
+       return(
+            <div className='totals-edit-form'>
+                <Field id="price"  totalAdjustment={totalAdjustment} changeHandler={e => adjustmentInput(e)} placeholder="Adjust price"/> 
+                <img onClick={ e=> plusMinusClick(e)} data-id={'plus'} classname='plus-minus' src='https://danger-pop-studio.s3.amazonaws.com/projects/plussign.png' alt='plus sign' />
+                <img onClick={e=> plusMinusClick(e)} data-id={'minus'} classname='plus-minus' src='https://danger-pop-studio.s3.amazonaws.com/projects/MinusSign.png' alt='plus sign' />
+            </div>
+       )
+    }
+
+    const adjustmentInput = (e) => setTotalAdjustment(e.target.value)
+
+    const plusMinusClick = (e) => {
+        return(
+           <div>clicked</div>
+            )
+    }
+
+    
+
+
     
 
     return(
         <div className='left-align'>
             <div className='left-item'>Total: <div className='right-inputs'>{totalsDisplay()}</div></div> 
+            {showTotalsEditForm ? totalsEditForm() : null}
             <div className='left-item'>Deposit Received? <div className="right-inputs">{depositToggleButton()}</div></div>
             <div className='left-item'>Project Complete? <div className="right-inputs">{completedToggleButton()}</div></div>
            
