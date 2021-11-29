@@ -10,7 +10,8 @@ const AdminProjectInfoModule = (props) =>{
     const[showTotalsEditForm, setShowTotalsEditForm] = useState(false)
     const[showPriceChangeConfirmation, setShowPriceChangeConfirmation] = useState(false)
     const[totalAdjustment, setTotalAdjustment] = useState(0)
-    // const[price, setPrice] = useState(null)
+    const[operator, setOperator] = useState(null)
+    const[updatedPrice, setUpdatedPrice] = useState(0)
    
 
     useEffect(() => {
@@ -123,33 +124,40 @@ const AdminProjectInfoModule = (props) =>{
     const adjustmentInput = (e) => setTotalAdjustment(e.target.value)
 
     const plusMinusClick = (e) => {
-        const operator = e.target.dataset.id
-        debugger
+        setOperator(e.target.dataset.id)
+        // debugger
         if(operator === 'plus'){
-            debugger
-           const updatedPrice = parseInt(totalAdjustment) + props.project.attributes.price
-           toggleTotalEditForm()
-           toggleConfirmPriceChange()
-           confirmPriceChange(operator, updatedPrice)
-        }else{
-            debugger
-           const updatedPrice = props.project.attributes.price - parseInt(totalAdjustment)
-           toggleTotalEditForm()
-           toggleConfirmPriceChange()
-           confirmPriceChange(operator, updatedPrice)
+            // debugger
+            const newPrice = parseInt(totalAdjustment) + props.project.attributes.price
+            setUpdatedPrice(newPrice)
+            toggleTotalEditForm()
+            setShowPriceChangeConfirmation(true)
+            confirmPriceChange()
+           
+        }else if(operator === 'minus'){
+            // debugger
+            const newPrice = props.project.attributes.price - parseInt(totalAdjustment)
+            if(newPrice < 0){
+                alert('Your new total is a negative number please ensure you meant to subtract and not add this number')
+            }else{
+                setUpdatedPrice(newPrice) 
+                toggleTotalEditForm()
+                setShowPriceChangeConfirmation(true)
+                confirmPriceChange()
+            }
+           
         }
+        
+
     }
 
-    const toggleConfirmPriceChange = () => setShowPriceChangeConfirmation(!showPriceChangeConfirmation)
+    // const toggleConfirmPriceChange = () => setShowPriceChangeConfirmation(!showPriceChangeConfirmation)
 
-    const confirmPriceChange = (operator, updatedPrice) =>{
-        debugger
-        return(
-            <div>
-                Are you sure you want to {operator === 'plus' ? 'add'  : 'subtract'} ${totalAdjustment} {operator === 'plus' ? 'to' : 'from'} the project?<br></br>
-                New Total will be ${updatedPrice} 
-            </div>
-        )
+    const confirmPriceChange = () =>{
+        const addResponse = `Are you sure you want to add $${totalAdjustment} to the project.  The new total will be $${updatedPrice}`
+        const subResponse = `Are you sure you want to subtract $${totalAdjustment} from the project.  The new total will be $${updatedPrice}`
+        return <div className='confirm-price'>{operator === 'plus' ? addResponse: subResponse}</div>
+    
     }
 
     
