@@ -8,7 +8,9 @@ const AdminProjectInfoModule = (props) =>{
     const[projectComplete, setProjectComplete] = useState(false)
     const[depositReceived, setDepositReceived] = useState(false)
     const[showTotalsEditForm, setShowTotalsEditForm] = useState(false)
+    const[showPriceChangeConfirmation, setShowPriceChangeConfirmation] = useState(false)
     const[totalAdjustment, setTotalAdjustment] = useState(0)
+    // const[price, setPrice] = useState(null)
    
 
     useEffect(() => {
@@ -98,7 +100,7 @@ const AdminProjectInfoModule = (props) =>{
     }
 
     const totalsDisplay = () => {
-        debugger
+        // debugger
         return(
             <div id='total-display'>
                 {!!props.project.attributes.price ? props.project.attributes.price : "Update Project Total"}<button onClick={toggleTotalEditForm} className="edit-proj-total">Edit</button>
@@ -121,10 +123,36 @@ const AdminProjectInfoModule = (props) =>{
     const adjustmentInput = (e) => setTotalAdjustment(e.target.value)
 
     const plusMinusClick = (e) => {
-        return(
-           <div>clicked</div>
-            )
+        const operator = e.target.dataset.id
+        debugger
+        if(operator === 'plus'){
+            debugger
+           const updatedPrice = parseInt(totalAdjustment) + props.project.attributes.price
+           toggleTotalEditForm()
+           toggleConfirmPriceChange()
+           confirmPriceChange(operator, updatedPrice)
+        }else{
+            debugger
+           const updatedPrice = props.project.attributes.price - parseInt(totalAdjustment)
+           toggleTotalEditForm()
+           toggleConfirmPriceChange()
+           confirmPriceChange(operator, updatedPrice)
+        }
     }
+
+    const toggleConfirmPriceChange = () => setShowPriceChangeConfirmation(!showPriceChangeConfirmation)
+
+    const confirmPriceChange = (operator, updatedPrice) =>{
+        debugger
+        return(
+            <div>
+                Are you sure you want to {operator === 'plus' ? 'add'  : 'subtract'} ${totalAdjustment} {operator === 'plus' ? 'to' : 'from'} the project?<br></br>
+                New Total will be ${updatedPrice} 
+            </div>
+        )
+    }
+
+    
 
     
 
@@ -135,6 +163,7 @@ const AdminProjectInfoModule = (props) =>{
         <div className='left-align'>
             <div className='left-item'>Total: <div className='right-inputs'>{totalsDisplay()}</div></div> 
             {showTotalsEditForm ? totalsEditForm() : null}
+            {showPriceChangeConfirmation ? confirmPriceChange() : null}
             <div className='left-item'>Deposit Received? <div className="right-inputs">{depositToggleButton()}</div></div>
             <div className='left-item'>Project Complete? <div className="right-inputs">{completedToggleButton()}</div></div>
            
