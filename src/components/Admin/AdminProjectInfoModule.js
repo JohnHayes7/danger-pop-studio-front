@@ -12,6 +12,7 @@ const AdminProjectInfoModule = (props) =>{
     const[showEditPriceButton, setShowEditPriceButton] = useState(true)
     const[totalAdjustment, setTotalAdjustment] = useState(0)
     const[operator, setOperator] = useState(null)
+    const[refreshKey, setRefreshKey] = useState(0)
     const[updatedPrice, setUpdatedPrice] = useState(0)
    
 
@@ -105,7 +106,7 @@ const AdminProjectInfoModule = (props) =>{
         // debugger
         return(
             <div id='total-display'>
-                {!!props.project.attributes.price ? props.project.attributes.price : "Update Project Total"}
+                {!!props.project.attributes.price ? `$${props.project.attributes.price}` : "Please Input Project Price"}
                 {showEditPriceButton ? <button onClick={toggleTotalEditForm} className="edit-proj-total">Edit</button> : null}
             </div>
         )
@@ -172,13 +173,26 @@ const AdminProjectInfoModule = (props) =>{
     }
 
     const postPriceToDb = () => {
-        alert({updatedPrice})
+        const projectData = {}
+        projectData["project_id"] = props.project.id
+        projectData["updated_price"] = updatedPrice
+
+        // debugger
+        axios({method: 'patch', url: `${URL}/projects/${props.project.id}`, data: projectData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
+            refreshComponent()
+          }).catch( err => {  
+            console.log(err)
+          })
     }
 
     const resetPriceForm = () => {
         setShowEditPriceButton(true)
         setShowTotalsEditForm(false)
         setShowPriceChangeConfirmation(false)
+    }
+
+    const refreshComponent = () =>{
+       return window.location.reload(false)
     }
 
     
@@ -189,7 +203,7 @@ const AdminProjectInfoModule = (props) =>{
     
 
     return(
-        <div className='left-align'>
+        <div  className='left-align'>
             <div className='left-item'>Total: <div className='right-inputs'>{totalsDisplay()}</div></div> 
             {showTotalsEditForm ? totalsEditForm() : null}
             {showPriceChangeConfirmation ? confirmPriceChange() : null}
