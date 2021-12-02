@@ -9,6 +9,7 @@ const AdminProjectInfoModule = (props) =>{
     const[depositReceived, setDepositReceived] = useState(false)
     const[showTotalsEditForm, setShowTotalsEditForm] = useState(false)
     const[showPriceChangeConfirmation, setShowPriceChangeConfirmation] = useState(false)
+    const[showEditPriceButton, setShowEditPriceButton] = useState(true)
     const[totalAdjustment, setTotalAdjustment] = useState(0)
     const[operator, setOperator] = useState(null)
     const[updatedPrice, setUpdatedPrice] = useState(0)
@@ -104,13 +105,17 @@ const AdminProjectInfoModule = (props) =>{
         // debugger
         return(
             <div id='total-display'>
-                {!!props.project.attributes.price ? props.project.attributes.price : "Update Project Total"}<button onClick={toggleTotalEditForm} className="edit-proj-total">Edit</button>
+                {!!props.project.attributes.price ? props.project.attributes.price : "Update Project Total"}
+                {showEditPriceButton ? <button onClick={toggleTotalEditForm} className="edit-proj-total">Edit</button> : null}
             </div>
         )
     }
 
-    const toggleTotalEditForm = () => setShowTotalsEditForm(!showTotalsEditForm)
-    
+    const toggleTotalEditForm = () => {
+        
+        setShowTotalsEditForm(!showTotalsEditForm)
+        setShowEditPriceButton(false)
+    }
     const totalsEditForm = () => {
        return(
             <div className='totals-edit-form'>
@@ -156,8 +161,24 @@ const AdminProjectInfoModule = (props) =>{
     const confirmPriceChange = () =>{
         const addResponse = `Are you sure you want to add $${totalAdjustment} to the project.  The new total will be $${updatedPrice}`
         const subResponse = `Are you sure you want to subtract $${totalAdjustment} from the project.  The new total will be $${updatedPrice}`
-        return <div className='confirm-price'>{operator === 'plus' ? addResponse: subResponse}</div>
+        return (
+                    <div className='confirm-price'>
+                        {operator === 'plus' ? addResponse : subResponse}
+                        <button onClick={postPriceToDb} className="edit-proj-total">Save</button>
+                        <button onClick={resetPriceForm} className="edit-proj-total">Cancel</button>
+                    </div>
+                )
     
+    }
+
+    const postPriceToDb = () => {
+        alert({updatedPrice})
+    }
+
+    const resetPriceForm = () => {
+        setShowEditPriceButton(true)
+        setShowTotalsEditForm(false)
+        setShowPriceChangeConfirmation(false)
     }
 
     
