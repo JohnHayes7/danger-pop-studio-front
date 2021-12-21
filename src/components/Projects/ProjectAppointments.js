@@ -3,6 +3,7 @@ import axios from 'axios'
 import Field from '../InputFields/Field'
 import Refresh from '../Utilites/Refresh'
 import URL from '../Utilites/Url'
+import {lengthOptions, hours, months, twentyEightDays, thirtyDays, thirtyOneDays, currentYear} from '../Utilites/DateTime'
 
 
 const ProjectAppointments = (props) =>{
@@ -63,17 +64,17 @@ const ProjectAppointments = (props) =>{
 
     const monthInput = (e) =>{
         e.preventDefault()
-        return e.target.value.length <= 2 ? setMonth(e.target.value) : null
+        return setMonth(e.target.value)
     }
     
     const dayInput = (e) =>{
         e.preventDefault()
-        return e.target.value.length <3 ? setDay(e.target.value) : null
+        return setDay(e.target.value)
     }
 
     const yearInput = (e) =>{
         e.preventDefault()
-        return e.target.value.length <=4 ? setYear(e.target.value) : null
+        return  setYear(e.target.value)
     }
 
     const timeInput = (e) =>{
@@ -94,22 +95,42 @@ const ProjectAppointments = (props) =>{
         return dayparts.map(dp => <option value={dp}>{dp}</option>)
     }
 
+    // const lengthOptions = ["30 Mins", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours", "7 Hours", "8 Hours"]
 
+    const days = () =>{
+        if(month === "February"){
+            return twentyEightDays
+        }else{
+            return thirtyOneDays
+        }
+    }
     const newApptForm = () => {
         if(showApptForm){
             return(
                 <div>
                     <form className='date-form'>
                         <div className="date-time">
-                            <Field id="month" placeholder="MM" month={month} changeHandler={e => monthInput(e)}/>
-                            <Field id="day" placeholder="DD" day={day} changeHandler={e => dayInput(e)}/>
-                            <Field id="year" placeholder="YYYY" year={year} changeHandler={e => yearInput(e)}/>
-                            <Field id="time" placeholder="hh:mm" time={time} changeHandler={e => timeInput(e)}/>
+                            {/* <Field id="month" placeholder="MM" month={month} changeHandler={e => monthInput(e)}/> */}
+                            <select id="month" onChange={e=>monthInput(e)}>
+                                {months.map(m => <option value={m}>{m}</option>)}
+                            </select>
+                            {/* <Field id="day" placeholder="DD" day={day} changeHandler={e => dayInput(e)}/> */}
+                            
+                            <select id="day" onChange={e=>dayInput(e)}>
+                                {month === "February" ? twentyEightDays.map(d => <option value={d}>{d}</option>) : thirtyDays.map(d => <option value={d}>{d}</option>) }
+                            </select>
+                            <Field id="year" placeholder={currentYear} year={year} changeHandler={e => yearInput(e)}/>
+                            {/* <Field id="time" placeholder="hh:mm" time={time} changeHandler={e => timeInput(e)}/> */}
+                            <select id="time" onChange={e=>timeInput(e)}>
+                                {hours.map(h => <option value={h}>{h}</option>) }
+                            </select>
+
                             <select className="daypart-duration" onChange={e=> daypartSelector(e)}>
                                 {parseDayParts()}
                             </select>
                             <select className="daypart-duration" onChange={e => durationSelector(e)}>
-                                <option value="30">30 Mins</option>
+                                {lengthOptions.map(opt => <option value={opt}>{opt}</option>)}
+                                {/* <option value="30">30 Mins</option>
                                 <option value="1 Hour">1 Hour</option>
                                 <option value="2 Hours">2 Hours</option>
                                 <option value="3 Hours">3 Hours</option>
@@ -117,7 +138,7 @@ const ProjectAppointments = (props) =>{
                                 <option value="5 Hours">5 Hours</option>
                                 <option value="6 Hours">6 Hours</option>
                                 <option value="7 Hours">7 Hours</option>
-                                <option value="8 Hours">8 Hours</option>
+                                <option value="8 Hours">8 Hours</option> */}
                             </select>
                             <submit id='save-button' onClick={e => submitForm(e)}>Save</submit>
                         </div>
@@ -239,7 +260,6 @@ const ProjectAppointments = (props) =>{
             return <div><button className="add-new-btn" onClick={toggleForm}>Add New Appointment</button></div>
         }       
     }
-
     return(
         <div>
             {parseAppointments()}
