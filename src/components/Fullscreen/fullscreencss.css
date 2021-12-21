@@ -74,7 +74,8 @@
 .project-image{
     border: 1px solid grey;
     height: 300px;
-    width: 33%;
+    width: 25%;
+    margin-left: 1%;
     /* font-weight: 500; */
     font-size: 1.5em;
 
@@ -223,4 +224,53 @@
     font-weight: 500;
     background-color: black;
     color: white;
+}
+
+@media(max-width: 380px){
+    .full-screen{
+        border: 1px solid grey;
+        z-index: 5;
+        position: absolute;
+        left: 1%;
+        top: 50px;
+        height: 200vh;
+        width: 98vw;
+        background-color: rgba(255, 255, 255, .95);
+        color: black;
+        text-align: left;
+        font-weight: 200;
+    }
+
+    .fs-top-title{
+        border: 1px solid grey;
+        width: 34%;
+        padding-left: .5%;
+        /* font-weight: 100; */
+        font-size: 1em;
+        overflow: scroll;
+        /* margin-left: .5%; */
+    }
+
+    .fs-top{
+        display: flex;
+        height: 250px;
+    }
+
+    .project-image{
+        border: 1px solid grey;
+        height: 300px;
+        width: 95%;
+        margin-left: 1%;
+        /* font-weight: 500; */
+        font-size: 1.5em;
+    
+    }
+
+    .fs-bottom-mock-loc-img{
+        display: block;
+        /* height: 100vh; */
+        /* padding-left: 1%; */
+    }
+
+    
 }

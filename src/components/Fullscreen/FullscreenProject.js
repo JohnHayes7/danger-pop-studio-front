@@ -2,9 +2,12 @@ import React from 'react'
 import ProjectAppointments from '../Projects/ProjectAppointments'
 
 const FullscreenProject = (props) =>{
+    debugger
     const parseProgressImages = () =>{
         return props.project.attributes.progress_images.map(img => <img className='progress-image' src={img} alt="tattoo-progress image" />)
     }
+
+    const parseFinalImages = () =>  props.project.attributes.final_images.map(img => <img className='progress-image' src={img} alt='final-project-image' />)
 
     // 
     return(
@@ -26,16 +29,18 @@ const FullscreenProject = (props) =>{
                 <div id='prev' onClick={props.previous}>PREV</div><br></br>
                 <div id='next' onClick={props.next}>NEXT</div>
             </div>
-            <div className='fs-bottom'>
-            <h1>Images:</h1>
+            {/* <div className='fs-bottom'> */}
+                <h1>Images:</h1>
                 <div className='fs-bottom-mock-loc-img'>
                     <div className='project-image'> 
                         Mockup Image: <div><img className='mock-loc-image' src={props.project.attributes.tattoo_request.mockupImageLocation} alt='mockup'/></div>
                     </div>
                     <div className='project-image'> Location Image:<div><img className='mock-loc-image' src={props.project.attributes.tattoo_request.body_location_image_path} alt='body-location'/></div></div>
                     <div className='project-image'>Progress Images: <div>{parseProgressImages()}</div></div>
+                    <div className='project-image'>Final Images: <div>{parseFinalImages()}</div></div>
+
                     {/* <div> Mockup Image:</div> */}
-                </div>
+                {/* </div> */}
                 {/* <div>
                    
                 </div> */}

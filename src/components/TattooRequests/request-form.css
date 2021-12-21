@@ -27,7 +27,9 @@
 .tr-admin-options{
     border: 1px solid white;
     position: relative;
-    background-color: red;
+    margin: auto;
+    width: 30vw;
+    background-color: #333;
     height: 100px;
     /* font-weight: 500; */
     
@@ -121,6 +123,17 @@
         font-size: 2em;
         letter-spacing: .2ch;
         font-weight: 500;   
+    }
+
+    .tr-admin-options{
+        border: 1px solid white;
+        position: relative;
+        margin: auto;
+        width: 90vw;
+        background-color: #333;
+        height: 100px;
+        /* font-weight: 500; */
+        
     }
 
     
