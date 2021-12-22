@@ -100,36 +100,35 @@ const ProjectAppointments = (props) =>{
         return dayparts.map(dp => <option value={dp}>{dp}</option>)
     }
 
-    // const lengthOptions = ["30 Mins", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours", "7 Hours", "8 Hours"]
-
     const days = () =>{
         if(month === "February"){
-            return twentyEightDays
+            return twentyEightDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>)
+        }else if(month === "September" || month === "April" || month === "June" || month === "November"){
+            return thirtyDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>)
         }else{
-            return thirtyOneDays
+            return thirtyOneDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>)
         }
     }
+
     const newApptForm = () => {
-        console.log(currentMonthDay.date)
         if(showApptForm){
             return(
                 <div>
                     <form className='date-form'>
-                        <div className="date-time">
-                            {/* <Field id="month" placeholder="MM" month={month} changeHandler={e => monthInput(e)}/> */}
+                        <div className="date">
                             <select id="month" onChange={e=>monthInput(e)}>
                                 {months.map(m => <option selected={currentMonthDay.month} value={m}>{m}</option>)}
                             </select>
-                            {/* <Field id="day" placeholder="DD" day={day} changeHandler={e => dayInput(e)}/> */}
                             
                             <select id="day" onChange={e=>dayInput(e)}>
-                                {month === "February" ? twentyEightDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>) : thirtyDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>) }
+                                {days()}
                             </select>
-                            {/* <Field id="year" placeholder={currentYear} year={year} changeHandler={e => yearInput(e)}/> */}
+                            
                             <select id="year" onChange={e=>yearInput(e)}>
                                 {years().map(y => <option value={y}>{y}</option>)}
                             </select>
-                            {/* <Field id="time" placeholder="hh:mm" time={time} changeHandler={e => timeInput(e)}/> */}
+                        </div>
+                        <div className='time'>
                             <select id="time" onChange={e=>timeInput(e)}>
                                 {hours.map(h => <option value={h}>{h}</option>) }
                             </select>
@@ -137,20 +136,13 @@ const ProjectAppointments = (props) =>{
                             <select className="daypart-duration" onChange={e=> daypartSelector(e)}>
                                 {parseDayParts()}
                             </select>
+
                             <select className="daypart-duration" onChange={e => durationSelector(e)}>
                                 {lengthOptions.map(opt => <option value={opt}>{opt}</option>)}
-                                {/* <option value="30">30 Mins</option>
-                                <option value="1 Hour">1 Hour</option>
-                                <option value="2 Hours">2 Hours</option>
-                                <option value="3 Hours">3 Hours</option>
-                                <option value="4 Hours">4 Hours</option>
-                                <option value="5 Hours">5 Hours</option>
-                                <option value="6 Hours">6 Hours</option>
-                                <option value="7 Hours">7 Hours</option>
-                                <option value="8 Hours">8 Hours</option> */}
                             </select>
                             <submit id='save-button' onClick={e => submitForm(e)}>Save</submit>
                         </div>
+                        
                     </form>
                 </div>
             )

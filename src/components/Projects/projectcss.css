@@ -89,11 +89,26 @@
     width: 50px;
 }
 
-.date-time{
+.date-form{
+    display: flex;
+}
+
+.date{
     display: flex;
     font-size: 1.3em;
     padding: 1%;
     
+}
+
+.time{
+    display: flex;
+    font-size: 1.3em;
+    padding: 1%;
+}
+
+select{
+    border-radius: 15%;
+    margin-left: 10px;
 }
 
 .date-time select{
@@ -207,13 +222,15 @@ input[type="file"] {
     border: 1px solid grey;
     width: 100px;
     text-align: center;
-    padding-top: 2%;
+    /* padding-top: 0%; */
     margin-left: 2%;
     /* padding: auto; */
 }
 #save-button:hover{
     background-color:rgba(17, 83, 34, 0.664);
 }
+
+
 
 @media(max-width: 380px){
     .project-modules{
@@ -233,5 +250,10 @@ input[type="file"] {
         height: 300px;  
         overflow: scroll;
     
+    }
+
+    .date-form{
+        display: block;
+        margin-left: -15px;
     }
 }

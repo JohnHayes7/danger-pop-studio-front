@@ -61,6 +61,7 @@ const RightNav = ({ open }) => {
 
   const [loggedIn, setLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [showArtists, setShowArtists] = useState(false)
 
   const history = useHistory()
@@ -76,6 +77,7 @@ const RightNav = ({ open }) => {
         })
         .then(resp => resp.json())
         .then(data => {
+          // debugger
           setLoggedIn(data.logged_in)
         })
     }else{
@@ -92,6 +94,8 @@ const inOrOut = () => {
     }
   )
 }
+
+
 
   const menuItemsAry = [
     {
