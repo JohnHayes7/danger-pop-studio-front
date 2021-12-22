@@ -6,7 +6,19 @@ export const twentyEightDays = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10
 export const thirtyDays = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"]
 export const thirtyOneDays = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
 
-export const currentYear = new Date().getFullYear
+export const currentYear = new Date().getFullYear()
+
 export const years = () => {
+    let selectableYears = []
+    for(var i = 0; i < 6; i++){
+       selectableYears.push(currentYear + i) 
+    }
+    return selectableYears
+}
+
+export const currentMonthDay = {
+    month: months[new Date().getMonth()],
+    date: new Date().getDate().toString()
+
 
 }

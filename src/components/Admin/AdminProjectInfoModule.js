@@ -103,7 +103,6 @@ const AdminProjectInfoModule = (props) =>{
     }
 
     const totalsDisplay = () => {
-        // debugger
         return(
             <div id='total-display'>
                 {!!props.project.attributes.price ? `$${props.project.attributes.price}` : "Please Input Project Price"}
@@ -131,9 +130,8 @@ const AdminProjectInfoModule = (props) =>{
 
     const plusMinusClick = (e) => {
         setOperator(e.target.dataset.id)
-        // debugger
+      
         if(operator === 'plus'){
-            // debugger
             const newPrice = parseInt(totalAdjustment) + props.project.attributes.price
             setUpdatedPrice(newPrice)
             toggleTotalEditForm()
@@ -141,7 +139,6 @@ const AdminProjectInfoModule = (props) =>{
             confirmPriceChange()
            
         }else if(operator === 'minus'){
-            // debugger
             const newPrice = props.project.attributes.price - parseInt(totalAdjustment)
             if(newPrice < 0){
                 alert('Your new total is a negative number please ensure you meant to subtract and not add this number')
@@ -177,7 +174,7 @@ const AdminProjectInfoModule = (props) =>{
         projectData["project_id"] = props.project.id
         projectData["updated_price"] = updatedPrice
 
-        // debugger
+       
         axios({method: 'patch', url: `${URL}/projects/${props.project.id}`, data: projectData,   headers: {'Content-Type': 'application/json'}}).then(resp => {
             refreshComponent()
           }).catch( err => {  

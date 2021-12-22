@@ -3,7 +3,7 @@ import axios from 'axios'
 import Field from '../InputFields/Field'
 import Refresh from '../Utilites/Refresh'
 import URL from '../Utilites/Url'
-import {lengthOptions, hours, months, twentyEightDays, thirtyDays, thirtyOneDays, currentYear} from '../Utilites/DateTime'
+import {lengthOptions, hours, months, twentyEightDays, thirtyDays, thirtyOneDays, years, currentMonthDay, currentYear} from '../Utilites/DateTime'
 
 
 const ProjectAppointments = (props) =>{
@@ -13,13 +13,17 @@ const ProjectAppointments = (props) =>{
     let API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
     let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
     let SCOPES = "https://www.googleapis.com/auth/calendar.events";
-    
+
+    let  defaultMonthIndex = months.indexOf(currentMonthDay.month)
+    let  numbericMonth = defaultMonthIndex + 1
+    let  stringNumericMonth = numbericMonth.toString()
+    debugger
     const [admin, setAdmin] = useState(false)
     const [showApptForm, setShowApptForm] = useState(false)
     const [showButton, setShowButton] = useState(true)
-    const [month, setMonth] = useState('')
-    const [day, setDay] = useState('')
-    const [year, setYear] = useState('')
+    const [month, setMonth] = useState(stringNumericMonth)
+    const [day, setDay] = useState(currentMonthDay.date)
+    const [year, setYear] = useState(currentYear)
     const [time, setTime] = useState('')
     const [duration, setDuration] = useState('')
     const [daypart, setDaypart] = useState("PM")
@@ -63,6 +67,7 @@ const ProjectAppointments = (props) =>{
     }
 
     const monthInput = (e) =>{
+        debugger
         e.preventDefault()
         return setMonth(e.target.value)
     }
@@ -105,6 +110,7 @@ const ProjectAppointments = (props) =>{
         }
     }
     const newApptForm = () => {
+        console.log(currentMonthDay.date)
         if(showApptForm){
             return(
                 <div>
@@ -112,14 +118,17 @@ const ProjectAppointments = (props) =>{
                         <div className="date-time">
                             {/* <Field id="month" placeholder="MM" month={month} changeHandler={e => monthInput(e)}/> */}
                             <select id="month" onChange={e=>monthInput(e)}>
-                                {months.map(m => <option value={m}>{m}</option>)}
+                                {months.map(m => <option selected={currentMonthDay.month} value={m}>{m}</option>)}
                             </select>
                             {/* <Field id="day" placeholder="DD" day={day} changeHandler={e => dayInput(e)}/> */}
                             
                             <select id="day" onChange={e=>dayInput(e)}>
-                                {month === "February" ? twentyEightDays.map(d => <option value={d}>{d}</option>) : thirtyDays.map(d => <option value={d}>{d}</option>) }
+                                {month === "February" ? twentyEightDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>) : thirtyDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>) }
                             </select>
-                            <Field id="year" placeholder={currentYear} year={year} changeHandler={e => yearInput(e)}/>
+                            {/* <Field id="year" placeholder={currentYear} year={year} changeHandler={e => yearInput(e)}/> */}
+                            <select id="year" onChange={e=>yearInput(e)}>
+                                {years().map(y => <option value={y}>{y}</option>)}
+                            </select>
                             {/* <Field id="time" placeholder="hh:mm" time={time} changeHandler={e => timeInput(e)}/> */}
                             <select id="time" onChange={e=>timeInput(e)}>
                                 {hours.map(h => <option value={h}>{h}</option>) }
@@ -260,6 +269,7 @@ const ProjectAppointments = (props) =>{
             return <div><button className="add-new-btn" onClick={toggleForm}>Add New Appointment</button></div>
         }       
     }
+
     return(
         <div>
             {parseAppointments()}

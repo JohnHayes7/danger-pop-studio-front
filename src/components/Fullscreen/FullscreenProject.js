@@ -2,7 +2,7 @@ import React from 'react'
 import ProjectAppointments from '../Projects/ProjectAppointments'
 
 const FullscreenProject = (props) =>{
-    debugger
+
     const parseProgressImages = () =>{
         return props.project.attributes.progress_images.map(img => <img className='progress-image' src={img} alt="tattoo-progress image" />)
     }
