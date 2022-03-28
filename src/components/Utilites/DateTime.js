@@ -16,9 +16,11 @@ export const years = () => {
     return selectableYears
 }
 
-export const currentMonthDay = {
-    month: months[new Date().getMonth()],
-    date: new Date().getDate().toString()
-
+export const currentMonthDay = () => {
+   let  monthDay = {
+        month: months[new Date().getMonth()],
+        date: new Date().getDate().toString()
+    }
+    return monthDay
 
 }

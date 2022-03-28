@@ -17,12 +17,12 @@ const ProjectAppointments = (props) =>{
     let  defaultMonthIndex = months.indexOf(currentMonthDay.month)
     let  numbericMonth = defaultMonthIndex + 1
     let  stringNumericMonth = numbericMonth.toString()
-    debugger
+    
     const [admin, setAdmin] = useState(false)
     const [showApptForm, setShowApptForm] = useState(false)
     const [showButton, setShowButton] = useState(true)
-    const [month, setMonth] = useState(stringNumericMonth)
-    const [day, setDay] = useState(currentMonthDay.date)
+    const [month, setMonth] = useState(currentMonthDay().month)
+    const [day, setDay] = useState(currentMonthDay().date)
     const [year, setYear] = useState(currentYear)
     const [time, setTime] = useState('')
     const [duration, setDuration] = useState('')
@@ -67,19 +67,19 @@ const ProjectAppointments = (props) =>{
     }
 
     const monthInput = (e) =>{
-        debugger
+        
         e.preventDefault()
-        return setMonth(e.target.value)
+        setMonth(e.target.value)
     }
     
     const dayInput = (e) =>{
         e.preventDefault()
-        return setDay(e.target.value)
+        setDay(e.target.value)
     }
 
     const yearInput = (e) =>{
         e.preventDefault()
-        return  setYear(e.target.value)
+        setYear(e.target.value)
     }
 
     const timeInput = (e) =>{
@@ -101,12 +101,13 @@ const ProjectAppointments = (props) =>{
     }
 
     const days = () =>{
+        // debugger
         if(month === "February"){
-            return twentyEightDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>)
+            return twentyEightDays.map(d => <option  value={d}>{d}</option>)
         }else if(month === "September" || month === "April" || month === "June" || month === "November"){
-            return thirtyDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>)
+            return thirtyDays.map(d => <option  value={d}>{d}</option>)
         }else{
-            return thirtyOneDays.map(d => <option selected={currentMonthDay.date} value={d}>{d}</option>)
+            return thirtyOneDays.map(d => <option value={d}>{d}</option>)
         }
     }
 
@@ -117,7 +118,7 @@ const ProjectAppointments = (props) =>{
                     <form className='date-form'>
                         <div className="date">
                             <select id="month" onChange={e=>monthInput(e)}>
-                                {months.map(m => <option selected={currentMonthDay.month} value={m}>{m}</option>)}
+                                {months.map(m => <option selected={currentMonthDay().month} value={m}>{m}</option>)}
                             </select>
                             
                             <select id="day" onChange={e=>dayInput(e)}>
@@ -150,13 +151,21 @@ const ProjectAppointments = (props) =>{
         
     }
 
+    const convertMonthToNumeric = () => {
+        let  defaultMonthIndex = months.indexOf(month)
+        let  numbericMonth = defaultMonthIndex + 1
+        let  stringNumericMonth = numbericMonth.toString()
+        debugger
+        return stringNumericMonth
+    }
+
     const startTime = () => {
         let hour = parseInt(time.split(":")[0])
         if(daypart === "PM"){
             hour +=12
         }
 
-        return `${year}-${month}-${day}T${hour.toString()}:${time.split(':')[1]}:00`
+        return `${year}-${convertMonthToNumeric()}-${day}T${hour.toString()}:${time.split(':')[1]}:00`
     }
 
     const endTime = (t, d) =>{
@@ -167,7 +176,7 @@ const ProjectAppointments = (props) =>{
         let apptLengthInt = parseInt(d.split(" ")[0])
         let end = hour + apptLengthInt
         // let ending = `${year}-${month}-${day}T${end.toString()}:${t.split(':')[1]}:00`
-        return `${year}-${month}-${day}T${end.toString()}:${t.split(':')[1]}:00`
+        return `${year}-${convertMonthToNumeric()}-${day}T${end.toString()}:${t.split(':')[1]}:00`
         
     }
 
@@ -201,7 +210,6 @@ const ProjectAppointments = (props) =>{
                     //   'RRULE:FREQ=DAILY;COUNT=2'
                     // ],
                     'attendees': [
-                      {'email': 'lpage@example.com'},
                       {'email': `${props.project.attributes.user.email}`}
                     ],
                     'reminders': {
@@ -231,7 +239,7 @@ const ProjectAppointments = (props) =>{
 
         const data = {
             'day': day,
-            'month': month,
+            'month': convertMonthToNumeric(),
             'year': year,
             'time': time,
             'daypart': daypart,

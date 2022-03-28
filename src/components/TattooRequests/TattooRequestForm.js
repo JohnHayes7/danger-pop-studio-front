@@ -211,8 +211,9 @@ const TattooRequestForm = () =>{
                             <Field id="allergies" label="Allergies" placeHolder="Please list any allergies of which you are aware" allergies={allergies} changeHandler={(e) => allergiesInput(e)}/><br></br>
                             <div className="control">
                                 <label className="label">Upload image</label>
+                                <input type="file" name="file" onChange={e=> fileChange(e)} />
                                 {/* {selectedImage ? <img src={selectedImage} height="100px" width="50px" /> : null} */}
-                                <input className="input" type="file" name="file" onChange={e => fileChange(e)}/>
+                                {/* <input type="file" name="file" onChange={e => fileChange(e)}/> */}
                                 
                             </div><br></br>
                             <br></br>
