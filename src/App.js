@@ -22,6 +22,10 @@ import UserSignout from './components/User/UserSignOut'
 import PasswordReset from './components/User/PasswordReset'
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
+import Artist from './components/Artists/Artist';
+import Space from './components/Space/Space';
+import Aftercare from './components/Aftercare/Aftercare';
+import Faq from './components/FAQ/Faq';
 // import LoginUser from './components/User/LoginUser';
 // require('dotenv').config()
 
@@ -46,6 +50,12 @@ function App() {
         <Route exact path ="/users/:id" component={UserProfilePage} />
         <Route exact path="/create-profile" component={CreateUser} />
         <Route exact path="/password-reset" component={PasswordReset} />
+        <Route exact path="/artists/:name" component={Artist} />
+        <Route exact path="/studio" component={Space} />
+        <Route exact path="/faq" component={Faq} />
+        <Route exact path="/aftercare" component={Aftercare} />
+        
+
        
         {/* <Route exact path="/login" component={LoginUser} /> */}
         

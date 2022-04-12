@@ -51,12 +51,13 @@
     font-weight: 300;
 }
 
-@media(max-width: 380px){
+@media(max-width: 400px){
     .sign-in-div{
         border: none;
         margin: auto;
         height: 400px;
         width: 90%;
+        
     }
 
     .sign-in-mess{
@@ -85,6 +86,11 @@
         font-size: 2em;
         letter-spacing: .2ch;
         font-weight: 500;   
+    }
+
+    input.input-field, input.password{
+        width: 300px;
+        margin-left: 5px;
     }
 
 

@@ -28,11 +28,30 @@
 }
 
 .id-preview{
+    margin-left: 5px;
     width: 70%;
     height: 300px;
 }
 
 .image-preview{
+    
     width: 60%;
     height: 200px;
+}
+
+@media(max-width: 400px){
+    .user-layout{
+        display: block;
+    }
+
+    .user-mod{
+        width: 90%;
+    }
+
+    .id-preview{
+        width: 90%;
+        /* height: 300px; */
+    }
+
+    
 }

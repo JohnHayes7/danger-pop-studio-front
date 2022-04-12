@@ -113,7 +113,7 @@ nav{
   .sub-item{
     list-style-type: none;
     position: relative;
-    left: -40px;
+    /* left: -40px; */
     /* text-align: left; */
     /* margin: auto; */
     z-index: 2;
@@ -123,7 +123,7 @@ nav{
   }
   
   .sub-items{
-    background-color: rgba(160, 160, 160, 0.445);
+    /* background-color: rgba(160, 160, 160, 0.445); */
     font-size: .6em;
     border-radius: 10%;
     /* height: 100%; */
@@ -134,5 +134,9 @@ nav{
     top: 10px;
     z-index: 2;
     /* left: -100px; */
+  }
+
+  .sign-out{
+    margin-bottom: 5%;
   }
 }

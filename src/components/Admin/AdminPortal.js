@@ -25,16 +25,18 @@ const AdminPortal = () =>{
             })
             .then(resp => resp.json())
             .then(data => {
-                
                 let rxdUser = data.data
                 if (rxdUser.attributes.administrator){
                     setCurrentUser(rxdUser.attributes)
                     setAuthorized(true)
                 }else{
+                    setAuthorized(false)
                     notAuthorized()
                 }
             })
         }
+
+
     }, [])
 
     const parseAdminCategories = () =>{
@@ -87,7 +89,8 @@ const AdminPortal = () =>{
 
     const notAuthorized = () =>{
         alert('You Are Not Authorized to View This Page')
-        history.push('/sign-in')
+        // let user = currentUser
+        history.push(`/`)
     }
     
     return(

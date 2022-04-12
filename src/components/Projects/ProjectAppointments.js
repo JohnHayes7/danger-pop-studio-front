@@ -101,7 +101,6 @@ const ProjectAppointments = (props) =>{
     }
 
     const days = () =>{
-        // debugger
         if(month === "February"){
             return twentyEightDays.map(d => <option  value={d}>{d}</option>)
         }else if(month === "September" || month === "April" || month === "June" || month === "November"){
@@ -155,7 +154,6 @@ const ProjectAppointments = (props) =>{
         let  defaultMonthIndex = months.indexOf(month)
         let  numbericMonth = defaultMonthIndex + 1
         let  stringNumericMonth = numbericMonth.toString()
-        debugger
         return stringNumericMonth
     }
 

@@ -34,7 +34,7 @@ const Ul = styled.ul`
     }
     
   }
-  @media (max-width: 380px) {
+  @media (max-width: 400px) {
     flex-flow: column nowrap;
     background-color: rgba(46, 49, 49, .9);
     position: fixed;
@@ -77,7 +77,6 @@ const RightNav = ({ open }) => {
         })
         .then(resp => resp.json())
         .then(data => {
-          // debugger
           setLoggedIn(data.logged_in)
         })
     }else{
@@ -155,6 +154,8 @@ const inOrOut = () => {
     )
   }
 
+  
+
   return (
     <div className="menu">
       {/* <Ul open={open}>
@@ -179,6 +180,9 @@ const inOrOut = () => {
        </li>
        <li>
          <Link to="/aftercare">Aftercare</Link>
+       </li>
+       <li>
+         {loggedIn  ? <Link to="/admin">Admin Portal</Link> : null}
        </li>
        <li>
          {loggedIn ? <Link to="/sign-out">Sign Out</Link> : <Link to="/sign-in">Sign In</Link>}
