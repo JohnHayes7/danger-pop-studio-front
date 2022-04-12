@@ -38,7 +38,7 @@ const AdminUsers = () =>{
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Tattoo Project Approved?</th>
-                    <th>Administrator?</th>
+                    <th>Admin?</th>
                 </tr>
                 {parseAllUsers()}
             </table>
