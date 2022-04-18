@@ -184,7 +184,7 @@ const inOrOut = () => {
        <li>
          {loggedIn  ? <Link to="/admin">Admin Portal</Link> : null}
        </li>
-       <li>
+       <li className='sign-out'>
          {loggedIn ? <Link to="/sign-out">Sign Out</Link> : <Link to="/sign-in">Sign In</Link>}
        </li>
      </Ul>
