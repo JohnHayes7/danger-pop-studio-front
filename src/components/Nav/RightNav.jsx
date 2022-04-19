@@ -62,6 +62,7 @@ const RightNav = ({ open }) => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [userId, setUserId] = useState("")
   const [showArtists, setShowArtists] = useState(false)
 
   const history = useHistory()
@@ -77,7 +78,10 @@ const RightNav = ({ open }) => {
         })
         .then(resp => resp.json())
         .then(data => {
+          debugger
           setLoggedIn(data.logged_in)
+          setIsAdmin(data.user.administrator)
+          setUserId(data.user.id)
         })
     }else{
       setLoggedIn(false)
@@ -154,6 +158,16 @@ const inOrOut = () => {
     )
   }
 
+  const navMenuUser = () =>{
+    if (loggedIn && isAdmin){
+      return <Link to="/admin">Admin Portal</Link>
+    }else if(loggedIn){
+      return <Link to={`/users/${userId}`}>Your Profile</Link>
+    }else{
+      return null
+    }
+  }
+
   
 
   return (
@@ -182,7 +196,7 @@ const inOrOut = () => {
          <Link to="/aftercare">Aftercare</Link>
        </li>
        <li>
-         {loggedIn  ? <Link to="/admin">Admin Portal</Link> : null}
+         {navMenuUser()}
        </li>
        <li className='sign-out'>
          {loggedIn ? <Link to="/sign-out">Sign Out</Link> : <Link to="/sign-in">Sign In</Link>}
