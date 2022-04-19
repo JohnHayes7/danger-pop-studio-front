@@ -48,3 +48,27 @@
     background-color: white;
     color: black;
 }   
+
+@media(max-width: 400px){
+    .to-be-scheduled{
+        border: 1px solid white;
+        /* text-align: left; */
+        height: 200px;
+        display: block;
+        overflow: scroll;
+        
+    }
+
+    .project{
+        border: 1px solid white;
+        height: 70px;
+        width: 95vw;
+        float: left;
+        padding: 2px;
+        margin-left: 1px;
+        /* margin-bottom: 5px; */
+        text-align: left;
+        overflow: scroll;
+        /* position: relative; */
+    }
+}

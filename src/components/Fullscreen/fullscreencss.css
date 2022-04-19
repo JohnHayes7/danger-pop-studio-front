@@ -169,9 +169,6 @@
     margin-left: 5%;
     height: 275px;
     width: 600px;
-
-
-
 }
 
 .fs-top-level{
@@ -226,12 +223,12 @@
     color: white;
 }
 
-@media(max-width: 380px){
+@media(max-width: 400px){
     .full-screen{
         border: 1px solid grey;
         z-index: 5;
         position: absolute;
-        left: 1%;
+        left: 0;
         top: 50px;
         height: 200vh;
         width: 98vw;
@@ -249,6 +246,17 @@
         font-size: 1em;
         overflow: scroll;
         /* margin-left: .5%; */
+    }
+
+    .fs-top-level{
+        position: relative;
+        display: block;
+        margin-bottom: 1%;
+    }
+    .fs-bot-level{
+        position: relative;
+        display: block;
+        margin-bottom: 2%;
     }
 
     .fs-top{
@@ -270,6 +278,37 @@
         display: block;
         /* height: 100vh; */
         /* padding-left: 1%; */
+    }
+    .admin-option{
+        border: 2px solid grey;
+        margin-left: 1%;
+        height: 375px;
+        width: 100vw;
+    }
+
+    .window-open{
+        background-color: green;
+        height: 100px;
+        width: 300px;
+        margin-top: auto;
+    }
+    
+    .window-closed{
+        background-color: red;
+        height: 100px;
+        width: 300px;
+        margin-top: auto;
+    }
+
+    .open-close-option{
+        border: 1px solid grey;
+        height: 100px;
+        width: 300px;
+        margin: auto;
+        /* padding: 1%; */
+        font-size: 2em;
+        font-weight: 500;
+        text-align: center;
     }
 
     
