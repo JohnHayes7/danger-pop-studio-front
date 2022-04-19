@@ -150,10 +150,10 @@ const inOrOut = () => {
 
   const displayArtistNames = () => {
     return(
-      <ul className="sub-items">
-        <li className="sub-item"><Link to="/artists/Hayes">Hayes</Link></li>
-        <li className="sub-item"><Link to="/artists/Max">Max</Link></li>
-        <li className="sub-item"><Link to="/artists/Mikey">Mikey</Link></li>
+      <ul className='sub-items' >
+        <li className="sub-item" onMouseEnter={() => setShowArtists(true)} onMouseLeave={() => setShowArtists(false)}><Link to="/artists/Hayes">Hayes</Link></li>
+        <li className="sub-item" onMouseEnter={() => setShowArtists(true)} onMouseLeave={() => setShowArtists(false)}><Link to="/artists/Max">Max</Link></li>
+        <li className="sub-item" onMouseEnter={() => setShowArtists(true)} onMouseLeave={() => setShowArtists(false)}><Link to="/artists/Mikey">Mikey</Link></li>
       </ul>
     )
   }
@@ -179,10 +179,13 @@ const inOrOut = () => {
        {/* <li>
          <Link to="/">Home</Link>
        </li> */}
-       <li id="artists" onMouseEnter={() => setShowArtists(true)} onMouseLeave={() => setShowArtists(false)} onClick={() => setShowArtists(!showArtists)}>
-         Artists
-         {showArtists ? displayArtistNames() : null}
-       </li>
+       <div >
+        <li id="artists" onMouseEnter={() => setShowArtists(true)} onClick={() => setShowArtists(!showArtists)}>
+          Artists
+          {showArtists ? displayArtistNames() : null}
+        </li>
+
+       </div>
        <li>
          <Link to="/studio">Our Space</Link>
        </li>
