@@ -12,7 +12,9 @@
     width: 75vw;
     height: 100vh;
 } */
-
+.yt-logo{
+    margin-left: 2%;
+}
 .home-image-window{
     /* margin-left: 5%; */
     position: relative;
@@ -48,17 +50,17 @@
 }
 
 .social-icons{
-    /* display: flex;
+    /* display: flex; */
     position: absolute;
     right: 200px;
     margin-top: 10px;
-    background-color: black; */
+    background-color: black; 
 }
 
 .icon{
     
     height: 30px;
-    width: 30px;
+    width: 70px;
     padding-left: 20%;
     
     /* background-color: white; */
@@ -66,14 +68,10 @@
 
 @media(max-width: 400px){
     .home-image-window{
-        margin-left: 0%;
+        margin-left: 0;
         position: relative;
         overflow: scroll;
-        /* height: 643px; */
         width: 99vw;
-        /* margin-left: auto; */
-        /* border: 5px solid rgb(105, 105, 105); */
-        /* border-radius: ; */
     }
     
 
@@ -84,15 +82,17 @@
 
     .social-icons{
         display: flex;
-        position: absolute;
-        left: 10px;
-        margin-top: 20px;
+        /* position: absolute; */
+        margin-left: 1%;
+        /* margin-top: 20px; */
     }
+
+   
 
     .icon{
     
-        height: 23px;
-        width: 23px;
+        height: 20px;
+        width: 45px;
         padding-left: 12%;
         
         /* background-color: white; */

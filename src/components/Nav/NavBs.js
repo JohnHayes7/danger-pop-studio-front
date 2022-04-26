@@ -3,12 +3,14 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import '../Home/home.css'
+import './Navbar.css'
 
 const NavBs = () => {
 
     return(
-        <Navbar bg="black" variant='dark' expand="xxl">
-            <Navbar.Brand href="/"><img height="100 px"  src={"https://danger-pop-studio.s3.amazonaws.com/logos/logo+W+Large.png"} alt={"Yardley Tattoo Logo White"}/></Navbar.Brand>
+        <Navbar  bg="black" variant='dark' expand="xxl">
+            <Navbar.Brand margin-left="2%" href="/"><img className="yt-logo" height="100 px"  src={"https://danger-pop-studio.s3.amazonaws.com/logos/logo+W+Large.png"} alt={"Yardley Tattoo Logo White"}/></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Container>
