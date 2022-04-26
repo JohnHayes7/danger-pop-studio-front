@@ -1,16 +1,27 @@
-.home-logo{
-    width: 75vw;
+.app{
+    background-color: black;
+}
+
+.home{
+    background-color: black;
+    width: 100vw;
     height: 100vh;
 }
+
+/* .home-logo{
+    width: 75vw;
+    height: 100vh;
+} */
 
 .home-image-window{
     /* margin-left: 5%; */
     position: relative;
     overflow: scroll;
-    height: 640px;
+    /* height: 400%; */
     width: 96vw;
     margin-left: 2%;
     border: 1px solid rgb(105, 105, 105);
+    background-color: black;
     /* border-radius: ; */
 }
 
@@ -18,7 +29,7 @@
     display: flex;
     width: 95vw;
     
-    /* margin: auto; */
+    margin: auto;
     /* padding: 0px 100px 0px; */
 }
 
@@ -37,10 +48,11 @@
 }
 
 .social-icons{
-    display: flex;
+    /* display: flex;
     position: absolute;
     right: 200px;
     margin-top: 10px;
+    background-color: black; */
 }
 
 .icon{

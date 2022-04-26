@@ -1,6 +1,7 @@
 import {React, useState, useEffect} from 'react'
 import S3FileUpload from 'react-s3'
-import Navbar from '../Nav/Navbar'
+// import Navbar from '../Nav/Navbar'
+import NavBs from '../Nav/NavBs'
 import axios from 'axios'
 import Field from '../InputFields/Field'
 import { useHistory } from 'react-router-dom'
@@ -238,7 +239,7 @@ const TattooRequestForm = () =>{
     return(
         
         <div>
-            <Navbar />
+            <NavBs />
             <div className='tr-form-options'>
                 {admin ? adminOptions() : null}
                 {requestWindowOpen ? requestForm() : requestsClosed()}

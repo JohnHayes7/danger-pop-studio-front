@@ -6,6 +6,7 @@ import URL from '../Utilites/Url'
 import Loader from 'react-loader-spinner'
 import 'reactjs-navbar/dist/index.css'
 import './Navbar.css'
+// import 'danger-pop-studio-front/node_modules/bootstrap/dist/css/bootstrap.css'
 
 const Ul = styled.ul`
   list-style: none;

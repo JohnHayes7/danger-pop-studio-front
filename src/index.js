@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { combineReducers } from 'redux'
 import manageUser from './reducers/manageUser'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const rootReducer = combineReducers({
   user: manageUser
